@@ -6,7 +6,8 @@
 
 |     Time     |            Work done           |
 |--------------|--------------------------------|
-|15:15 - 16:30 |GitHub repository initial commit|
+|15:15 - 15:45 |GitHub repository initial commit|
+|15:45 - 16:30 |         Read Wikipedia         |
 
 ## Problems encountered and solutions adopted
 

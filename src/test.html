@@ -14,6 +14,7 @@
     <style>
         body {
             background-color: black;
+            text-align: center;
         }
         p {
             color: white;
@@ -23,16 +24,18 @@
 <body>
     
     <p>
-        $$f(t)= \sum_{n=-N}^{N} c_n\cdot e^{2\pi itn}$$
+
     </p>
 
     <canvas id="canvas" width="707" height="500"></canvas>
     <br>
-    <button onclick="toggle()">Play/Stop</button>
-    <input id="timeline" type="range" onmousedown="stop()" onmouseup="play()" oninput="setTime(this.value)" min="0" step="1">
+    <button id="playButton">&#10074;&#10074;</button>
+    <input id="timeline" type="range" oninput="setTime(this.value)" min="0" step="1">
     
     <script>
         var canvas = document.getElementById('canvas');
+        var timeline = document.getElementById('timeline');
+        var playButton = document.getElementById('playButton');
         var ctx = canvas.getContext('2d');
         
         // slider per precisione della serie di fourier
@@ -40,6 +43,8 @@
         var epicyclesColor = '#00CCFF';
         var linesColor = '#FFFFFF';
         var pathColor = '#FFFF00';
+
+        //ctx.scale(2, 2)
 
         var N = 1000;
 
@@ -51,6 +56,21 @@
         
         var signalY_DFT;
         var signalX_DFT;
+
+        var wasPlaying = false;
+        timeline.onmousedown = _ => {
+            wasPlaying = frameTask != -1;
+            pause();
+        };
+
+        timeline.onmouseup = _ => {
+            if (wasPlaying) {
+                resume();
+            }
+        };
+
+        playButton.onclick = () => {
+            playButton.innerHTML = toggle() ? '&#9658;' : '&#10074;&#10074;'}
         
         // default path - circle
         var circle = [];
@@ -64,19 +84,20 @@
 
         var frameTask = -1;
 
-        play();
+        resume();
 
-        function play() {
+        function resume() {
             frameTask = setInterval(nextFrame, 25);
         }
 
-        function stop() {
+        function pause() {
             clearInterval(frameTask);
             frameTask = -1;
         }
 
         function toggle() {
-            frameTask == -1 ? play() : stop();
+            frameTask == -1 ? resume() : pause();
+            return frameTask == -1;
         }
 
         function setPath(path) {
@@ -107,7 +128,7 @@
             signalY_DFT = Fourier.dft(signalY);
             signalX_DFT = Fourier.dft(signalX);
 
-            document.getElementById("timeline").max = path.length;
+            timeline.max = path.length;
         }
         
         function nextFrame() {
@@ -116,13 +137,13 @@
             }
 
             draw();
-            time += Math.PI * 2 / signalY_DFT.length;
+            time += 1 / signalY_DFT.length;
             // module (?)
         }
 
         function draw() {
             // update timeline
-            document.getElementById("timeline").value = lastDrawnPoint;
+            timeline.value = lastDrawnPoint;
 
             // name these variables properly
             var a = 300;
@@ -142,6 +163,7 @@
             // since the horizontal line oscillates vertically,
             // it gives the impression of being bigger with
             // repect to the other one.
+            
             ctx.lineWidth = 0.25;
             ctx.lineTo(a + lastPointX.x, b + lastPointY.y);
 
@@ -152,7 +174,8 @@
 
 
             ctx.beginPath();
-            ctx.lineWidth = 1.0;
+            //ctx.lineWidth = 1.0;
+            ctx.lineWidth = 2.0;
             ctx.strokeStyle = pathColor;
             ctx.moveTo(a + signalX[0], signalY[0] + b);
             for (var i = 0; i < lastDrawnPoint; i++) {
@@ -163,12 +186,12 @@
 
         function setTime(point) {
             lastDrawnPoint = point;
-            time = (Math.PI * 2 / signalY_DFT.length) * (lastDrawnPoint - 1); // inc * punti
+            time = (1 / signalY_DFT.length) * (lastDrawnPoint - 1); // inc * punti
 
             console.log(lastDrawnPoint)
 
             draw();
-            time += (Math.PI * 2 / signalY_DFT.length);
+            time += (1 / signalY_DFT.length);
         }
 
         function drawEpicycles(fourier, xOff, yOff, rot) {
@@ -179,15 +202,16 @@
                 var prevX = x;
                 var prevY = y;
 
+                // precompute these values
                 var freq = i;
                 var ampl = Math.sqrt(fourier[i].Re * fourier[i].Re + fourier[i].Im * fourier[i].Im);                
                 var phase = Math.atan2(fourier[i].Im, fourier[i].Re);
 
-                var arg = freq * time + phase + rot;
+                var arg = freq * time * 2 * Math.PI + phase + rot;
                 x += ampl * Math.cos(arg);
                 y += ampl * Math.sin(arg);
                 
-                ctx.lineWidth = 0.5;
+                ctx.lineWidth = 1.0;
                 ctx.strokeStyle = epicyclesColor;
                 ctx.beginPath();
                 ctx.arc(xOff + prevX, yOff + prevY, ampl, 0, Math.PI * 2);
@@ -213,7 +237,7 @@
         var path = [];
         canvas.onmousedown = () => {
             drawing = true;
-            stop();
+            pause();
             clearCanvas();
             
             // show path being drawn
@@ -221,7 +245,6 @@
         };
         canvas.onmouseup = () => {
             drawing = false;
-            console.log("UP");
             
             while (path.length > N) {
                 //remove random points
@@ -233,7 +256,7 @@
             }
             path = [];
 
-            play();
+            resume();
         };
         canvas.onmousemove = e => {
             if (!drawing) {

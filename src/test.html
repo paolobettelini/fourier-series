@@ -6,15 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fourier Series</title>
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+    <script src="Fourier.js"></script>
+
     <style>
         body {
             background-color: black;
         }
+        p {
+            color: white;
+        }
     </style>
 </head>
 <body>
-    <canvas id="canvas" width="1414" height="1000"></canvas>
+    
+    <p>
+        $$f(t)= \sum_{n=-N}^{N} c_n\cdot e^{2\pi itn}$$
+    </p>
 
+    <canvas id="canvas" width="707" height="500"></canvas>
+    <br>
+    <button onclick="toggle()">Play/Stop</button>
+    <input id="timeline" type="range" onmousedown="stop()" onmouseup="play()" oninput="setTime(this.value)" min="0" step="1">
+    
     <script>
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
@@ -25,7 +41,7 @@
         var linesColor = '#FFFFFF';
         var pathColor = '#FFFF00';
 
-        var N = 100;
+        var N = 1000;
 
         var time = 0;
         var lastDrawnPoint = 0;
@@ -33,12 +49,12 @@
         var signalY = []
         var signalX = []
         
-        var signalY_DTF;
-        var signalX_DTF;
+        var signalY_DFT;
+        var signalX_DFT;
         
         // default path - circle
         var circle = [];
-        for (var i = 0; i < N; i++) {
+        for (var i = 0; i < 100; i++) {
             circle[i] = {
                 x: 50 * Math.cos(Math.PI * 2 / 100 * i),
                 y: 50 * Math.sin(Math.PI * 2 / 100 * i),
@@ -46,16 +62,21 @@
         }
         setPath(circle);
 
-        var frameTask;
+        var frameTask = -1;
 
-        start();
+        play();
 
-        function start() {
-            frameTask = setInterval(draw, 25);
+        function play() {
+            frameTask = setInterval(nextFrame, 25);
         }
 
         function stop() {
             clearInterval(frameTask);
+            frameTask = -1;
+        }
+
+        function toggle() {
+            frameTask == -1 ? play() : stop();
         }
 
         function setPath(path) {
@@ -65,7 +86,6 @@
             // remove offset
             var minX = 999999;
             var minY = 999999;
-            console.log(path.length)
             for (var i = 0; i < path.length; i++) {
                 if (path[i].x < minX) {
                     minX = path[i].x;
@@ -84,14 +104,26 @@
             time = 0;
             lastDrawnPoint = 0;
 
-            signalY_DTF = dtf(signalY);
-            signalX_DTF = dtf(signalX);
+            signalY_DFT = Fourier.dft(signalY);
+            signalX_DFT = Fourier.dft(signalX);
 
-            console.log(signalX_DTF)
-            console.log(signalY_DTF)
+            document.getElementById("timeline").max = path.length;
         }
         
+        function nextFrame() {
+            if (++lastDrawnPoint >= signalX.length) {
+                lastDrawnPoint = 0;
+            }
+
+            draw();
+            time += Math.PI * 2 / signalY_DFT.length;
+            // module (?)
+        }
+
         function draw() {
+            // update timeline
+            document.getElementById("timeline").value = lastDrawnPoint;
+
             // name these variables properly
             var a = 300;
             var b = 300;
@@ -100,12 +132,8 @@
             
             clearCanvas();
             
-            var lastPointX = drawEpicycles(signalX_DTF, a, c, 0)
-            var lastPointY = drawEpicycles(signalY_DTF, d, b, Math.PI * 0.5)
-            
-            if (++lastDrawnPoint == signalX.length) {
-                lastDrawnPoint = 0;
-            }
+            var lastPointX = drawEpicycles(signalX_DFT, a, c, 0)
+            var lastPointY = drawEpicycles(signalY_DFT, d, b, Math.PI * 0.5)
             
             ctx.strokeStyle = linesColor;
             ctx.beginPath();
@@ -131,8 +159,16 @@
                 ctx.lineTo(a + signalX[i], signalY[i] + b);
             }
             ctx.stroke();
+        }
 
-            time += Math.PI * 2 / signalY_DTF.length;
+        function setTime(point) {
+            lastDrawnPoint = point;
+            time = (Math.PI * 2 / signalY_DFT.length) * (lastDrawnPoint - 1); // inc * punti
+
+            console.log(lastDrawnPoint)
+
+            draw();
+            time += (Math.PI * 2 / signalY_DFT.length);
         }
 
         function drawEpicycles(fourier, xOff, yOff, rot) {
@@ -168,29 +204,6 @@
             return {x, y}
         }
 
-        // discrete fourier transform
-        function dtf(f) {
-            var fourierTransform = [];
-            
-            for (var k = 0; k < f.length; k++) {
-                var sumRe = 0;
-                var sumIm = 0;
-
-                for (var n = 0; n < f.length; n++) {
-                    var angle = 2 * Math.PI * k * n / f.length;
-                    sumRe += f[n] * Math.cos(angle);
-                    sumIm -= f[n] * Math.sin(angle);
-                }
-
-                fourierTransform[k] = {
-                    Re: sumRe / f.length,
-                    Im: sumIm / f.length,
-                };
-            }
-
-            return fourierTransform;
-        }
-
         function clearCanvas() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
@@ -208,6 +221,7 @@
         };
         canvas.onmouseup = () => {
             drawing = false;
+            console.log("UP");
             
             while (path.length > N) {
                 //remove random points
@@ -219,7 +233,7 @@
             }
             path = [];
 
-            start();
+            play();
         };
         canvas.onmousemove = e => {
             if (!drawing) {

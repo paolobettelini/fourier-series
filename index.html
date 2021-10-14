@@ -12,6 +12,8 @@
     <script src="lib/fourier/Fourier.js"></script>
     <script src="lib/interactivebox/InteractiveBox.js"></script>
     <script src="lib/interactiveboximpl/Example.js"></script>
+    <script src="lib/interactiveboximpl/FourierSeries.js"></script>
+    <script src="lib/interactiveboximpl/CenterOfMass.js"></script>
 
     <style>
         body {
@@ -24,10 +26,12 @@
     </style>
 </head>
 <body>
-    <div id="container"></div>
+    <div id="container1"></div>
+    <div id="container2"></div>
 
     <script>
-        new Example('example', 'container', 500, 500)
+        new FourierSeries('fourier', 'container1', 500, 500)
+        new CenterOfMass('centerofmass', 'container2', 500, 500)
     </script>
 </body>
 </html>

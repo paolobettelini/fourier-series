@@ -8,30 +8,58 @@
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { extensions: ["color.js"] }
+        });
+    </script>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']]
+            },
+            chtml: {
+                scale: 1.5
+            }
+        };
+    </script>
 
     <script src="lib/fourier/Fourier.js"></script>
     <script src="lib/interactivebox/InteractiveBox.js"></script>
     <script src="lib/interactiveboximpl/Example.js"></script>
     <script src="lib/interactiveboximpl/FourierSeries.js"></script>
-    <script src="lib/interactiveboximpl/CenterOfMass.js"></script>
+    <script src="lib/interactiveboximpl/PolarPlot.js"></script>
 
     <style>
         body {
             background-color: black;
             text-align: center;
         }
-        p {
+
+        span, p, h1, h2 {
             color: white;
         }
     </style>
 </head>
 <body>
+    $$
+    \definecolor{white}{RGB}{255, 255, 255}
+    $$
+
+    $$
+    \color{white}
+    \hat{f}(\xi)=\int\limits_{-\infty}^{\infty}f(t)\,e^{-2\pi it\xi}\,dt
+    $$
+
     <div id="container1"></div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <div id="container2"></div>
+    <div id="container3"></div>
 
     <script>
         new FourierSeries('fourier', 'container1', 500, 500)
-        new CenterOfMass('centerofmass', 'container2', 500, 500)
+        new PolarPlot('polarplot', 'container2', 500, 500)
+        //new Example('example', 'container3', 500, 500);
     </script>
 </body>
 </html>

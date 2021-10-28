@@ -29,6 +29,7 @@
     <script src="lib/interactiveboximpl/Example.js"></script>
     <script src="lib/interactiveboximpl/FourierSeries.js"></script>
     <script src="lib/interactiveboximpl/PolarPlot.js"></script>
+    <script src="lib/interactiveboximpl/CenterOfMass.js"></script>
 
     <style>
         body {
@@ -51,15 +52,31 @@
     \hat{f}(\xi)=\int\limits_{-\infty}^{\infty}f(t)\,e^{-2\pi it\xi}\,dt
     $$
 
+    <p></p>
+
     <div id="container1"></div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <br><br><br>
+
     <div id="container2"></div>
+    
+    <br><br><br>
+
+    <p>Here the signal two periods of the signal are plotted.</p>
+    <p>The frequency is time-dependant</p>
+    <p>The blue dot represents the center of mass. The center of mass is basically the average point</p>
+    <p>For the sine wave, when the frequency is 1 the center of mass is unusually far from the origin</p>
+
     <div id="container3"></div>
+
+    <br><br><br>
+
+    <p>The next animation is the function of the position of the</p>
 
     <script>
         new FourierSeries('fourier', 'container1', 500, 500)
         new PolarPlot('polarplot', 'container2', 500, 500)
-        //new Example('example', 'container3', 500, 500);
+        new CenterOfMass('centerofmass', 'container3', 500, 500);
     </script>
 </body>
 </html>

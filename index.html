@@ -19,7 +19,7 @@
                 inlineMath: [['\\(', '\\)']]
             },
             chtml: {
-                scale: 1.5
+                scale: 1.1
             }
         };
     </script>
@@ -32,27 +32,161 @@
     <script src="lib/interactiveboximpl/CenterOfMass.js"></script>
 
     <style>
-        body {
+        canvas {
             background-color: black;
-            text-align: center;
+            border-radius: 20px;
         }
 
-        span, p, h1, h2 {
-            color: white;
+        * {
+            
+            text-align: center;
         }
     </style>
 </head>
 <body>
     $$
-    \definecolor{white}{RGB}{255, 255, 255}
+        \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4}
     $$
 
     $$
-    \color{white}
     \hat{f}(\xi)=\int\limits_{-\infty}^{\infty}f(t)\,e^{-2\pi it\xi}\,dt
     $$
 
-    <p></p>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+
+    <h1>Requirements</h1>
+    <li>
+        <ul>Calculus</ul>
+        <ul>Complex plane</ul>
+        <ul>LALALALAL</ul>
+    </li>
+
+    <h1>Introduction</h1>
+
+    Mathematician Joseph Fourier determined that a function can be represented as a series of sines and cosines or different frequencies. <br>
+    Each trigonometric term has its own coefficient, which determined how much that particular frequency "is present in the function". <br>
+    Fourier Series are often represented in two ways: trigonometric and exponential. <br>
+    They are both based on the same principle but the exponential one is defined over the complex plane, and as we'll see has a nicer form.
+
+    <h1>Trigonometric Fourier Series</h1>
+
+    <p>A function \(f(t)\) is periodic if there is a positive number \(T\) (the period of \(f\)) such that</p>
+    $$
+        f(t+nT)=f(t)\quad \forall t \in D_f, n \in \mathbb{Z}
+    $$
+    <p>We can represent a periodic function using a sum of sines and cosines, with a different amplitude for each discrete frequency</p>
+    $$
+        f(t)=h+\sum_{n=1}^{\infty} a_n \cos\left(\frac{2\pi nt}{T}\right) + b_n \sin\left(\frac{2\pi nt}{T}\right)
+    $$
+
+    <p>The term \(h\) is there to shift the function up and down the \(y\)-axis</p>.
+
+    <br>
+
+    <h1>Finding \(h, a_k, b_k\)</h1>
+
+    <p>Here we manipulate the Fourier series definition to find the values of \(h\) and the sine and cosine amplitudes.</p>
+    <p>We define \(w_k=\frac{2\pi k}{T}\) to simplify the expressions.</p>
+
+    <h2>Finding \(h\)</h2>
+
+    <p>We take the integral over the period \([t_0;t_0+T]\) on both sides</p>
+
+    $$
+        \integral{t_0}{t_0+T}{f(t)}{t} =
+        \integral{t_0}{t_0+T}{h}{t} +
+        \sum_{n=1}^{\infty}
+        \left[
+        a_n \integral{t_0}{t_0+T}{\cos(w_n t)}{t} +
+        b_n \integral{t_0}{t_0+T}{\sin(w_n t)}{t}
+        \right]
+    $$
+
+    <p>If you think about it, the integral over a full period of a fuction such as \(\sin(x)\) or \(\cos(x)\) is 0. <br>
+    If we consider \(\sin(w_n x)\) or \(\cos(w_n x)\) the function will make more full cycles in the span of the interval \(T\), <br>
+    all of which yield an area of 0.</p>
+
+    $$
+        \begin{align*}
+            \integral{t_0}{t_0+T}{f(t)}{t}
+            &= \integral{t_0}{t_0+T}{h}{t} + \sum_{n=1}^{\infty} a_n\cdot 0 + b_n\cdot 0\\
+            &= \integral{t_0}{t_0+T}{h}{t} \\
+            &= h \integral{t_0}{t_0+T}{}{t} \\
+            &= h {\left[x\right]}^{t_0+T}_{t_0} \\
+            &= h(t_0+T-t_0) \\
+            &= hT
+        \end{align*}
+    $$
+
+    concluding that
+
+    $$
+        h = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)}{t}
+    $$
+
+    <h2>Finding \(a_k\)</h2>
+
+    <p>Again, we take the integral over the period \([t_0;t_0+T]\) on both sides, but first we multiply everything by \(\cos(w_k t)\)</p>
+
+    $$
+        \begin{align*}
+            \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
+            &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
+                \left[
+                a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
+                b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
+                \right]
+        \end{align*}
+    $$
+
+    ...
+    
+    <h2>Finding \(b_k\)</h2>
+
+    ...
+
+    <h1>Conclusion</h1>
+
+    <p>We can represent a period and continuous function \(f(t)\) by</p>
+
+    $$
+        \begin{align*}
+            f(t)&=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos(w_n t) + b_n \sin(w_n t) \\
+            a_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t} \\
+            b_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
+        \end{align*}
+    $$
+
+    <p>where</p>
+
+    $$
+        w_k=\frac{2\pi k}{T}
+    $$
+
+    <h1>Exponential Fourier Series</h1>
+
+    $$
+        f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
+    $$
+
+    <p>where</p>
+
+    $$
+        c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
+    $$
+
+    <p>A</p>
+
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
+    <hr>
 
     <div id="container1"></div>
 
@@ -74,8 +208,8 @@
     <p>The next animation is the function of the position of the</p>
 
     <script>
-        new FourierSeries('fourier', 'container1', 500, 500)
-        new PolarPlot('polarplot', 'container2', 500, 500)
+        new FourierSeries('fourier', 'container1', 500, 500);
+        new PolarPlot('polarplot', 'container2', 500, 500);
         new CenterOfMass('centerofmass', 'container3', 500, 500);
     </script>
 </body>

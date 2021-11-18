@@ -30,6 +30,7 @@
     <script src="lib/interactiveboximpl/FourierSeries.js"></script>
     <script src="lib/interactiveboximpl/PolarPlot.js"></script>
     <script src="lib/interactiveboximpl/CenterOfMass.js"></script>
+    <script src="lib/interactiveboximpl/FourierTransform.js"></script>
 
     <style>
         canvas {
@@ -169,6 +170,8 @@
 
     <h1>Exponential Fourier Series</h1>
 
+    <p>The exponential Fourier Series is the same thing but extended to the complex plane.</p>
+
     $$
         f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
     $$
@@ -198,19 +201,33 @@
 
     <p>Here the signal two periods of the signal are plotted.</p>
     <p>The frequency is time-dependant</p>
-    <p>The blue dot represents the center of mass. The center of mass is basically the average point</p>
+    <p>The blue dot represents the center of mass. The center of mass is basically the average point of the function</p>
     <p>For the sine wave, when the frequency is 1 the center of mass is unusually far from the origin</p>
 
     <div id="container3"></div>
 
     <br><br><br>
 
-    <p>The next animation is the function of the position of the</p>
+    <p>The next animation is distance of the center of mass from the origin as the frequency changes.</p>
+
+    <br>
+
+    <p>The key concept is that when the frequency matches the period, the center of mass is unusually further from the origin.</p>
+    <p>When the frequency is a component of the function, this distance peaks.</p> <br>
+    <p>If the function is composed of multiple frequencies, the same distance will peak multiple times.</p>
+    <p>The more it peaks, the more the frequency is present in the original function.</p>
+
+    <br>
+    <p>The Fourier Transform is a function that given a signal, produces a complex function: the plot of the center of mass.</p>
+    <p>This complex function tells us which frequencies and in what quantity compose the original function.</p>
+
+    <div id="container4"></div>
 
     <script>
-        new FourierSeries('fourier', 'container1', 500, 500);
+        new FourierSeries('fourierseries', 'container1', 500, 500);
         new PolarPlot('polarplot', 'container2', 500, 500);
         new CenterOfMass('centerofmass', 'container3', 500, 500);
+        //new FourierTransform('fouriertransform', 'container4', 500, 500);
     </script>
 </body>
 </html>

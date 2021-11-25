@@ -131,7 +131,14 @@ class CenterOfMass extends InteractiveBox {
                 y: 100 * Math.sin(Math.PI * 2 / 100 * i)
             }
         }
+        var a = [
+            {x:2, y:3},
+            {x:2, y:3},
+            {x:2, y:3},
+        ];
+
         return path;
     }
+
 
 }

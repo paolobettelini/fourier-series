@@ -1,233 +1,601 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fourier Series</title>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Fourier Series</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            TeX: { extensions: ["color.js"] }
-        });
-    </script>
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['\\(', '\\)']]
-            },
-            chtml: {
-                scale: 1.1
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/fontAwesome.css">
+        <link rel="stylesheet" href="css/hero-slider.css">
+        <link rel="stylesheet" href="css/templatemo-main.css">
+        <link rel="stylesheet" href="css/owl-carousel.css">
+
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+        <!-- Animated boxes -->
+        <script src="js/lib/fourier/Fourier.js"></script>
+        <script src="js/lib/interactivebox/InteractiveBox.js"></script>
+        <script src="js/lib/interactiveboximpl/Example.js"></script>
+        <script src="js/lib/interactiveboximpl/FourierSeries.js"></script>
+        <script src="js/lib/interactiveboximpl/PolarPlot.js"></script>
+        <script src="js/lib/interactiveboximpl/CenterOfMass.js"></script>
+        <script src="js/lib/interactiveboximpl/FourierTransform.js"></script>
+
+        <!-- LaTeX Rendering -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <!--<script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                TeX: { extensions: ["color.js"] }
+            });
+        </script>-->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['\\(', '\\)']]
+                },
+                chtml: {
+                    scale: 1.1
+                }
+            };
+        </script>
+
+        <style>
+            canvas {
+                background-color:rgba(0, 0, 0, 0.5);
+                border-radius: 10px;
             }
+
+            /* Scroll progress */
+            .progress-container {
+                position: fixed;
+                top: 0;
+                z-index: 1;
+                width: 100%;
+                background-color: #f1f1f1;
+                width: 100%;
+                height: 8px;
+                background: #ccc;
+            }
+
+            .progress-bar {
+                height: 8px;
+                background: #04AA6D;
+                width: 0%;
+            }
+        </style>
+    </head>
+            <!--
+            https://purifycss.online/
+            https://doodad.dev/pattern-generator/
+            -->
+<body>
+    <!-- Scroll progress -->
+    <div class="progress-container">
+        <div class="progress-bar" id="scrollingbar"></div>
+    </div>
+
+    <div class="fixed-side-navbar">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link smoothlink" href="#section1"><span>Section1</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#section2"><span>Section2</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#section3"><span>Section3</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#section4"><span>Section4</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#section5"><span>Section5</span></a></li>
+        </ul>
+    </div>
+
+    <div class="parallax-content section1" id="section1">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Fourier Series</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    
+                    <div class="primary-button smoothlink">
+                        <a class="smoothlink" href="#section2">Learn More</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="container1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-content section2" id="section2">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <div class="left-text">
+                        <h1>Requirements</h1>
+                        <p>This article requires a general good understanding about math. If you want to fully understand every bit of math there are a few requirements:</p>
+                        <ul>
+                            <li>Trigonometry</li>
+                            <li>Calculus</li>
+                            <li>Complex plane and complex analysis</li>
+                        </ul>
+                        <p>Even if you don't understand the math involved, the main ideas about Fourier analysis will be explain visually and occasionaly with interactive examples.</p>
+                        <div class="primary-button smoothlink">
+                            <a href="#section3">Start</a>
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-content section3" id="section3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Introduction</h1>
+                    <p>Mathematician Joseph Fourier determined that a function can be represented as a series of sines and cosines or different frequencies.</p>
+                    <p>Each trigonometric term has its own coefficient, which determined how much that particular frequency "is present in the function".</p>
+                    <p>Fourier Series are often represented in two ways: trigonometric and exponential.</p>
+                    <p>They are both based on the same principle but the exponential one is defined over the complex plane, and as we'll see has a nicer form.</p>
+
+                    <div class="primary-button smoothlink">
+                        <a href="#section4">Next</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src="img/fourier1.png" alt="Joseph Fourier">
+                          </div>
+                          <div class="carousel-item">
+                            <img class="d-block w-100" src="img/fourier2.png" alt="Joseph Fourier">
+                          </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <!--
+        <h1>Trigonometric Fourier Series</h1>
+    
+        <p>A function \(f(t)\) is periodic if there is a positive number \(T\) (the period of \(f\)) such that</p>
+        $$
+            f(t+nT)=f(t)\quad \forall t \in D_f, n \in \mathbb{Z}
+        $$
+        <p>We can represent a periodic function using a sum of sines and cosines, with a different amplitude for each discrete frequency</p>
+        $$
+            f(t)=h+\sum_{n=1}^{\infty} a_n \cos\left(\frac{2\pi nt}{T}\right) + b_n \sin\left(\frac{2\pi nt}{T}\right)
+        $$
+    
+        <p>The term \(h\) is there to shift the function up and down the \(y\)-axis</p>.
+    
+        <br>
+    
+        <h1>Finding \(h, a_k, b_k\)</h1>
+    
+        <p>Here we manipulate the Fourier series definition to find the values of \(h\) and the sine and cosine amplitudes.</p>
+        <p>We define \(w_k=\frac{2\pi k}{T}\) to simplify the expressions.</p>
+    
+        <h2>Finding \(h\)</h2>
+    
+        <p>We take the integral over the period \([t_0;t_0+T]\) on both sides</p>
+    
+        $$
+            \integral{t_0}{t_0+T}{f(t)}{t} =
+            \integral{t_0}{t_0+T}{h}{t} +
+            \sum_{n=1}^{\infty}
+            \left[
+            a_n \integral{t_0}{t_0+T}{\cos(w_n t)}{t} +
+            b_n \integral{t_0}{t_0+T}{\sin(w_n t)}{t}
+            \right]
+        $$
+    
+        <p>If you think about it, the integral over a full period of a fuction such as \(\sin(x)\) or \(\cos(x)\) is 0. <br>
+        If we consider \(\sin(w_n x)\) or \(\cos(w_n x)\) the function will make more full cycles in the span of the interval \(T\), <br>
+        all of which yield an area of 0.</p>
+    
+        $$
+            \begin{align*}
+                \integral{t_0}{t_0+T}{f(t)}{t}
+                &= \integral{t_0}{t_0+T}{h}{t} + \sum_{n=1}^{\infty} a_n\cdot 0 + b_n\cdot 0\\
+                &= \integral{t_0}{t_0+T}{h}{t} \\
+                &= h \integral{t_0}{t_0+T}{}{t} \\
+                &= h {\left[x\right]}^{t_0+T}_{t_0} \\
+                &= h(t_0+T-t_0) \\
+                &= hT
+            \end{align*}
+        $$
+    
+        concluding that
+    
+        $$
+            h = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)}{t}
+        $$
+    
+        <h2>Finding \(a_k\)</h2>
+    
+        <p>Again, we take the integral over the period \([t_0;t_0+T]\) on both sides, but first we multiply everything by \(\cos(w_k t)\)</p>
+    
+        $$
+            \begin{align*}
+                \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
+                &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
+                    \left[
+                    a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
+                    b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
+                    \right]
+            \end{align*}
+        $$
+    
+        ...
+        
+        <h2>Finding \(b_k\)</h2>
+    
+        ...
+    
+        <h1>Conclusion</h1>
+    
+        <p>We can represent a period and continuous function \(f(t)\) by</p>
+    
+        $$
+            \begin{align*}
+                f(t)&=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos(w_n t) + b_n \sin(w_n t) \\
+                a_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t} \\
+                b_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
+            \end{align*}
+        $$
+    
+        <p>where</p>
+    
+        $$
+            w_k=\frac{2\pi k}{T}
+        $$
+    
+        <h1>Exponential Fourier Series</h1>
+    
+        <p>The exponential Fourier Series is the same thing but extended to the complex plane.</p>
+    
+        $$
+            f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
+        $$
+    
+        <p>where</p>
+    
+        $$
+            c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
+        $$
+    
+        $$
+            \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4}
+            \hat{f}(\xi)=\integral{-\infty}{\infty}{f(t)\,e^{-2\pi it\xi}}{t}
+        $$
+
+        <p>A</p>
+    
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+    
+        <br><br><br>
+    
+        <div id="container2"></div>
+        
+        <br><br><br>
+    
+        <p>Here the signal two periods of the signal are plotted.</p>
+        <p>The frequency is time-dependant</p>
+        <p>The blue dot represents the center of mass. The center of mass is basically the average point of the function</p>
+        <p>For the sine wave, when the frequency is 1 the center of mass is unusually far from the origin</p>
+    
+        <div id="container3"></div>
+    
+        <br><br><br>
+    
+        <p>The next animation is distance of the center of mass from the origin as the frequency changes.</p>
+    
+        <br>
+    
+        <p>The key concept is that when the frequency matches the period, the center of mass is unusually further from the origin.</p>
+        <p>When the frequency is a component of the function, this distance peaks.</p> <br>
+        <p>If the function is composed of multiple frequencies, the same distance will peak multiple times.</p>
+        <p>The more it peaks, the more the frequency is present in the original function.</p>
+    
+        <br>
+        <p>The Fourier Transform is a function that given a signal, produces a complex function: the plot of the center of mass.</p>
+        <p>This complex function tells us which frequencies and in what quantity compose the original function.</p>
+    
+        <div id="container4"></div>-->
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!--
+    <div class="service-content" id="services">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="left-text">
+                        <h4>More About Vanilla</h4>
+                        <div class="line-dec"></div>
+                        <p>Vanilla is free HTML CSS template with Bootstrap v4.2.1 and you can apply this theme for your sites. 
+                        Please share our <a rel="nofollow" href="https://templatemo.com">website</a> to your friends or collegues. Thank you.</p>
+                        <ul>
+                            <li>-  Praesent porta urna id eros</li>
+                            <li>-  Curabitur consectetur malesuada</li>
+                            <li>-  Nam pretium imperdiet enim</li>
+                            <li>-  Sed viverra arcu non nisi efficitur</li>
+                        </ul>
+                        <div class="primary-button smoothlink">
+                            <a href="#portfolio">Learn More About Us</a>
+                        </div>
+                    </div>
+                </div>             
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="parallax-content projects-content" id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="owl-testimonials" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/1st-big-item.jpg" data-lightbox="image-1"><img src="img/1st-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>Awesome Note Book</h4>
+                                    <span>$18.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/2nd-big-item.jpg" data-lightbox="image-1"><img src="img/2nd-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>Antique Decoration Photo</h4>
+                                    <span>$27.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/3rd-big-item.jpg" data-lightbox="image-1"><img src="img/3rd-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>Work Hand Bag</h4>
+                                    <span>$36.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/4th-big-item.jpg" data-lightbox="image-1"><img src="img/4th-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>Smart Watch</h4>
+                                    <span>$45.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/5th-big-item.jpg" data-lightbox="image-1"><img src="img/5th-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>PC Tablet Draw</h4>
+                                    <span>$63.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/6th-big-item.jpg" data-lightbox="image-1"><img src="img/6th-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>Healthy Milkshake</h4>
+                                    <span>$77.00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/2nd-big-item.jpg" data-lightbox="image-1"><img src="img/2nd-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>Antique Decoration Photo</h4>
+                                    <span>$84.50</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/1st-big-item.jpg" data-lightbox="image-1"><img src="img/1st-item.jpg" alt=""></a>
+                                <div class="text-content">
+                                    <h4>Awesome Notes Book</h4>
+                                    <span>$96.75</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tabs-content" id="our-story">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="wrapper">
+                    <section id="first-tab-group" class="tabgroup">
+                      <div id="tab1">
+                        <img src="img/1st-tab.jpg" alt="">
+                        <p>Please do not re-distribute our template ZIP file on your template collection sites. You can make a screenshot and a link back to our website. This template can be used for personal or commercial purposes by end-users.</p>
+                      </div>
+                      <div id="tab2">
+                        <img src="img/2nd-tab.jpg" alt="">
+                        <p>Aliquam eu ultrices risus, sed condimentum diam. Duis risus nulla, elementum vitae nisi a, ornare maximus nisl. Morbi et vehicula est. Cras at vulputate justo. Cras eu nulla metus. Ut et pretium velit. Pellentesque at neque tristique dui tempor venenatis.</p>
+                      </div>
+                      <div id="tab3">
+                        <img src="img/3rd-tab.jpg" alt="">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia ligula est, at venenatis ex iaculis quis. Morbi sollicitudin nulla eget odio pellentesque, sed cursus diam iaculis.</p>
+                      </div>
+                      <div id="tab4">
+                        <img src="img/4th-tab.jpg" alt="">
+                        <p>Duis risus nulla, elementum vitae nisi a, ornare maximus nisl. Morbi et vehicula est. Cras at vulputate justo. Cras eu nulla metus. Ut et pretium velit. Pellentesque at neque tristique.</p>
+                      </div>
+                    </section>
+                    <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+                      <li><a href="#tab1" class="active">2008 - 2014</a></li>
+                      <li><a href="#tab2">2014 - 2016</a></li>
+                      <li><a href="#tab3">2016 - 2019</a></li>
+                      <li><a href="#tab4">2019 - Now</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="parallax-content contact-content" id="contact-us">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-form">
+                        <div class="row">
+                            <form id="contact" action="" method="post">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                      <fieldset>
+                                        <input name="name" type="text" class="form-control" id="name" placeholder="Your name..." required="">
+                                      </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <fieldset>
+                                        <input name="email" type="email" class="form-control" id="email" placeholder="Your email..." required="">
+                                      </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <fieldset>
+                                        <textarea name="message" rows="6" class="form-control" id="message" placeholder="Your message..." required=""></textarea>
+                                      </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <fieldset>
+                                        <button type="submit" id="form-submit" class="btn">Send Message</button>
+                                      </fieldset>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="map">
+
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1197183.8373802372!2d-1.9415093691103689!3d6.781986417238027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdb96f349e85efd%3A0xb8d1e0b88af1f0f5!2sKumasi+Central+Market!5e0!3m2!1sen!2sth!4v1532967884907" width="100%" height="390" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="primary-button smoothlink">
+                        <a href="#section1">Back To Top</a>
+                    </div>
+                    <ul>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google"></i></a></li>
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                    </ul>
+                    <p>Copyright &copy; 2019 Company Name 
+            
+            		- Design: <a rel="nofollow noopener" href="https://templatemo.com"><em>TemplateMo</em></a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+          // Add smooth scrolling to all links
+          $(".smoothlink a, a.smoothlink").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+
+              // Store hash
+              var hash = this.hash;
+
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+           
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });              
+            }
+          });
+        });
+
+        new FourierSeries('fourierseries', 'container1', 500, 500);
+        //new PolarPlot('polarplot', 'container2', 500, 500);
+        //new CenterOfMass('centerofmass', 'container3', 500, 500);
+        //new FourierTransform('fouriertransform', 'container4', 500, 500);
+
+        /* Scroll progress */
+        let scrollingbar = document.getElementById("scrollingbar");
+        window.onscroll = () => {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            scrollingbar.style.width = scrolled + '%';
         };
     </script>
 
-    <script src="lib/fourier/Fourier.js"></script>
-    <script src="lib/interactivebox/InteractiveBox.js"></script>
-    <script src="lib/interactiveboximpl/Example.js"></script>
-    <script src="lib/interactiveboximpl/FourierSeries.js"></script>
-    <script src="lib/interactiveboximpl/PolarPlot.js"></script>
-    <script src="lib/interactiveboximpl/CenterOfMass.js"></script>
-    <script src="lib/interactiveboximpl/FourierTransform.js"></script>
-
-    <style>
-        canvas {
-            background-color: black;
-            border-radius: 20px;
-        }
-
-        * {
-            
-            text-align: center;
-        }
-    </style>
-</head>
-<body>
-    $$
-        \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4}
-    $$
-
-    $$
-    \hat{f}(\xi)=\int\limits_{-\infty}^{\infty}f(t)\,e^{-2\pi it\xi}\,dt
-    $$
-
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-
-    <h1>Requirements</h1>
-    <li>
-        <ul>Calculus</ul>
-        <ul>Complex plane</ul>
-        <ul>LALALALAL</ul>
-    </li>
-
-    <h1>Introduction</h1>
-
-    Mathematician Joseph Fourier determined that a function can be represented as a series of sines and cosines or different frequencies. <br>
-    Each trigonometric term has its own coefficient, which determined how much that particular frequency "is present in the function". <br>
-    Fourier Series are often represented in two ways: trigonometric and exponential. <br>
-    They are both based on the same principle but the exponential one is defined over the complex plane, and as we'll see has a nicer form.
-
-    <h1>Trigonometric Fourier Series</h1>
-
-    <p>A function \(f(t)\) is periodic if there is a positive number \(T\) (the period of \(f\)) such that</p>
-    $$
-        f(t+nT)=f(t)\quad \forall t \in D_f, n \in \mathbb{Z}
-    $$
-    <p>We can represent a periodic function using a sum of sines and cosines, with a different amplitude for each discrete frequency</p>
-    $$
-        f(t)=h+\sum_{n=1}^{\infty} a_n \cos\left(\frac{2\pi nt}{T}\right) + b_n \sin\left(\frac{2\pi nt}{T}\right)
-    $$
-
-    <p>The term \(h\) is there to shift the function up and down the \(y\)-axis</p>.
-
-    <br>
-
-    <h1>Finding \(h, a_k, b_k\)</h1>
-
-    <p>Here we manipulate the Fourier series definition to find the values of \(h\) and the sine and cosine amplitudes.</p>
-    <p>We define \(w_k=\frac{2\pi k}{T}\) to simplify the expressions.</p>
-
-    <h2>Finding \(h\)</h2>
-
-    <p>We take the integral over the period \([t_0;t_0+T]\) on both sides</p>
-
-    $$
-        \integral{t_0}{t_0+T}{f(t)}{t} =
-        \integral{t_0}{t_0+T}{h}{t} +
-        \sum_{n=1}^{\infty}
-        \left[
-        a_n \integral{t_0}{t_0+T}{\cos(w_n t)}{t} +
-        b_n \integral{t_0}{t_0+T}{\sin(w_n t)}{t}
-        \right]
-    $$
-
-    <p>If you think about it, the integral over a full period of a fuction such as \(\sin(x)\) or \(\cos(x)\) is 0. <br>
-    If we consider \(\sin(w_n x)\) or \(\cos(w_n x)\) the function will make more full cycles in the span of the interval \(T\), <br>
-    all of which yield an area of 0.</p>
-
-    $$
-        \begin{align*}
-            \integral{t_0}{t_0+T}{f(t)}{t}
-            &= \integral{t_0}{t_0+T}{h}{t} + \sum_{n=1}^{\infty} a_n\cdot 0 + b_n\cdot 0\\
-            &= \integral{t_0}{t_0+T}{h}{t} \\
-            &= h \integral{t_0}{t_0+T}{}{t} \\
-            &= h {\left[x\right]}^{t_0+T}_{t_0} \\
-            &= h(t_0+T-t_0) \\
-            &= hT
-        \end{align*}
-    $$
-
-    concluding that
-
-    $$
-        h = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)}{t}
-    $$
-
-    <h2>Finding \(a_k\)</h2>
-
-    <p>Again, we take the integral over the period \([t_0;t_0+T]\) on both sides, but first we multiply everything by \(\cos(w_k t)\)</p>
-
-    $$
-        \begin{align*}
-            \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
-            &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
-                \left[
-                a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
-                b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
-                \right]
-        \end{align*}
-    $$
-
-    ...
-    
-    <h2>Finding \(b_k\)</h2>
-
-    ...
-
-    <h1>Conclusion</h1>
-
-    <p>We can represent a period and continuous function \(f(t)\) by</p>
-
-    $$
-        \begin{align*}
-            f(t)&=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos(w_n t) + b_n \sin(w_n t) \\
-            a_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t} \\
-            b_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
-        \end{align*}
-    $$
-
-    <p>where</p>
-
-    $$
-        w_k=\frac{2\pi k}{T}
-    $$
-
-    <h1>Exponential Fourier Series</h1>
-
-    <p>The exponential Fourier Series is the same thing but extended to the complex plane.</p>
-
-    $$
-        f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
-    $$
-
-    <p>where</p>
-
-    $$
-        c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
-    $$
-
-    <p>A</p>
-
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-    <hr>
-
-    <div id="container1"></div>
-
-    <br><br><br>
-
-    <div id="container2"></div>
-    
-    <br><br><br>
-
-    <p>Here the signal two periods of the signal are plotted.</p>
-    <p>The frequency is time-dependant</p>
-    <p>The blue dot represents the center of mass. The center of mass is basically the average point of the function</p>
-    <p>For the sine wave, when the frequency is 1 the center of mass is unusually far from the origin</p>
-
-    <div id="container3"></div>
-
-    <br><br><br>
-
-    <p>The next animation is distance of the center of mass from the origin as the frequency changes.</p>
-
-    <br>
-
-    <p>The key concept is that when the frequency matches the period, the center of mass is unusually further from the origin.</p>
-    <p>When the frequency is a component of the function, this distance peaks.</p> <br>
-    <p>If the function is composed of multiple frequencies, the same distance will peak multiple times.</p>
-    <p>The more it peaks, the more the frequency is present in the original function.</p>
-
-    <br>
-    <p>The Fourier Transform is a function that given a signal, produces a complex function: the plot of the center of mass.</p>
-    <p>This complex function tells us which frequencies and in what quantity compose the original function.</p>
-
-    <div id="container4"></div>
-
-    <script>
-        new FourierSeries('fourierseries', 'container1', 500, 500);
-        new PolarPlot('polarplot', 'container2', 500, 500);
-        new CenterOfMass('centerofmass', 'container3', 500, 500);
-        //new FourierTransform('fouriertransform', 'container4', 500, 500);
-    </script>
 </body>
 </html>

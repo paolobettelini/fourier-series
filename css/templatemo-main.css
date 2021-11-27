@@ -168,11 +168,15 @@ a:hover { color: #FF0; }
   background-color: #e1f390aa;
 }
 
+.section7 {
+  background-color: #fdafafaa;
+}
+
 .section1, .section2, .section3, .section4, .section6 {
   padding-top: 20vh;
 }
 
-.section5 {
+.section5, .section7 {
   padding-top: 10vh;
 }
 

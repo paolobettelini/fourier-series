@@ -45,8 +45,11 @@
             };
         </script>
 
+        <!-- Desmos -->
+        <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+
         <style>
-            canvas {
+            .boxcanvas {
                 background-color:rgba(0, 0, 0, 0.5);
                 border-radius: 10px;
             }
@@ -78,6 +81,12 @@
     <!-- Scroll progress -->
     <div class="progress-container">
         <div class="progress-bar" id="scrollingbar"></div>
+    </div>
+
+    <div style="display: none;">
+        $$
+        \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4}
+        $$
     </div>
 
     <div class="fixed-side-navbar">
@@ -130,7 +139,7 @@
         </div>
     </div>
 
-    <div class="parallax-content section3" id="section3">
+    <div class="section3" style="width: 100%; min-height: 100vh;" id="section3">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -141,7 +150,7 @@
                     <p>They are both based on the same principle but the exponential one is defined over the complex plane, and as we'll see has a nicer form.</p>
 
                     <div class="primary-button smoothlink">
-                        <a href="#section4">Next</a>
+                        <a href="#section4">Next - A simple example</a>
                     </div>
                 </div>
                 <div class="col">
@@ -167,12 +176,147 @@
                           <span class="sr-only">Next</span>
                         </a>
                     </div>
+                    <p>Jean Baptiste Joseph Fourier (Auxerre, 1768 - Paris, 1830)</p>
                 </div>
             </div>
         </div>
     </div>
 
-            <!--
+    <div class="parallax-content section4" id="section4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>A Simple Example</h1>
+                    <br>
+                    <p>Let's look at a simple example. We are going to derive the Fourier series of a function \(f(x)\) defined as such:</p>
+                    
+                    $$
+                    f(x)=
+                    \begin{cases}
+                        -1\quad \text{if } 0 \lt x \lt \pi \\
+                        +1\quad \text{if } -\pi \lt x \lt 0 \\
+                    \end{cases}
+                    $$
+    
+                    <p>The period of this function is \(T=2\pi\). We can already simplify the \(\frac{2\pi}{T}\) term, leaving us with</p>
+    
+                    $$
+                    f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos(nx) + b_n \sin(nx)
+                    $$
+
+                    <div class="primary-button smoothlink">
+                        <a href="#section5">Next - Coefficients</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="img/square_wave.png" style="border-radius: 10px;" alt="square wave">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-content section5" id="section5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h1>A Simple Example - Coefficients</h1>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col" style="border-right: gray solid 1px;">
+                    <h2>Finding \(a_n\)</h2>
+                    <p>First, we need to find \(a_n\). Simplifying \(\frac{2\pi}{T}\) and \(\frac{T}{2}\) we get</p>
+    
+                    $$
+                    a_n=\integral{-\pi}{\pi}{f(x)\cos(nx)}{x}
+                    $$
+    
+                    <p>Looking at the graph we notice that we can split the integral into two parts at \(x=0\). On the left part, the function is \(-\cos(nx)\), while on the right part the function is \(\cos(nx)\).</p>
+    
+                    $$
+                    \begin{align*}
+                        a_n &=
+                        \frac{1}{\pi} \integral{-\pi}{0}{-\cos(nx)}{x} +
+                        \frac{1}{\pi} \integral{0}{\pi}{\cos(nx)}{x} \\
+                        &= -\frac{1}{\pi} \integral{-\pi}{0}{\cos(nx)}{x} +
+                        \frac{1}{\pi} \integral{0}{\pi}{\cos(nx)}{x} \\
+                        &= -\frac{1}{\pi} {\left[\frac{\sin(xn)}{n}\right]}_{-\pi}^{0} +
+                        \frac{1}{\pi} {\left[\frac{\sin(xn)}{n}\right]}_{0}^{-\pi} \\
+                        &= -\frac{1}{\pi} \left[\frac{\sin(\pi n)}{n}\right] +
+                        \frac{1}{\pi} \left[\frac{\sin(\pi n)}{n}\right] \\
+                        &= \left(\frac{1}{\pi}-\frac{1}{\pi}\right) \left[\frac{\sin(\pi n)}{n}\right] \\
+                        &= 0
+                    \end{align*}
+                    $$
+    
+                    <p>\(a_n\) is always going to be 0. We can remove the \(a_n \cos(nx)\) and \(\frac{a_0}{2}\) terms from the series.</p>
+                    <div class="primary-button smoothlink">
+                        <a href="#section6">Next - Conclusion</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <h2>Finding \(b_n\)</h2>
+                    <p>Now for \(b_n\)</p>
+                    
+                    $$
+                    b_n=\integral{-\pi}{\pi}{f(x)\sin(nx)}{x}
+                    $$
+                    
+                    <p>Again, we split the integral into two parts</p>
+                    
+                    $$
+                    \begin{align*}
+                        b_n &=
+                        -\frac{1}{\pi} \integral{-\pi}{0}{\sin(nx)}{x} +
+                        \frac{1}{\pi} \integral{0}{\pi}{\sin(nx)}{x} \\
+                        &= -\frac{1}{\pi} {\left[\frac{-\cos(xn)}{n}\right]}_{-\pi}^{0} +
+                        \frac{1}{\pi} {\left[\frac{-\cos(xn)}{n}\right]}_{0}^{-\pi} \\
+                        &= -\frac{1}{\pi} \left[-\frac{1}{n}+\frac{\cos(\pi n)}{n}\right] +
+                        \frac{1}{\pi} \left[\frac{-\cos(\pi n)}{n}+\frac{1}{n}\right] \\
+                        &= -\frac{1}{\pi} \left[\frac{\cos(\pi n)-1}{n}\right] +
+                        \frac{1}{\pi} \left[\frac{1-\cos(\pi n)}{n}\right] \\
+                        &= \frac{2}{\pi} \cdot \frac{1-\cos(\pi n)}{n} \\
+                        &= \frac{2-2\cos(\pi n)}{\pi n}
+                    \end{align*}
+                    $$
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-content section6" id="section6">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h2>A Simple Example - Conclusion</h2>
+                    <br>
+                    <p>Given \(b_n\) our series is now complete!</p>
+
+                    $$
+                    f(x)=\sum_{n=1}^{\infty} \frac{2-2\cos(\pi n)}{\pi n} \cdot \sin(nx)
+                    $$
+
+                    <p>We won't simplify this further, therefore this is our final result.</p>
+                    <p>The effort pays off when we graph this function, as more terms are added, the function looks more and more like the original square wave. You can drag the slider by opening the left panel.</p>
+
+                    <br>
+                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: If \(f(x)\) is even, the coefficient \(b_n\) will always be equal to zero. If \(f(x)\) is odd, \(a_n\) will always be equal to zero.</b></p>
+                    <br>
+
+                    <div class="primary-button smoothlink">
+                        <a href="#section7">Next</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="graph1" style="width: 700px; height: 500px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
         <h1>Trigonometric Fourier Series</h1>
     
         <p>A function \(f(t)\) is periodic if there is a positive number \(T\) (the period of \(f\)) such that</p>
@@ -283,7 +427,7 @@
         $$
     
         $$
-            \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4}
+            \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4} ce l'ho già
             \hat{f}(\xi)=\integral{-\infty}{\infty}{f(t)\,e^{-2\pi it\xi}}{t}
         $$
 
@@ -534,13 +678,9 @@
                         <a href="#section1">Back To Top</a>
                     </div>
                     <ul>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="#"><i class="fa fa-google"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a href="https://github.com/paolobettelini"><i class="fa fa-github"></i></a></li>
                     </ul>
-                    <p>Copyright &copy; 2019 Company Name 
+                    <p>Copyright &copy; 2021 Paolo Bettelini 
             
             		- Design: <a rel="nofollow noopener" href="https://templatemo.com"><em>TemplateMo</em></a></p>
                 </div>
@@ -582,6 +722,7 @@
           });
         });
 
+        /* Interactive boxes */
         new FourierSeries('fourierseries', 'container1', 500, 500);
         //new PolarPlot('polarplot', 'container2', 500, 500);
         //new CenterOfMass('centerofmass', 'container3', 500, 500);
@@ -595,6 +736,29 @@
             var scrolled = (winScroll / height) * 100;
             scrollingbar.style.width = scrolled + '%';
         };
+
+        /* Desmos */
+        var elt = document.getElementById('graph1');
+        var calculator = Desmos.GraphingCalculator(elt);
+        
+        //calculator.setMathBounds({
+        //    left: -2,
+        //    right: 2,
+        //    bottom: -2,
+        //    top: -2
+        //});
+
+        calculator.updateSettings({
+            invertedColors: true,
+            keypad: false,
+            settingsMenu: false,
+            zoomButtons: false,
+            expressionsCollapsed: true
+        });
+
+        calculator.setExpression({ id: 'k', latex: 'k=20' });
+        calculator.setExpression({ id: 'k', sliderBounds: { min: 1, max: 50, step: 1 }});
+        calculator.setExpression({ id: 'graph1', latex: '\\sum_{n=1}^{k}\\frac{2-2\\cos\\left(\\pi n\\right)}{\\pi n}\\sin\\left(nx\\right)' });
     </script>
 
 </body>

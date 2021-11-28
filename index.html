@@ -101,9 +101,16 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>Fourier Series</h1>
-                    <p class="text-justify">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                    
+                    <h1>Fourier Analysis</h1>
+                    <br>
+                    <p class="text-justify"><a href="https://en.wikipedia.org/wiki/Fourier_analysis">Fourier analysis</a>
+                        is the study of how a function can be represented as a sum of waves.
+                        Take a look at the animation playing at the side, a shape is being drawn using
+                        a chain of rotating circles of different sizes.
+                        You can even try drawing your own shape, it's interactive!
+                        This article will cover in detail how this animation works, and what math is
+                        behind it.</p>
+                    <br>
                     <div class="primary-button smoothlink">
                         <a class="smoothlink" href="#section2">Learn More</a>
                     </div>
@@ -120,13 +127,18 @@
             <div class="row justify-content-around">
                 <div class="col-4">
                     <h1>Requirements</h1>
+                    <picture>
+                        <source media="(min-width: )" srcset="">
+                        <img src="" alt="">
+                    </picture>
                     <p class="text-justify">This article requires a general good understanding about math. If you want to fully understand every bit of math there are a few requirements:</p>
                     <ul>
                         <li>Trigonometry</li>
                         <li>Calculus</li>
                         <li>Complex plane and complex analysis</li>
                     </ul>
-                    <p class="text-justify">Even if you don't understand the math involved, the main ideas about Fourier analysis will be explain visually and occasionaly with interactive examples.</p>
+                    <p class="text-justify">Even if you don't understand the math involved, the main ideas about Fourier analysis will be explain visually and occasionally with interactive examples.</p>
+                    <br>
                     <div class="primary-button smoothlink">
                         <a href="#section3">Start</a>
                     </div>
@@ -160,13 +172,16 @@
             <div class="row">
                 <div class="col">
                     <h1>Introduction</h1>
-                    <p>Mathematician Joseph Fourier determined that a function can be represented as a series of sines and cosines or different frequencies.</p>
-                    <p>Each trigonometric term has its own coefficient, which determined how much that particular frequency "is present in the function".</p>
-                    <p>Fourier Series are often represented in two ways: trigonometric and exponential.</p>
-                    <p>They are both based on the same principle but the exponential one is defined over the complex plane, and as we'll see has a nicer form.</p>
-
+                    <br>
+                    <p class="text-justify">Mathematician and physicist <a href="https://en.wikipedia.org/wiki/Joseph_Fourier">Joseph Fourier</a>
+                        determined that a function can be represented as a series of sines and cosines of different frequencies
+                        and different amplitudes.</p>
+                    <p class="text-justify">Fourier is notoriously known for having developed
+                        <a href="https://en.wikipedia.org/wiki/Fourier_series">Fourier series</a>
+                        and the <a href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>.</p>
+                    <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section4">Next - A simple example</a>
+                        <a href="#section4">Next - Fourier Series vs Transform</a>
                     </div>
                 </div>
                 <div class="col">
@@ -192,13 +207,51 @@
                           <span class="sr-only">Next</span>
                         </a>
                     </div>
-                    <p>Jean Baptiste Joseph Fourier (Auxerre, 1768 - Paris, 1830)</p>
+                    <p style="text-align: center;color: gray;">Jean Baptiste Joseph Fourier (Auxerre, 1768 - Paris, 1830)</p>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="parallax-content section4" id="section4">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h1>Fourier Series vs Fourier Transform</h1>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h2 style="text-align: center;">Fourier Series</h2>
+                    <br>
+                    <p class="text-justify">The Fourier series is the representation of a periodic function
+                        with a summation of sine and cosine waves of discrete frequencies. Each wave is weighted
+                        according to "how important" it is to represent the orifinal function.</p>
+                    <p class="text-justify">Fourier Series are often represented in two ways: trigonometric and exponential.
+                        They both work in the same way, but the exponential one is also defined on the
+                        complex plane and as we'll see, has a nicer, more elegant form.</p>
+                    <br>
+                    <div class="primary-button smoothlink">
+                        <a href="#section5">Next - A Simple Examle</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <h2 style="text-align: center;">Fourier Transform</h2>
+                    <br>
+                    <p class="text-justify">The Fourier transform is an operation that transforms a signal
+                        from time-domain to a continuous frequency-domain. The function can be a generic, not necessarily period function \(f(x)\).
+                        The output of the Fourier transform \(\mathcal{F}\) is a complex-valued function whose absolute value represents the magnitude of each frequency.</p>
+                        $$
+                        \mathcal{F}\{f(t)\}=\hat{f}(\xi)
+                        $$
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-content section5" id="section5">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -220,8 +273,9 @@
                     f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos(nx) + b_n \sin(nx)
                     $$
 
+                    <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section5">Next - Coefficients</a>
+                        <a href="#section6">Next - Coefficients</a>
                     </div>
                 </div>
                 <div class="col">
@@ -231,7 +285,7 @@
         </div>
     </div>
 
-    <div class="parallax-content section5" id="section5">
+    <div class="parallax-content section6" id="section6">
         <div class="container">
             <div class="row text-center">
                 <div class="col">
@@ -269,7 +323,7 @@
     
                     <p>\(a_n\) is always going to be 0. We can remove the \(a_n \cos(nx)\) and \(\frac{a_0}{2}\) terms from the series.</p>
                     <div class="primary-button smoothlink">
-                        <a href="#section6">Next - Conclusion</a>
+                        <a href="#section7">Next - Conclusion</a>
                     </div>
                 </div>
                 <div class="col">
@@ -302,73 +356,31 @@
         </div>
     </div>
 
-    <div class="parallax-content section6" id="section6">
+    <div class="parallax-content section7" id="section7">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <h2>A Simple Example - Conclusion</h2>
                     <br>
-                    <p>Given \(b_n\) our series is now complete!</p>
+                    <p class="text-justify">Given \(b_n\) our series is now complete!</p>
 
                     $$
                     f(x)=\sum_{n=1}^{\infty} \frac{2-2\cos(\pi n)}{\pi n} \cdot \sin(nx)
                     $$
 
-                    <p>We won't simplify this further, therefore this is our final result.</p>
-                    <p>The effort pays off when we graph this function, as more terms are added, the function looks more and more like the original square wave. You can drag the slider by opening the left panel.</p>
+                    <p class="text-justify">We won't simplify this further, therefore this is our final result.</p>
+                    <p class="text-justify">The effort pays off when we graph this function, as more terms are added, the function looks more and more like the original square wave. You can drag the slider by opening the left panel.</p>
 
                     <br>
                     <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: If \(f(x)\) is even, the coefficient \(b_n\) will always be equal to zero. If \(f(x)\) is odd, \(a_n\) will always be equal to zero.</b></p>
-                    <br>
 
+                    <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section7">Next</a>
+                        <a href="#section8">Next</a>
                     </div>
                 </div>
                 <div class="col">
                     <div id="graph1" style="width: 700px; height: 500px;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="parallax-content section7" id="section7">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col">
-                    <h1>Fourier Series vs Fourier Transform</h1>
-                    <br>
-                    <br>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <h2>Fourier Series</h2>
-                    <br>
-                    <p class="text-justify">orem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-                        quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
-                        sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-                        recusandae alias error harum maxime adipisci amet laborum.</p>
-                </div>
-                <div class="col">
-                    <h2>Fourier Series</h2>
-                    <br>
-                    <p class="text-justify">orem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
-                        obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
-                        nihil, eveniet aliquid culpa officia aut! Impedit sit sunt quaerat, odit,
-                        tenetur error, harum nesciunt ipsum debitis quas aliquid. Reprehenderit,
-                        quia. Quo neque error repudiandae fuga? Ipsa laudantium molestias eos 
-                        sapiente officiis modi at sunt excepturi expedita sint? Sed quibusdam
-                        recusandae alias error harum maxime adipisci amet laborum.</p>
                 </div>
             </div>
         </div>

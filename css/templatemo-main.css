@@ -21,9 +21,9 @@ body {
   font-size: 14px;
 }
 
-a { color: #3CC; }
+/* a { color: #3CC; } */
 
-a:hover { color: #FF0; }
+/* a:hover { color: #FF0; } */
 
 /*----------
   NAV
@@ -157,26 +157,27 @@ a:hover { color: #FF0; }
 }
 
 .section4 {
-  background-color: #90aff3aa;
-}
-
-.section5 {
-  background-color: #e490f3aa;
-}
-
-.section6 {
-  background-color: #e1f390aa;
-}
-
-.section7 {
   background-color: #fdafafaa;
 }
 
-.section1, .section2, .section3, .section4, .section6 {
+.section5 {
+  background-color: #90aff3aa;
+}
+
+.section6 {
+  background-color: #e490f3aa;
+}
+
+.section7 {
+  background-color: #e1f390aa;
+}
+
+
+.section1, .section2, .section3, .section5, .section7 {
   padding-top: 20vh;
 }
 
-.section5, .section7 {
+.section6, .section4 {
   padding-top: 10vh;
 }
 

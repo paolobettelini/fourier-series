@@ -1,80 +1,73 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Fourier Series</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Fourier Series</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/fontAwesome.css">
-        <link rel="stylesheet" href="css/hero-slider.css">
-        <link rel="stylesheet" href="css/templatemo-main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/main.css">
 
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-        <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
-        <!-- Animated boxes -->
-        <script src="js/lib/fourier/Fourier.js"></script>
-        <script src="js/lib/interactivebox/InteractiveBox.js"></script>
-        <script src="js/lib/interactiveboximpl/Example.js"></script>
-        <script src="js/lib/interactiveboximpl/FourierSeries.js"></script>
-        <script src="js/lib/interactiveboximpl/PolarPlot.js"></script>
-        <script src="js/lib/interactiveboximpl/CenterOfMass.js"></script>
-        <script src="js/lib/interactiveboximpl/FourierTransform.js"></script>
+    <!-- Animated boxes -->
+    <script src="js/lib/fourier/Fourier.js"></script>
+    <script src="js/lib/interactivebox/InteractiveBox.js"></script>
+    <script src="js/lib/interactiveboximpl/Example.js"></script>
+    <script src="js/lib/interactiveboximpl/FourierSeries.js"></script>
+    <script src="js/lib/interactiveboximpl/PolarPlot.js"></script>
+    <script src="js/lib/interactiveboximpl/CenterOfMass.js"></script>
+    <script src="js/lib/interactiveboximpl/FourierTransform.js"></script>
 
-        <!-- LaTeX Rendering -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-        <!--<script type="text/x-mathjax-config">
-            MathJax.Hub.Config({
-                TeX: { extensions: ["color.js"] }
-            });
-        </script>-->
-        <script>
-            MathJax = {
-                tex: {
-                    inlineMath: [['\\(', '\\)']]
-                },
-                chtml: {
-                    scale: 1.1
-                }
-            };
-        </script>
-
-        <!-- Desmos -->
-        <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-
-        <style>
-            .boxcanvas {
-                background-color:rgba(0, 0, 0, 0.5);
-                border-radius: 10px;
+    <!-- LaTeX Rendering -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+    <!--<script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            TeX: { extensions: ["color.js"] }
+        });
+    </script>-->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']]
+            },
+            chtml: {
+                scale: 1.1
             }
+        };
+    </script>
 
-            /* Scroll progress */
-            .progress-container {
-                position: fixed;
-                top: 0;
-                z-index: 1;
-                width: 100%;
-                background-color: #f1f1f1;
-                width: 100%;
-                height: 8px;
-                background: #ccc;
-            }
+    <!-- Desmos -->
+    <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 
-            .progress-bar {
-                height: 8px;
-                background: #04AA6D;
-                width: 0%;
-            }
-        </style>
-    </head>
-            <!--
-            https://purifycss.online/
-            https://doodad.dev/pattern-generator/
-            -->
+    <style>
+        .boxcanvas {
+            background-color:rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        /* Scroll progress */
+        .progress-container {
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            width: 100%;
+            height: 8px;
+            background: #ccc;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #04AA6D;
+            width: 0%;
+        }
+    </style>
+</head>
 <body>
     <!-- Scroll progress -->
     <div class="progress-container">
@@ -89,15 +82,13 @@
 
     <div class="fixed-side-navbar">
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link smoothlink" href="#section1"><span>Section1</span></a></li>
-            <li class="nav-item"><a class="nav-link smoothlink" href="#section2"><span>Section2</span></a></li>
-            <li class="nav-item"><a class="nav-link smoothlink" href="#section3"><span>Section3</span></a></li>
-            <li class="nav-item"><a class="nav-link smoothlink" href="#section4"><span>Section4</span></a></li>
-            <li class="nav-item"><a class="nav-link smoothlink" href="#section5"><span>Section5</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#section1"><span>Introduction</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#fs-vs-ft"><span>Definition</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#example"><span>An Example</span></a></li>
         </ul>
     </div>
 
-    <div class="parallax-content section1" id="section1">
+    <div class="parallax-content" id="section1">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -109,28 +100,25 @@
                         a chain of rotating circles of different sizes.
                         You can even try drawing your own shape, it's interactive!
                         This article will cover in detail how this animation works, and what math is
-                        behind it.</p>
+                        behind it. The concepts that we'll discover are widely used in electronics, acoustics,
+                        and communications.</p>
                     <br>
                     <div class="primary-button smoothlink">
-                        <a class="smoothlink" href="#section2">Learn More</a>
+                        <a class="smoothlink" href="#requirements">Learn More</a>
                     </div>
                 </div>
                 <div class="col">
-                    <div id="container1"></div>
+                    <div id="fourierseries"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="parallax-content section2" id="section2">
+    <div class="parallax-content" id="requirements">
         <div class="container">
             <div class="row justify-content-around">
                 <div class="col-4">
                     <h1>Requirements</h1>
-                    <picture>
-                        <source media="(min-width: )" srcset="">
-                        <img src="" alt="">
-                    </picture>
                     <p class="text-justify">This article requires a general good understanding about math. If you want to fully understand every bit of math there are a few requirements:</p>
                     <ul>
                         <li>Trigonometry</li>
@@ -140,7 +128,7 @@
                     <p class="text-justify">Even if you don't understand the math involved, the main ideas about Fourier analysis will be explain visually and occasionally with interactive examples.</p>
                     <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section3">Start</a>
+                        <a href="#introduction">Start</a>
                     </div>
                 </div>   
                 <div class="col-4">
@@ -167,7 +155,7 @@
         </div>
     </div>
 
-    <div class="section3" style="width: 100%; min-height: 100vh;" id="section3">
+    <div style="width: 100%; min-height: 100vh;" id="introduction">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -178,10 +166,14 @@
                         and different amplitudes.</p>
                     <p class="text-justify">Fourier is notoriously known for having developed
                         <a href="https://en.wikipedia.org/wiki/Fourier_series">Fourier series</a>
-                        and the <a href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>.</p>
+                        and the <a href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>,
+                        which are the main focus of this article.</p>
+                    <p>We will also cover the <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">FFT</a>
+                        algorithm, which is a fast implementation of the Fourier transform widely used among software.
+                    </p>
                     <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section4">Next - Fourier Series vs Transform</a>
+                        <a href="#fs-vs-ft">Next - Fourier Series vs Transform</a>
                     </div>
                 </div>
                 <div class="col">
@@ -213,7 +205,7 @@
         </div>
     </div>
 
-    <div class="parallax-content section4" id="section4">
+    <div class="parallax-content" id="fs-vs-ft">
         <div class="container">
             <div class="row text-center">
                 <div class="col">
@@ -234,7 +226,7 @@
                         complex plane and as we'll see, has a nicer, more elegant form.</p>
                     <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section5">Next - A Simple Examle</a>
+                        <a href="#polarplot">Next</a>
                     </div>
                 </div>
                 <div class="col">
@@ -251,7 +243,22 @@
         </div>
     </div>
 
-    <div class="parallax-content section5" id="section5">
+    <div class="parallax-content" id="polarplot">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="primary-button smoothlink">
+                        <a href="#example">Next - A Simple Examle</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div id="polarplot-box"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-content" id="example">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -275,7 +282,7 @@
 
                     <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section6">Next - Coefficients</a>
+                        <a href="#example-coefficients">Next - Coefficients</a>
                     </div>
                 </div>
                 <div class="col">
@@ -285,7 +292,7 @@
         </div>
     </div>
 
-    <div class="parallax-content section6" id="section6">
+    <div class="parallax-content" id="example-coefficients">
         <div class="container">
             <div class="row text-center">
                 <div class="col">
@@ -323,7 +330,7 @@
     
                     <p>\(a_n\) is always going to be 0. We can remove the \(a_n \cos(nx)\) and \(\frac{a_0}{2}\) terms from the series.</p>
                     <div class="primary-button smoothlink">
-                        <a href="#section7">Next - Conclusion</a>
+                        <a href="#example-conclusion">Next - Conclusion</a>
                     </div>
                 </div>
                 <div class="col">
@@ -356,7 +363,7 @@
         </div>
     </div>
 
-    <div class="parallax-content section7" id="section7">
+    <div class="parallax-content" id="example-conclusion">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -376,7 +383,7 @@
 
                     <br>
                     <div class="primary-button smoothlink">
-                        <a href="#section8">Next</a>
+                        <a href="#">Next</a>
                     </div>
                 </div>
                 <div class="col">
@@ -503,13 +510,6 @@
 
         <p>A</p>
     
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-        <hr>
-    
         <br><br><br>
     
         <div id="container2"></div>
@@ -538,7 +538,8 @@
         <p>The Fourier Transform is a function that given a signal, produces a complex function: the plot of the center of mass.</p>
         <p>This complex function tells us which frequencies and in what quantity compose the original function.</p>
     
-        <div id="container4"></div>-->
+        <div id="container4"></div>
+     -->
 
     <footer>
         <div class="container">
@@ -591,10 +592,10 @@
         });
 
         /* Interactive boxes */
-        new FourierSeries('fourierseries', 'container1', 500, 500);
-        //new PolarPlot('polarplot', 'container2', 500, 500);
-        //new CenterOfMass('centerofmass', 'container3', 500, 500);
-        //new FourierTransform('fouriertransform', 'container4', 500, 500);
+        new FourierSeries('fourierseries-box', 'fourierseries', 500, 500);
+        new PolarPlot('polarplot', 'polarplot-box', 500, 500);
+        //new CenterOfMass('centerofmass', 'centerofmass', 500, 500);
+        //new FourierTransform('fouriertransform', 'fouriertransform', 500, 500);
 
         /* Scroll progress */
         let scrollingbar = document.getElementById("scrollingbar");
@@ -607,13 +608,6 @@
         /* Desmos */
         var elt = document.getElementById('graph1');
         var calculator = Desmos.GraphingCalculator(elt);
-        
-        //calculator.setMathBounds({
-        //    left: -2,
-        //    right: 2,
-        //    bottom: -2,
-        //    top: -2
-        //});
 
         calculator.updateSettings({
             invertedColors: true,

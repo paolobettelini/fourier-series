@@ -2,6 +2,13 @@ class PolarPlot extends InteractiveBox {
 
     axisColor = '#FF0000';
     plotColor = '#FFFF00';
+    magnitudeColor = '#FFFFFF';
+    magnitudeWidth = 0.5;
+    miniPlotColor = 'blue';
+    miniPlotXOffset = 10;
+    miniPlotXStretch = 2;
+    miniPlotYStretch = 0.333;
+    miniPlotYOffset = this.height * 0.25;
     axisWidth = 1.0;
     plotWidth = 2.0;
     freq = 1;
@@ -37,15 +44,35 @@ class PolarPlot extends InteractiveBox {
         ctx.moveTo(0, this.height / 2);
         ctx.lineTo(this.width, this.height / 2);
         ctx.stroke();
+
+        // i want it counter-clockwise?
         
         ctx.lineWidth = this.plotWidth;
         ctx.strokeStyle = this.plotColor;
         ctx.beginPath();
         ctx.moveTo(this.width / 2, this.height / 2 + this.#signal[0]);
         for (var i = 1; i < this.#counter; i++) {
-            var angle = 2 * Math.PI / this.#signal.length * i * this.freq + Math.PI / 2;
+            let angle = 2 * Math.PI / this.#signal.length * i * this.freq + Math.PI / 2;
             ctx.lineTo(this.width / 2 + this.#signal[i] * Math.cos(angle), this.height / 2 + this.#signal[i] * Math.sin(angle));
         }
+        ctx.stroke();
+
+        ctx.strokeStyle = this.miniPlotColor;
+        ctx.beginPath();
+        ctx.moveTo(this.miniPlotXOffset, this.miniPlotYOffset + this.#signal[0] / 3);
+        for (var i = 1; i < this.#counter; i++) {
+            ctx.lineTo(this.miniPlotXOffset + this.miniPlotXStretch * i, this.miniPlotYOffset + this.#signal[i] *this.miniPlotYStretch);
+        }
+        ctx.stroke();
+
+
+
+        ctx.strokeStyle = this.magnitudeColor;
+        ctx.lineWidth = this.magnitudeWidth;
+        ctx.beginPath();
+        ctx.moveTo(this.width / 2, this.height / 2);
+        let angle = 2 * Math.PI / this.#signal.length * (this.#counter - 1) * this.freq + Math.PI / 2;
+        ctx.lineTo(this.width / 2 + this.#signal[this.#counter - 1] * Math.cos(angle), this.height / 2 + this.#signal[this.#counter - 1] * Math.sin(angle));
         ctx.stroke();
     };
 
@@ -73,7 +100,7 @@ class PolarPlot extends InteractiveBox {
     #loadAdditionalContent() {
         // todo: refactor
         this.container.insertAdjacentHTML(
-            'beforeend', '<br><p id=' + this.name + '_frequencyLabel>Frequency: 1</p><input id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.25" max="3"><button id="' + this.name + '_sinewave">sine</button>');
+            'beforeend', '<br><p id=' + this.name + '_frequencyLabel>Frequency: 1</p><input id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.25" max="3"><button id="' + this.name + '_sinewave">sin</button><button id="' + this.name + '_cosinewave">cos</button>');
 
         // Frequency input
         let freqInput = document.getElementById(this.name + '_frequency');
@@ -84,8 +111,9 @@ class PolarPlot extends InteractiveBox {
             frequencyLabel.innerHTML = 'Frequency: ' + this.freq;
         }
 
-        // Sine Wave Button
+        // Input Buttons
         document.getElementById(this.name + '_sinewave').onclick = () => this.setPoints(this.#getSineWave());
+        document.getElementById(this.name + '_cosinewave').onclick = () => this.setPoints(this.#getCosineWave());
     }
 
     #getSineWave() {
@@ -94,6 +122,18 @@ class PolarPlot extends InteractiveBox {
             path[i] = {
                 x: 0,
                 y: 100 * Math.sin(Math.PI * 2 / 100 * i)
+            }
+        }
+        return path;
+    }
+
+    #getCosineWave() {
+        // non ci dovrebbe essere la normalizzazione dei punti per togliere i margini
+        var path = [];
+        for (var i = 0; i < 100; i++) {
+            path[i] = {
+                x: 0,
+                y: 100 * Math.cos(Math.PI * 2 / 100 * i)
             }
         }
         return path;

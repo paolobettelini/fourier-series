@@ -19,9 +19,12 @@ class InteractiveBox {
     #wasPlaying;
 
     constructor(name, container, height, width) {
-        if (InteractiveBox.#names.includes(name)) { // check for name conflict
+        // check for name conflict
+        if (InteractiveBox.#names.includes(name)) {
             throw 'The name \'' + name + '\' is already being used! Names should be unique to avoid conflicts.'
         }
+
+        // Add name to static list
         InteractiveBox.#names.push(name);
 
         this.name = name;
@@ -31,10 +34,10 @@ class InteractiveBox {
         this.container = document.getElementById(container);
 
         this.container.innerHTML = ''
-            + '<canvas id="' + name + '_canvas" class="boxcanvas" width="' + width + '" height="' + height + '"></canvas>'
+            + '<canvas class="box" id="' + name + '_canvas" width="' + width + '" height="' + height + '"></canvas>'
             + '<br>'
-            + '<button id="' + name + '_playButton">&#10074;&#10074;</button>'
-            + '<input id="' + name + '_timeline" type="range" min="0" max="1" step="0.01"></input>';
+            + '<button class="box" id="' + name + '_playButton">&#10074;&#10074;</button>'
+            + '<input class="box" id="' + name + '_timeline" type="range" min="0" max="1" step="0.01"></input>';
 
         this.#timeline = document.getElementById(name + '_timeline')
         this.#canvas = document.getElementById(name + '_canvas');
@@ -89,7 +92,6 @@ class InteractiveBox {
         throw 'The function draw() has not been overwritten'
     }
 
-    // {x,y}
     setPoints(points) {
         throw 'The function setPoints(points) has not been overwritten'
     }
@@ -185,6 +187,8 @@ class InteractiveBox {
         );
     }
 
+    // Pause/Resume rendering if not visible
+    // The status of the box is preserved
     #onScroll() {
         if (this.#isElementInViewport(this.#canvas)) {
             if (!this.isPlaying() && this.#wasPlaying) {

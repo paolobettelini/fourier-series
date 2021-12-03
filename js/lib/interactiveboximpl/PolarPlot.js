@@ -100,7 +100,7 @@ class PolarPlot extends InteractiveBox {
     #loadAdditionalContent() {
         // todo: refactor
         this.container.insertAdjacentHTML(
-            'beforeend', '<br><p id=' + this.name + '_frequencyLabel>Frequency: 1</p><input id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.25" max="3"><button id="' + this.name + '_sinewave">sin</button><button id="' + this.name + '_cosinewave">cos</button>');
+            'beforeend', '<br><p class="box" id=' + this.name + '_frequencyLabel>Frequency: 1</p><input class="box" id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.25" max="3"><button class="box" id="' + this.name + '_sinewave">sin</button><button class="box" id="' + this.name + '_cosinewave">cos</button>');
 
         // Frequency input
         let freqInput = document.getElementById(this.name + '_frequency');

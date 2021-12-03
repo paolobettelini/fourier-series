@@ -254,3 +254,18 @@ body:after {
 	display: none
 }
 
+/* Scroll progress */
+.progress-container {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	width: 100%;
+	height: 8px;
+	background: #ccc;
+}
+
+.progress-bar {
+	height: 8px;
+	background: #04AA6D;
+	width: 0%;
+}

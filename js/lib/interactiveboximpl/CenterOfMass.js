@@ -117,7 +117,7 @@ class CenterOfMass extends InteractiveBox {
     #loadAdditionalContent() {
         // todo: refactor
         this.container.insertAdjacentHTML(
-            'beforeend', '<button id="' + this.name + '_sinewave">sine</button>');
+            'beforeend', '<button class="box" id="' + this.name + '_sinewave">sine</button>');
 
         // Sine Wave Button
         document.getElementById(this.name + '_sinewave').onclick = () => this.setPoints(this.#getSineWave());

@@ -9,10 +9,10 @@
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontAwesome.css">
+    <link rel="stylesheet" href="css/boxes.css">
     <link rel="stylesheet" href="css/main.css">
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 
     <!-- Animated boxes -->
     <script src="js/lib/fourier/Fourier.js"></script>
@@ -44,29 +44,6 @@
 
     <!-- Desmos -->
     <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
-
-    <style>
-        .boxcanvas {
-            background-color:rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-        }
-
-        /* Scroll progress */
-        .progress-container {
-            position: fixed;
-            z-index: 1;
-            top: 0;
-            width: 100%;
-            height: 8px;
-            background: #ccc;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: #04AA6D;
-            width: 0%;
-        }
-    </style>
 </head>
 <body>
     <!-- Scroll progress -->
@@ -74,12 +51,14 @@
         <div class="progress-bar" id="scrollingbar"></div>
     </div>
 
+    <!-- Latex integral command -->
     <div style="display: none;">
         $$
         \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4}
         $$
     </div>
 
+    <!-- Side navbar -->
     <div class="fixed-side-navbar">
         <ul class="nav flex-column">
             <li class="nav-item"><a class="nav-link smoothlink" href="#section1"><span>Introduction</span></a></li>

@@ -12,3 +12,7 @@ button.box {
     width: 30px;
     height: 30px;
 }
+
+img.plot {
+    border-radius: 10px;
+}

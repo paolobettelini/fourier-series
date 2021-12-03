@@ -1,0 +1,131 @@
+
+<h1>Finding \(h, a_k, b_k\)</h1>
+
+<p>Here we manipulate the Fourier series definition to find the values of \(h\) and the sine and cosine amplitudes.</p>
+<p>We define \(w_k=\frac{2\pi k}{T}\) to simplify the expressions.</p>
+
+<h2>Finding \(h\)</h2>
+
+<p>We take the integral over the period \([t_0;t_0+T]\) on both sides</p>
+
+$$
+    \integral{t_0}{t_0+T}{f(t)}{t} =
+    \integral{t_0}{t_0+T}{h}{t} +
+    \sum_{n=1}^{\infty}
+    \left[
+    a_n \integral{t_0}{t_0+T}{\cos(w_n t)}{t} +
+    b_n \integral{t_0}{t_0+T}{\sin(w_n t)}{t}
+    \right]
+$$
+
+<p>If you think about it, the integral over a full period of a fuction such as \(\sin(x)\) or \(\cos(x)\) is 0. <br>
+If we consider \(\sin(w_n x)\) or \(\cos(w_n x)\) the function will make more full cycles in the span of the interval \(T\), <br>
+all of which yield an area of 0.</p>
+
+$$
+    \begin{align*}
+        \integral{t_0}{t_0+T}{f(t)}{t}
+        &= \integral{t_0}{t_0+T}{h}{t} + \sum_{n=1}^{\infty} a_n\cdot 0 + b_n\cdot 0\\
+        &= \integral{t_0}{t_0+T}{h}{t} \\
+        &= h \integral{t_0}{t_0+T}{}{t} \\
+        &= h {\left[x\right]}^{t_0+T}_{t_0} \\
+        &= h(t_0+T-t_0) \\
+        &= hT
+    \end{align*}
+$$
+
+concluding that
+
+$$
+    h = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)}{t}
+$$
+
+<h2>Finding \(a_k\)</h2>
+
+<p>Again, we take the integral over the period \([t_0;t_0+T]\) on both sides, but first we multiply everything by \(\cos(w_k t)\)</p>
+
+$$
+    \begin{align*}
+        \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
+        &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
+            \left[
+            a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
+            b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
+            \right]
+    \end{align*}
+$$
+
+...
+
+<h2>Finding \(b_k\)</h2>
+
+...
+
+<h1>Conclusion</h1>
+
+<p>We can represent a period and continuous function \(f(t)\) by</p>
+
+$$
+    \begin{align*}
+        f(t)&=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos(w_n t) + b_n \sin(w_n t) \\
+        a_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t} \\
+        b_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
+    \end{align*}
+$$
+
+<p>where</p>
+
+$$
+    w_k=\frac{2\pi k}{T}
+$$
+
+<h1>Exponential Fourier Series</h1>
+
+<p>The exponential Fourier Series is the same thing but extended to the complex plane.</p>
+
+$$
+    f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
+$$
+
+<p>where</p>
+
+$$
+    c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
+$$
+
+$$
+    \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4} ce l'ho già
+    \hat{f}(\xi)=\integral{-\infty}{\infty}{f(t)\,e^{-2\pi it\xi}}{t}
+$$
+
+<p>A</p>
+
+<br><br><br>
+
+<div id="container2"></div>
+
+<br><br><br>
+
+<p>Here the signal two periods of the signal are plotted.</p>
+<p>The frequency is time-dependant</p>
+<p>The blue dot represents the center of mass. The center of mass is basically the average point of the function</p>
+<p>For the sine wave, when the frequency is 1 the center of mass is unusually far from the origin</p>
+
+<div id="container3"></div>
+
+<br><br><br>
+
+<p>The next animation is distance of the center of mass from the origin as the frequency changes.</p>
+
+<br>
+
+<p>The key concept is that when the frequency matches the period, the center of mass is unusually further from the origin.</p>
+<p>When the frequency is a component of the function, this distance peaks.</p> <br>
+<p>If the function is composed of multiple frequencies, the same distance will peak multiple times.</p>
+<p>The more it peaks, the more the frequency is present in the original function.</p>
+
+<br>
+<p>The Fourier Transform is a function that given a signal, produces a complex function: the plot of the center of mass.</p>
+<p>This complex function tells us which frequencies and in what quantity compose the original function.</p>
+
+<div id="container4"></div>

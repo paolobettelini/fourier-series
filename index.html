@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>Fourier Analysis</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Fourier Series</title>
-    <meta name="description" content="">
+    <meta name="description" content="Fourier Analysis">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -46,28 +45,29 @@
     <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
 </head>
 <body>
-    <!-- Scroll progress -->
+    <!-- Scroll Progress -->
     <div class="progress-container">
         <div class="progress-bar" id="scrollingbar"></div>
     </div>
 
-    <!-- Latex integral command -->
+    <!-- Latex Integral Command -->
     <div style="display: none;">
         $$
         \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4}
         $$
     </div>
 
-    <!-- Side navbar -->
+    <!-- Side Navbar -->
     <div class="fixed-side-navbar">
         <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link smoothlink" href="#section1"><span>Introduction</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#title"><span>Introduction</span></a></li>
             <li class="nav-item"><a class="nav-link smoothlink" href="#fs-vs-ft"><span>Definition</span></a></li>
             <li class="nav-item"><a class="nav-link smoothlink" href="#example"><span>An Example</span></a></li>
         </ul>
     </div>
 
-    <div class="parallax-content" id="section1">
+    <!-- Title Section -->
+    <div class="parallax-content" id="title">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -93,6 +93,7 @@
         </div>
     </div>
 
+    <!-- Requirements Section -->
     <div class="parallax-content" id="requirements">
         <div class="container">
             <div class="row justify-content-around">
@@ -134,6 +135,7 @@
         </div>
     </div>
 
+    <!-- Introduction Section -->
     <div style="width: 100%; min-height: 100vh;" id="introduction">
         <div class="container">
             <div class="row">
@@ -184,6 +186,7 @@
         </div>
     </div>
 
+    <!-- Fourier Series vs Fourier Transform Section -->
     <div class="parallax-content" id="fs-vs-ft">
         <div class="container">
             <div class="row text-center">
@@ -221,13 +224,14 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Polar plot section -->
     <div class="parallax-content" id="polarplot">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <div class="primary-button smoothlink">
-                        <a href="#example">Next - A Simple Examle</a>
+                        <a href="#fourier-series">Next - Trigonometric Fourier Series</a>
                     </div>
                 </div>
                 <div class="col">
@@ -236,7 +240,57 @@
             </div>
         </div>
     </div>
+    
+    <!-- Center of Mass Section -->
 
+    <!-- Fourier Transform Section -->
+
+    <!-- Fourier Series Section -->
+    <div class="parallax-content" id="fourier-series">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Trigonometric Fourier Series</h1>
+                    <br>
+                    <p class="text-justify">A function \(f(t)\) is periodic if there is a positive number \(T\)
+                        (the period of \(f\)) such that</p>
+                    
+                        $$
+                        f(t+nT)=f(t)\quad \forall t \in D_f, n \in \mathbb{Z}
+                        $$
+                    
+                    <p class="text-justify">We can represent a periodic function using a sum of sines and
+                        cosines, for each discrete frequency we have a wave with its own weight (its amplitude).</p>
+                    
+                        $$
+                        f(t)=C+\sum_{n=1}^{\infty} a_n \cos\left(\frac{2\pi nt}{T}\right) + b_n \sin\left(\frac{2\pi nt}{T}\right)
+                        $$
+
+                    <p class="text-justify">We're computing a sum from \(n=1\) to infinity, where \(n\) represents each discrete frequency.
+                        The term \(\frac{2\pi n}{T}\) controls the frequency based on \(n\). A normal sine of cosine wave oscillates every \(2\pi\),
+                        with this modification e.g. \(n=5\) means that the function will oscillate \(5\) times within that span.
+                        The terms \(a_b\) and \(b_n\) control how much that particular frequency is important.
+                        You might notice that with this we can only represent functions "laying" on the \(x\)-axis.
+                        To resolve this problem we add a generic constant term \(C\) to shift the function up/down.</p>
+
+                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: We only need the
+                        discrete frequencies (1 Hz, 2 Hz, ...) to represent the function, althought the Fourier transform gives
+                        us a continuous frequency analysis.</b></p>
+                    <div class="primary-button smoothlink">
+                        <a href="#example">Next - A Simple Examle</a>
+                    </div>
+                </div>
+                <div class="col text-center">
+                    <img src="img/freq_sum.png" style="margin-top: 25%;" class="plot" alt="Sum of frequencies">
+                    <p style="text-align: center;color: gray;">Sum of waves</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fourier Series Section - Coefficients -->
+
+    <!-- Example Section -->
     <div class="parallax-content" id="example">
         <div class="container">
             <div class="row">
@@ -265,12 +319,13 @@
                     </div>
                 </div>
                 <div class="col">
-                    <img src="img/square_wave.png" style="border-radius: 10px;" alt="square wave">
+                        <img src="img/square_wave.png" class="plot" alt="square wave">
                 </div>
             </div>
         </div>
     </div>
-
+    
+    <!-- Example - Coefficients Section -->
     <div class="parallax-content" id="example-coefficients">
         <div class="container">
             <div class="row text-center">
@@ -341,7 +396,8 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Example - Conclusion Section -->
     <div class="parallax-content" id="example-conclusion">
         <div class="container">
             <div class="row">
@@ -373,159 +429,29 @@
     </div>
 
     <!--
-        <h1>Trigonometric Fourier Series</h1>
-    
-        <p>A function \(f(t)\) is periodic if there is a positive number \(T\) (the period of \(f\)) such that</p>
-        $$
-            f(t+nT)=f(t)\quad \forall t \in D_f, n \in \mathbb{Z}
-        $$
-        <p>We can represent a periodic function using a sum of sines and cosines, with a different amplitude for each discrete frequency</p>
-        $$
-            f(t)=h+\sum_{n=1}^{\infty} a_n \cos\left(\frac{2\pi nt}{T}\right) + b_n \sin\left(\frac{2\pi nt}{T}\right)
-        $$
-    
-        <p>The term \(h\) is there to shift the function up and down the \(y\)-axis</p>.
-    
-        <br>
-    
-        <h1>Finding \(h, a_k, b_k\)</h1>
-    
-        <p>Here we manipulate the Fourier series definition to find the values of \(h\) and the sine and cosine amplitudes.</p>
-        <p>We define \(w_k=\frac{2\pi k}{T}\) to simplify the expressions.</p>
-    
-        <h2>Finding \(h\)</h2>
-    
-        <p>We take the integral over the period \([t_0;t_0+T]\) on both sides</p>
-    
-        $$
-            \integral{t_0}{t_0+T}{f(t)}{t} =
-            \integral{t_0}{t_0+T}{h}{t} +
-            \sum_{n=1}^{\infty}
-            \left[
-            a_n \integral{t_0}{t_0+T}{\cos(w_n t)}{t} +
-            b_n \integral{t_0}{t_0+T}{\sin(w_n t)}{t}
-            \right]
-        $$
-    
-        <p>If you think about it, the integral over a full period of a fuction such as \(\sin(x)\) or \(\cos(x)\) is 0. <br>
-        If we consider \(\sin(w_n x)\) or \(\cos(w_n x)\) the function will make more full cycles in the span of the interval \(T\), <br>
-        all of which yield an area of 0.</p>
-    
-        $$
-            \begin{align*}
-                \integral{t_0}{t_0+T}{f(t)}{t}
-                &= \integral{t_0}{t_0+T}{h}{t} + \sum_{n=1}^{\infty} a_n\cdot 0 + b_n\cdot 0\\
-                &= \integral{t_0}{t_0+T}{h}{t} \\
-                &= h \integral{t_0}{t_0+T}{}{t} \\
-                &= h {\left[x\right]}^{t_0+T}_{t_0} \\
-                &= h(t_0+T-t_0) \\
-                &= hT
-            \end{align*}
-        $$
-    
-        concluding that
-    
-        $$
-            h = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)}{t}
-        $$
-    
-        <h2>Finding \(a_k\)</h2>
-    
-        <p>Again, we take the integral over the period \([t_0;t_0+T]\) on both sides, but first we multiply everything by \(\cos(w_k t)\)</p>
-    
-        $$
-            \begin{align*}
-                \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
-                &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
-                    \left[
-                    a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
-                    b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
-                    \right]
-            \end{align*}
-        $$
-    
-        ...
-        
-        <h2>Finding \(b_k\)</h2>
-    
-        ...
-    
-        <h1>Conclusion</h1>
-    
-        <p>We can represent a period and continuous function \(f(t)\) by</p>
-    
-        $$
-            \begin{align*}
-                f(t)&=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos(w_n t) + b_n \sin(w_n t) \\
-                a_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t} \\
-                b_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
-            \end{align*}
-        $$
-    
-        <p>where</p>
-    
-        $$
-            w_k=\frac{2\pi k}{T}
-        $$
-    
-        <h1>Exponential Fourier Series</h1>
-    
-        <p>The exponential Fourier Series is the same thing but extended to the complex plane.</p>
-    
-        $$
-            f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
-        $$
-    
-        <p>where</p>
-    
-        $$
-            c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
-        $$
-    
-        $$
-            \newcommand{\integral}[4]{\int\limits_{#1}^{#2} #3\,d#4} ce l'ho già
-            \hat{f}(\xi)=\integral{-\infty}{\infty}{f(t)\,e^{-2\pi it\xi}}{t}
-        $$
+    <div class="parallax-content" id="">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1></h1>
+                    <br>
+                    <div class="primary-button smoothlink">
+                        <a href="#">Next</a>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+    -->
 
-        <p>A</p>
-    
-        <br><br><br>
-    
-        <div id="container2"></div>
-        
-        <br><br><br>
-    
-        <p>Here the signal two periods of the signal are plotted.</p>
-        <p>The frequency is time-dependant</p>
-        <p>The blue dot represents the center of mass. The center of mass is basically the average point of the function</p>
-        <p>For the sine wave, when the frequency is 1 the center of mass is unusually far from the origin</p>
-    
-        <div id="container3"></div>
-    
-        <br><br><br>
-    
-        <p>The next animation is distance of the center of mass from the origin as the frequency changes.</p>
-    
-        <br>
-    
-        <p>The key concept is that when the frequency matches the period, the center of mass is unusually further from the origin.</p>
-        <p>When the frequency is a component of the function, this distance peaks.</p> <br>
-        <p>If the function is composed of multiple frequencies, the same distance will peak multiple times.</p>
-        <p>The more it peaks, the more the frequency is present in the original function.</p>
-    
-        <br>
-        <p>The Fourier Transform is a function that given a signal, produces a complex function: the plot of the center of mass.</p>
-        <p>This complex function tells us which frequencies and in what quantity compose the original function.</p>
-    
-        <div id="container4"></div>
-     -->
-
+    <!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="primary-button smoothlink">
-                        <a href="#section1">Back To Top</a>
+                        <a href="#title">Back To Top</a>
                     </div>
                     <ul>
                         <li><a href="https://github.com/paolobettelini"><i class="fa fa-github"></i></a></li>
@@ -538,68 +464,14 @@
         </div>
     </footer>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <!-- Jquery -->
+    <script src="js/vendor/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap -->
     <script src="js/vendor/bootstrap.min.js"></script>
     <script src="js/plugins.js"></script>
+    
+    <!-- Page Design -->
     <script src="js/main.js"></script>
-
-    <script>
-        $(document).ready(function() {
-          // Add smooth scrolling to all links
-          $(".smoothlink a, a.smoothlink").on('click', function(event) {
-
-            // Make sure this.hash has a value before overriding default behavior
-            if (this.hash !== "") {
-              // Prevent default anchor click behavior
-              event.preventDefault();
-
-              // Store hash
-              var hash = this.hash;
-
-              // Using jQuery's animate() method to add smooth page scroll
-              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-              $('html, body').animate({
-                scrollTop: $(hash).offset().top
-              }, 800, function(){
-           
-                // Add hash (#) to URL when done scrolling (default click behavior)
-                window.location.hash = hash;
-              });
-            }
-          });
-        });
-
-        /* Interactive boxes */
-        new FourierSeries('fourierseries-box', 'fourierseries', 500, 500);
-        new PolarPlot('polarplot', 'polarplot-box', 500, 500);
-        //new CenterOfMass('centerofmass', 'centerofmass', 500, 500);
-        //new FourierTransform('fouriertransform', 'fouriertransform', 500, 500);
-
-        /* Scroll progress */
-        let scrollingbar = document.getElementById("scrollingbar");
-        window.onscroll = () => {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            scrollingbar.style.width = (winScroll / height * 100) + '%';
-        };
-
-        /* Desmos */
-        var elt = document.getElementById('graph1');
-        var calculator = Desmos.GraphingCalculator(elt);
-
-        calculator.updateSettings({
-            invertedColors: true,
-            keypad: false,
-            settingsMenu: false,
-            zoomButtons: false,
-            expressionsCollapsed: true
-        });
-
-        calculator.setExpression({ id: 'k', latex: 'k=20' });
-        calculator.setExpression({ id: 'k', sliderBounds: { min: 1, max: 50, step: 1 }});
-        calculator.setExpression({ id: 'graph1', latex: '\\sum_{n=1}^{k}\\frac{2-2\\cos\\left(\\pi n\\right)}{\\pi n}\\sin\\left(nx\\right)' });
-    </script>
-
 </body>
 </html>

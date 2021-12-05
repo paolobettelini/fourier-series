@@ -144,55 +144,63 @@ body {
 }
 
 #title {
-	background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='171' height='171' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(199)'%3E%3Crect width='100%25' height='100%25' fill='rgba(235, 248, 255,1)'/%3E%3Ccircle cx='40' cy='20' r='0.25' fill='rgba(226, 232, 240,1)'/%3E%3Ccircle cx='0' cy='20' r='2.5' fill='rgba(214, 188, 250,1)'/%3E%3Ccircle cx='40' cy='20' r='2.5' fill='rgba(214, 188, 250,1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E");
+	background-image: url(../img/title_background.svg);
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
 
 #requirements {
-	background-color: #abf3edaa;
+	/*background-color: #bafaaa;
+	*/
+	background-image: url(../img/requirements_background.svg);
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
 
 #introduction {
-	background: linear-gradient(110deg, #ff7d27AA 60%, #fdcd3b 60%);
+	background: linear-gradient(110deg, #ffa86f 60%, #fdcd3b 60%);
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
 
 #fs-vs-ft {
-	background-color: #fdafafaa;
+	background-color: #fdc9c9;
 	padding-top: 10vh;
 	padding-bottom: 15px
 }
 
 #polarplot {
-	background-color: #e7affdaa;
+	background-color: #efc9fd;
 	padding-top: 10vh;
 	padding-bottom: 15px
 }
 
 #fourier-series {
-	background-color: #dbfdafaa;
+	background-color: #e7fdc9;
 	padding-top: 10vh;
 	padding-bottom: 15px
 }
 
+#fourier-series-coefficients {
+	background-color: #cec9fd;
+	padding-top: 5vh;
+	padding-bottom: 15px
+}
+
 #example {
-	background-color: #90aff3aa;
+	background-color: #b5c9f7;
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
 
 #example-coefficients {
-	background-color: #e490f3aa;
-	padding-top: 10vh;
+	background-color: #edb5f7;
+	padding-top: 5vh;
 	padding-bottom: 15px
 }
 
 #example-conclusion {
-	background-color: #e1f390aa;
+	background-image: url(../img/example_conclusion_background.svg);
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
@@ -200,7 +208,7 @@ body {
 footer {
 	text-align: center;
 	background-color: #282b2f;
-	padding: 70px 0
+	padding-top: 50px;
 }
 
 footer .primary-button {
@@ -258,11 +266,6 @@ footer em {
 	}
 }
 
-body:after {
-	content: url(../img/close.png) url(../img/loading.gif) url(../img/prev.png) url(../img/next.png);
-	display: none
-}
-
 /* Scroll progress */
 .progress-container {
 	position: fixed;
@@ -275,6 +278,6 @@ body:after {
 
 .progress-bar {
 	height: 8px;
-	background: #04AA6D;
+	background: #04aa6d;
 	width: 0%;
 }

@@ -1,3 +1,10 @@
+/*
+verde : #c5ffc2
+
+alternare giallo, arancione e verde
+e cambiare colore bottone
+*/
+
 *,
 ::after,
 ::before {
@@ -285,3 +292,13 @@ footer em {
 	background: #04aa6d;
 	width: 0%;
 }
+
+/*
+.parallax-content {
+	scroll-snap-type: y mandatory; 
+}
+  
+.container {
+	scroll-snap-align: start;
+}
+*/

@@ -36,8 +36,10 @@ class InteractiveBox {
         this.container.innerHTML = ''
             + '<canvas class="box" id="' + name + '_canvas" width="' + width + '" height="' + height + '"></canvas>'
             + '<br>'
+            + '<div class="box" style="width:' + width + 'px">'
             + '<button class="box" id="' + name + '_playButton">&#10074;&#10074;</button>'
-            + '<input class="box" id="' + name + '_timeline" type="range" min="0" max="1" step="0.01"></input>';
+            + '<input class="box" id="' + name + '_timeline" type="range" min="0" max="1" step="0.01"></input>'
+            + '<div>';
 
         this.#timeline = document.getElementById(name + '_timeline')
         this.#canvas = document.getElementById(name + '_canvas');

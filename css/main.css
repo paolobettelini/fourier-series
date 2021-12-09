@@ -161,38 +161,44 @@ body {
 	padding-bottom: 15px
 }
 
+/*
+be8dd5
+bafaaa
+ffa86f
+*/
+
 #fs-vs-ft {
-	background-color: #fdc9c9;
+	background-color: #be8dd5;
 	padding-top: 10vh;
 	padding-bottom: 15px
 }
 
 #polarplot {
-	background-color: #efc9fd;
+	background-color: #bafaaa;
 	padding-top: 10vh;
 	padding-bottom: 15px
 }
 
 #fourier-series {
-	background-color: #e7fdc9;
+	background-color: #ffa86f;
 	padding-top: 10vh;
 	padding-bottom: 15px
 }
 
 #fourier-series-coefficients {
-	background-color: #cec9fd;
+	background-color: #be8dd5;
 	padding-top: 5vh;
 	padding-bottom: 15px
 }
 
 #example {
-	background-color: #b5c9f7;
+	background-color: #bafaaa;
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
 
 #example-coefficients {
-	background-color: #edb5f7;
+	background-color: #be8dd5;
 	padding-top: 5vh;
 	padding-bottom: 15px
 }

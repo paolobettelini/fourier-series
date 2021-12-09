@@ -1,8 +1,8 @@
 class FourierSeries extends InteractiveBox {
 
-    epicyclesColor = '#00CCFF';
-    linesColor = '#FFFFFF';
-    pathColor = '#FFFF00';
+    epicyclesColor = '#00ccff';
+    linesColor = '#ffffff';
+    pathColor = '#ffff00';
     verticalEpicyclesXOffset = 300;
     orizontalEpicyclesYOffset = 300;
     verticalEpicyclesYOffset = 100;
@@ -29,7 +29,9 @@ class FourierSeries extends InteractiveBox {
 
         this.clearCanvas();
         
+        // Draw vertical epicycles
         var lastPointX = this.drawEpicycles(ctx, this.#signalX_DFT, this.verticalEpicyclesXOffset, this.verticalEpicyclesYOffset, 0);
+        // Draw  epicycles
         var lastPointY = this.drawEpicycles(ctx, this.#signalY_DFT, this.orizontalEpicyclesXOffset, this.orizontalEpicyclesYOffset, Math.PI * 0.5);
         
         ctx.strokeStyle = this.linesColor;

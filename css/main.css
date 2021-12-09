@@ -150,9 +150,7 @@ body {
 }
 
 #requirements {
-	/*background-color: #bafaaa;
-	*/
-	background-image: url(../img/requirements_background.svg);
+	background-color: #bafaaa;
 	padding-top: 20vh;
 	padding-bottom: 15px
 }

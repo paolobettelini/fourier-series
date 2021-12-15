@@ -5,7 +5,7 @@
 jQuery(document).ready(function($) {
 
   /* Parallax effect */
-  var top_header = $('.parallax-content');
+  var top_header = $('.parallax');
   top_header.css({'background-position':'center center'});
 
   // Offset background on scroll
@@ -30,9 +30,9 @@ jQuery(document).ready(function($) {
 
       // Store hash
       var hash = this.hash;
-
       // Using jQuery's animate() method to add smooth page scroll
       // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+
       $('html, body').animate({
         scrollTop: $(hash).offset().top
       }, 800, function() {

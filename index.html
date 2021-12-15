@@ -66,403 +66,529 @@
         </ul>
     </div>
 
-    <!-- Title Section -->
-    <div class="parallax-content" id="title">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Fourier Analysis</h1>
-                    <br>
-                    <p class="text-justify"><a href="https://en.wikipedia.org/wiki/Fourier_analysis">Fourier analysis</a>
-                        is the study of how a function can be represented as a sum of waves.
-                        Take a look at the animation playing at the side, a shape is being drawn using
-                        a chain of rotating circles of different sizes.
-                        You can even try drawing your own shape, it's interactive!
-                        This article will cover in detail how this animation works, and what math is
-                        behind it. The concepts that we'll discover are widely used in electronics, acoustics,
-                        and communications.</p>
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a class="smoothlink" href="#requirements">Learn More</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div id="fourierseries"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Requirements Section -->
-    <div class="parallax-content" id="requirements">
-        <div class="container">
-            <div class="row justify-content-around">
-                <div class="col-4">
-                    <h1>Requirements</h1>
-                    <p class="text-justify">This article requires a general good understanding about math. If you want to fully understand every bit of math there are a few requirements:</p>
-                    <ul>
-                        <li>Trigonometry</li>
-                        <li>Calculus</li>
-                        <li>Complex plane and complex analysis</li>
-                    </ul>
-                    <p class="text-justify">Even if you don't understand the math involved, the main ideas about Fourier analysis will be explain visually and occasionally with interactive examples.</p>
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a href="#introduction">Start</a>
-                    </div>
-                </div>   
-                <div class="col-4">
-                    <p class="text-justify">If you understand the following expressions and notations you should have a solid background</p>
-                    <div class="border bg-light">
-                        $$
-                        e^{i\theta}=\cos(\theta)+i\sin(\theta)
-                        $$
-                    </div>
-                    <br>
-                    <div class="border bg-light">
-                        $$
-                        \integral{-\infty}{\infty}{e^{-t^2}}{t}
-                        $$
-                    </div>
-                    <br>
-                    <div class="border bg-light">
-                        $$
-                        \sum_{n=1}^{\infty} a_n
-                        $$
-                    </div>
-                </div>          
-            </div>
-        </div>
-    </div>
-
-    <!-- Introduction Section -->
-    <div style="width: 100%; min-height: 100vh;" id="introduction">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Introduction</h1>
-                    <br>
-                    <p class="text-justify">Mathematician and physicist <a href="https://en.wikipedia.org/wiki/Joseph_Fourier">Joseph Fourier</a>
-                        determined that a function can be represented as a series of sines and cosines of different frequencies
-                        and different amplitudes.</p>
-                    <p class="text-justify">Fourier is notoriously known for having developed
-                        <a href="https://en.wikipedia.org/wiki/Fourier_series">Fourier series</a>
-                        and the <a href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>,
-                        which are the main focus of this article.</p>
-                    <p>We will also cover the <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">FFT</a>
-                        algorithm, which is a fast implementation of the Fourier transform widely used among software.
-                    </p>
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a href="#fs-vs-ft">Next - Fourier Series vs Transform</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        </ol>
-                        <div class="carousel-inner">
-                          <div class="carousel-item active">
-                            <img class="d-block w-100" src="img/fourier1.png" alt="Joseph Fourier">
-                          </div>
-                          <div class="carousel-item">
-                            <img class="d-block w-100" src="img/fourier2.png" alt="Joseph Fourier">
-                          </div>
+    <div id="sections">
+        <!-- Title Section -->
+        <section class="parallax" id="title">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Fourier Analysis</h1>
+                        <br>
+                        <p class="text-justify"><a href="https://en.wikipedia.org/wiki/Fourier_analysis">Fourier analysis</a>
+                            is the study of how a function can be represented as a sum of waves.
+                            Take a look at the animation playing at the side, a shape is being drawn using
+                            a chain of rotating circles of different sizes.
+                            You can even try drawing your own shape, it's interactive!
+                            This article will cover in detail how this animation works, and what math is
+                            behind it. The concepts that we'll discover are widely used in electronics, acoustics,
+                            and communications.</p>
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a class="smoothlink" href="#requirements">Learn More</a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="sr-only">Next</span>
-                        </a>
                     </div>
-                    <p style="text-align: center;color: gray;">Jean Baptiste Joseph Fourier (Auxerre, 1768 - Paris, 1830)</p>
+                    <div class="col">
+                        <div id="fourierseries"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- Fourier Series vs Fourier Transform Section -->
-    <div class="parallax-content" id="fs-vs-ft">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col">
-                    <h1>Fourier Series vs Fourier Transform</h1>
-                    <br>
-                    <br>
+        <!-- Requirements Section -->
+        <section class="parallax" id="requirements">
+            <div class="container">
+                <div class="row justify-content-around">
+                    <div class="col-4">
+                        <h1>Requirements</h1>
+                        <p class="text-justify">This article requires a general good understanding about math. If you want to fully understand every bit of math there are a few requirements:</p>
+                        <ul>
+                            <li>Trigonometry</li>
+                            <li>Calculus</li>
+                            <li>Complex plane and complex analysis</li>
+                        </ul>
+                        <p class="text-justify">Even if you don't understand the math involved, the main ideas about Fourier analysis will be explain visually and occasionally with interactive examples.</p>
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a href="#introduction">Start</a>
+                        </div>
+                    </div>   
+                    <div class="col-4">
+                        <p class="text-justify">If you understand the following expressions and notations you should have a solid background</p>
+                        <div class="border bg-light">
+                            $$
+                            e^{i\theta}=\cos(\theta)+i\sin(\theta)
+                            $$
+                        </div>
+                        <br>
+                        <div class="border bg-light">
+                            $$
+                            \integral{-\infty}{\infty}{e^{-t^2}}{t}
+                            $$
+                        </div>
+                        <br>
+                        <div class="border bg-light">
+                            $$
+                            \sum_{n=1}^{\infty} a_n
+                            $$
+                        </div>
+                    </div>          
                 </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    <h2 style="text-align: center;">Fourier Series</h2>
-                    <br>
-                    <p class="text-justify">The Fourier series is the representation of a periodic function
-                        with a summation of sine and cosine waves of discrete frequencies. Each wave is weighted
-                        according to "how important" it is to represent the orifinal function.</p>
-                    <p class="text-justify">Fourier Series are often represented in two ways: trigonometric and exponential.
-                        They both work in the same way, but the exponential one is also defined on the
-                        complex plane and as we'll see, has a nicer, more elegant form.</p>
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a href="#polarplot">Next</a>
+        </section>
+
+        <!-- Introduction Section -->
+        <section id="introduction">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Introduction</h1>
+                        <br>
+                        <p class="text-justify">Mathematician and physicist <a href="https://en.wikipedia.org/wiki/Joseph_Fourier">Joseph Fourier</a>
+                            determined that a function can be represented as a series of sines and cosines of different frequencies
+                            and different amplitudes.</p>
+                        <p class="text-justify">Fourier is notoriously known for having developed
+                            <a href="https://en.wikipedia.org/wiki/Fourier_series">Fourier series</a>
+                            and the <a href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier transform</a>,
+                            which are the main focus of this article.</p>
+                        <p>We will also cover the <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">FFT</a>
+                            algorithm, which is a fast implementation of the Fourier transform widely used among software.
+                        </p>
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a href="#fs-vs-ft">Next - Fourier Series vs Transform</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img class="d-block w-100" src="img/fourier1.png" alt="Joseph Fourier">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/fourier2.png" alt="Joseph Fourier">
+                            </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <p style="text-align: center;color: gray;">Jean Baptiste Joseph Fourier (Auxerre, 1768 - Paris, 1830)</p>
                     </div>
                 </div>
-                <div class="col">
-                    <h2 style="text-align: center;">Fourier Transform</h2>
-                    <br>
-                    <p class="text-justify">The Fourier transform is an operation that transforms a signal
-                        from time-domain to a continuous frequency-domain. The function can be a generic, not necessarily period function \(f(x)\).
-                        The output of the Fourier transform \(\mathcal{F}\) is a complex-valued function whose absolute value represents the magnitude of each frequency.</p>
+            </div>
+        </section>
+
+        <!-- Fourier Series vs Fourier Transform Section -->
+        <section class="parallax" id="fs-vs-ft">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                        <h1>Fourier Series vs Fourier Transform</h1>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h2 style="text-align: center;">Fourier Series</h2>
+                        <br>
+                        <p class="text-justify">The Fourier series is the representation of a periodic function
+                            with a summation of sine and cosine waves of discrete frequencies. Each wave is weighted
+                            according to "how important" it is to represent the orifinal function.</p>
+                        <p class="text-justify">Fourier Series are often represented in two ways: trigonometric and exponential.
+                            They both work in the same way, but the exponential one is also defined on the
+                            complex plane and as we'll see, has a nicer, more elegant form.</p>
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a href="#polarplot">Next</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h2 style="text-align: center;">Fourier Transform</h2>
+                        <br>
+                        <p class="text-justify">The Fourier transform is an operation that transforms a signal
+                            from time-domain to a continuous frequency-domain. The function can be a generic, not necessarily period function \(f(x)\).
+                            The output of the Fourier transform \(\mathcal{F}\) is a complex-valued function whose absolute value represents the magnitude of each frequency.</p>
+                            $$
+                            \mathcal{F}\{f(t)\}=\hat{f}(\xi)
+                            $$
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Polar plot section -->
+        <section class="parallax" id="polarplot">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="primary-button smoothlink">
+                            <a href="#fourier-series">Next - Trigonometric Fourier Series</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="polarplot-box"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Center of Mass Section -->
+
+        <!-- Fourier Transform Section -->
+
+        <!-- Fourier Series Section -->
+        <section class="parallax" id="fourier-series">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Trigonometric Fourier Series</h1>
+                        <br>
+                        <p class="text-justify">A function \(f(t)\) is periodic if there is a positive number \(T\)
+                            (the period of \(f\)) such that</p>
+                        
+                            $$
+                            f(t+nT)=f(t)\quad \forall t \in D_f, n \in \mathbb{Z}
+                            $$
+                        
+                        <p class="text-justify">We can represent a periodic function using a sum of sines and
+                            cosines, for each discrete frequency we have a wave with its own weight (its amplitude).</p>
+                        
+                            $$
+                            f(t)=C+\sum_{n=1}^{\infty} a_n \cos\left(\frac{2\pi nt}{T}\right) + b_n \sin\left(\frac{2\pi nt}{T}\right)
+                            $$
+
+                        <p class="text-justify">We're computing a sum from \(n=1\) to infinity, where \(n\) represents each discrete frequency.
+                            The term \(\frac{2\pi n}{T}\) controls the frequency based on \(n\). A normal sine of cosine wave oscillates every \(2\pi\),
+                            with this modification e.g. \(n=5\) means that the function will oscillate \(5\) times within that span.
+                            The terms \(a_b\) and \(b_n\) control how much that particular frequency is important.
+                            You might notice that with this we can only represent functions "laying" on the \(x\)-axis.
+                            To resolve this problem we add a generic constant term \(C\) to shift the function up/down.</p>
+
+                        <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: We only need the
+                            discrete frequencies (1 Hz, 2 Hz, ...) to represent the function, althought the Fourier transform gives
+                            us a continuous frequency analysis.</b></p>
+                        <div class="primary-button smoothlink">
+                            <a href="#fourier-series-coefficients">Next - Coefficients</a>
+                        </div>
+                    </div>
+                    <div class="col text-center">
+                        <img src="img/freq_sum.png" style="margin-top: 25%;" class="plot" alt="Sum of frequencies">
+                        <p style="text-align: center;color: gray;">Sum of waves</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fourier Series Section - C Term -->
+        <section class="parallax" id="fourier-series-c-term">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Trigonometric Fourier Series - C term</h1>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="text-justify">Great! One small problem, what are \(a_n\), \(b_n\) and \(C\)?
+                            Here we manipulate the Fourier series definition to find these values given \(f(t)\)
+                            on a period \([t_0;t_0+T]\).</p>
+                        <p>Starting from the \(C\) term, we take the integral over the generic period \([t_0;t_0+T]\) on both sides</p>
                         $$
-                        \mathcal{F}\{f(t)\}=\hat{f}(\xi)
-                        $$
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Polar plot section -->
-    <div class="parallax-content" id="polarplot">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="primary-button smoothlink">
-                        <a href="#fourier-series">Next - Trigonometric Fourier Series</a>
-                    </div>
-                </div>
-                <div class="col">
-                    <div id="polarplot-box"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Center of Mass Section -->
-
-    <!-- Fourier Transform Section -->
-
-    <!-- Fourier Series Section -->
-    <div class="parallax-content" id="fourier-series">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Trigonometric Fourier Series</h1>
-                    <br>
-                    <p class="text-justify">A function \(f(t)\) is periodic if there is a positive number \(T\)
-                        (the period of \(f\)) such that</p>
-                    
-                        $$
-                        f(t+nT)=f(t)\quad \forall t \in D_f, n \in \mathbb{Z}
-                        $$
-                    
-                    <p class="text-justify">We can represent a periodic function using a sum of sines and
-                        cosines, for each discrete frequency we have a wave with its own weight (its amplitude).</p>
-                    
-                        $$
-                        f(t)=C+\sum_{n=1}^{\infty} a_n \cos\left(\frac{2\pi nt}{T}\right) + b_n \sin\left(\frac{2\pi nt}{T}\right)
+                        \integral{t_0}{t_0+T}{f(t)}{t} =
+                        \integral{t_0}{t_0+T}{h}{t} +
+                        \sum_{n=1}^{\infty}
+                        \left[
+                        a_n \integral{t_0}{t_0+T}{\cos(w_n t)}{t} +
+                        b_n \integral{t_0}{t_0+T}{\sin(w_n t)}{t}
+                        \right]
                         $$
 
-                    <p class="text-justify">We're computing a sum from \(n=1\) to infinity, where \(n\) represents each discrete frequency.
-                        The term \(\frac{2\pi n}{T}\) controls the frequency based on \(n\). A normal sine of cosine wave oscillates every \(2\pi\),
-                        with this modification e.g. \(n=5\) means that the function will oscillate \(5\) times within that span.
-                        The terms \(a_b\) and \(b_n\) control how much that particular frequency is important.
-                        You might notice that with this we can only represent functions "laying" on the \(x\)-axis.
-                        To resolve this problem we add a generic constant term \(C\) to shift the function up/down.</p>
+                        <p class="text-justify">If you think about it, the integral over a full period of a function such as \(\sin(x)\) or \(\cos(x)\) is 0.
+                            If we consider \(\sin(w_n x)\) or \(\cos(w_n x)\) the function will make more full cycles in the span of the interval \(T\),
+                            all of which yield an area of 0.</p>
 
-                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: We only need the
-                        discrete frequencies (1 Hz, 2 Hz, ...) to represent the function, althought the Fourier transform gives
-                        us a continuous frequency analysis.</b></p>
-                    <div class="primary-button smoothlink">
-                        <a href="#fourier-series-coefficients">Next - Coefficients</a>
-                    </div>
-                </div>
-                <div class="col text-center">
-                    <img src="img/freq_sum.png" style="margin-top: 25%;" class="plot" alt="Sum of frequencies">
-                    <p style="text-align: center;color: gray;">Sum of waves</p>
-                </div>
-            </div>
-        </div>
-    </div>
+                        $$
+                        \begin{align*}
+                            \integral{t_0}{t_0+T}{f(t)}{t}
+                            &= \integral{t_0}{t_0+T}{C}{t} + \sum_{n=1}^{\infty} a_n\cdot 0 + b_n\cdot 0\\
+                            &= \integral{t_0}{t_0+T}{C}{t} \\
+                            &= C \integral{t_0}{t_0+T}{}{t} \\
+                            &= C {\left[x\right]}^{t_0+T}_{t_0} \\
+                            &= C(t_0+T-t_0) \\
+                            &= CT
+                        \end{align*}
+                        $$
 
-    <!-- Fourier Series Section - Coefficients -->
-    <div class="parallax-content" id="fourier-series-coefficients">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Trigonometric Fourier Series - Coefficients</h1>
-                    <br>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <p>Great! One small problem, what are \(a_n\), \(b_n\) and \(C\)?
-                        Here we manipulate the Fourier series definition to find these values given \(f(t)\).</p>
-                    <div class="primary-button smoothlink">
-                        <a href="#example">Next - A Simple Examle</a>
+                        concluding that
+
+                        $$
+                        C = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)}{t}
+                        $$
+                        <div class="primary-button smoothlink">
+                            <a href="#example">Next - A Simple Examle</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <!-- Example Section -->
-    <div class="parallax-content" id="example">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>A Simple Example</h1>
-                    <br>
-                    <p>Let's look at a simple example. We are going to derive the Fourier series of a function \(f(x)\) defined as such:</p>
-                    
-                    $$
-                    f(x)=
-                    \begin{cases}
-                        -1\quad \text{if } 0 \lt x \lt \pi \\
-                        +1\quad \text{if } -\pi \lt x \lt 0 \\
-                    \end{cases}
-                    $$
-    
-                    <p>The period of this function is \(T=2\pi\). We can already simplify the \(\frac{2\pi}{T}\) term, leaving us with</p>
-    
-                    $$
-                    f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos(nx) + b_n \sin(nx)
-                    $$
-
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a href="#example-coefficients">Next - Coefficients</a>
+        <!-- Fourier Series Section - Coefficients -->
+        <section id="fourier-series-coefficients">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                        <h1>Trigonometric Fourier Series - Coefficients</h1>
+                        <br>
                     </div>
                 </div>
-                <div class="col">
-                        <img src="img/square_wave.png" class="plot" alt="square wave">
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Example - Coefficients Section -->
-    <div class="parallax-content" id="example-coefficients">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col">
-                    <h1>A Simple Example - Coefficients</h1>
-                    <br>
-                    <br>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col" style="border-right: gray solid 1px;">
-                    <h2 style="text-align: center;">Finding \(a_n\)</h2>
-                    <p>First, we need to find \(a_n\). Simplifying \(\frac{2\pi}{T}\) and \(\frac{T}{2}\) we get</p>
-    
-                    $$
-                    a_n=\integral{-\pi}{\pi}{f(x)\cos(nx)}{x}
-                    $$
-    
-                    <p>Looking at the graph we notice that we can split the integral into two parts at \(x=0\). On the left part, the function is \(-\cos(nx)\), while on the right part the function is \(\cos(nx)\).</p>
-    
-                    $$
-                    \begin{align*}
-                        a_n &=
-                        \frac{1}{\pi} \integral{-\pi}{0}{-\cos(nx)}{x} +
-                        \frac{1}{\pi} \integral{0}{\pi}{\cos(nx)}{x} \\
-                        &= -\frac{1}{\pi} \integral{-\pi}{0}{\cos(nx)}{x} +
-                        \frac{1}{\pi} \integral{0}{\pi}{\cos(nx)}{x} \\
-                        &= -\frac{1}{\pi} {\left[\frac{\sin(xn)}{n}\right]}_{-\pi}^{0} +
-                        \frac{1}{\pi} {\left[\frac{\sin(xn)}{n}\right]}_{0}^{-\pi} \\
-                        &= -\frac{1}{\pi} \left[\frac{\sin(\pi n)}{n}\right] +
-                        \frac{1}{\pi} \left[\frac{\sin(\pi n)}{n}\right] \\
-                        &= \left(\frac{1}{\pi}-\frac{1}{\pi}\right) \left[\frac{\sin(\pi n)}{n}\right] \\
-                        &= 0
-                    \end{align*}
-                    $$
-    
-                    <p>\(a_n\) is always going to be 0. We can remove the \(a_n \cos(nx)\) and \(\frac{a_0}{2}\) terms from the series.</p>
-                    <div class="primary-button smoothlink">
-                        <a href="#example-conclusion">Next - Conclusion</a>
+                <div class="row">
+                    <div class="col">
+                        <h2 style="text-align: center;">Finding \(a_n\)</h2>
+                        <p>Again, we take the integral over the period \([t_0;t_0+T]\) on both sides, but first we multiply everything by \(\cos(w_k t)\)</p>
+
+                        $$
+                            \begin{align*}
+                                \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
+                                &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
+                                    \left[
+                                    a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
+                                    b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
+                                    \right]
+                            \end{align*}
+                        $$
+                        
+                        <div class="primary-button smoothlink">
+                            <a href="#example-conclusion">Next - Conclusion</a>
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                    <h2 style="text-align: center;">Finding \(b_n\)</h2>
-                    <p>Now the same thing for \(b_n\)</p>
-                    
-                    $$
-                    b_n=\integral{-\pi}{\pi}{f(x)\sin(nx)}{x}
-                    $$
-                    
-                    <p>Again, we split the integral into two parts</p>
-                    
-                    $$
-                    \begin{align*}
-                        b_n &=
-                        -\frac{1}{\pi} \integral{-\pi}{0}{\sin(nx)}{x} +
-                        \frac{1}{\pi} \integral{0}{\pi}{\sin(nx)}{x} \\
-                        &= -\frac{1}{\pi} {\left[\frac{-\cos(xn)}{n}\right]}_{-\pi}^{0} +
-                        \frac{1}{\pi} {\left[\frac{-\cos(xn)}{n}\right]}_{0}^{-\pi} \\
-                        &= -\frac{1}{\pi} \left[-\frac{1}{n}+\frac{\cos(\pi n)}{n}\right] +
-                        \frac{1}{\pi} \left[\frac{-\cos(\pi n)}{n}+\frac{1}{n}\right] \\
-                        &= -\frac{1}{\pi} \left[\frac{\cos(\pi n)-1}{n}\right] +
-                        \frac{1}{\pi} \left[\frac{1-\cos(\pi n)}{n}\right] \\
-                        &= \frac{2}{\pi} \cdot \frac{1-\cos(\pi n)}{n} \\
-                        &= \frac{2-2\cos(\pi n)}{\pi n}
-                    \end{align*}
-                    $$
+            </div>
+        </section>
+
+        <!-- Fourier Series Section - Conclusion -->
+        <section class="parallax" id="fourier-series-conclusion">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Fourier Series - Conclusion</h1>
+                        <br>
+                        <p>We can represent a period and continuous function \(f(t)\) on an interval \(t_0;t_0+T\) by</p>
+
+                        $$
+                        \begin{align*}
+                            f(t)&=\frac{a_0}{2}+\sum_{n=1}^{\infty} a_n \cos(w_n t) + b_n \sin(w_n t) \\
+                            a_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t} \\
+                            b_k &= \frac{2}{T} \integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
+                        \end{align*}
+                        $$
+
+                        <p>where</p>
+
+                        $$
+                            w_k=\frac{2\pi k}{T}
+                        $$
+                        <div class="primary-button smoothlink">
+                            <a href="#">Next</a>
+                        </div>
+                    </div>
+                    <div class="col"></div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Example - Conclusion Section -->
-    <div style="width: 100%; min-height: 100vh;" id="example-conclusion">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>A Simple Example - Conclusion</h1>
-                    <br>
-                    <p class="text-justify">Given \(b_n\) our series is now complete!</p>
+        </section>
 
-                    $$
-                    f(x)=\sum_{n=1}^{\infty} \frac{2-2\cos(\pi n)}{\pi n} \cdot \sin(nx)
-                    $$
+        <!-- Example Section -->
+        <section class="parallax" id="example">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>A Simple Example</h1>
+                        <br>
+                        <p>Let's look at a simple example. We are going to derive the Fourier series of a function \(f(x)\) defined as such:</p>
+                        
+                        $$
+                        f(x)=
+                        \begin{cases}
+                            -1\quad \text{if } 0 \lt x \lt \pi \\
+                            +1\quad \text{if } -\pi \lt x \lt 0 \\
+                        \end{cases}
+                        $$
+        
+                        <p>The period of this function is \(T=2\pi\). We can already simplify the \(\frac{2\pi}{T}\) term, leaving us with</p>
+        
+                        $$
+                        f(x)=\frac{a_0}{2} + \sum_{n=1}^{\infty} a_n \cos(nx) + b_n \sin(nx)
+                        $$
 
-                    <p class="text-justify">We won't simplify this further, therefore this is our final result.</p>
-                    <p class="text-justify">The effort pays off when we graph this function, as more terms are added, the function looks more and more like the original square wave. You can drag the slider by opening the left panel.</p>
-
-                    <br>
-                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: If \(f(x)\) is even, the coefficient \(b_n\) will always be equal to zero. If \(f(x)\) is odd, \(a_n\) will always be equal to zero.</b></p>
-
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a href="#footer">Thank You</a>
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a href="#example-coefficients">Next - Coefficients</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                            <img src="img/square_wave.png" class="plot" alt="square wave">
                     </div>
                 </div>
-                <div class="col">
-                    <div id="graph1" style="width: 700px; height: 500px;"></div>
-                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Template
-    <div class="parallax-content" id="">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1></h1>
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a href="#">Next</a>
+        </section>
+        
+        <!-- Example - Coefficients Section -->
+        <section class="parallax" id="example-coefficients">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col">
+                        <h1>A Simple Example - Coefficients</h1>
+                        <br>
+                        <br>
                     </div>
                 </div>
-                <div class="col"></div>
+                <div class="row">
+                    <div class="col" style="border-right: gray solid 1px;">
+                        <h2 style="text-align: center;">Finding \(a_n\)</h2>
+                        <p>First, we need to find \(a_n\). Simplifying \(\frac{2\pi}{T}\) and \(\frac{T}{2}\) we get</p>
+        
+                        $$
+                        a_n=\integral{-\pi}{\pi}{f(x)\cos(nx)}{x}
+                        $$
+        
+                        <p>Looking at the graph we notice that we can split the integral into two parts at \(x=0\). On the left part, the function is \(-\cos(nx)\), while on the right part the function is \(\cos(nx)\).</p>
+        
+                        $$
+                        \begin{align*}
+                            a_n &=
+                            \frac{1}{\pi} \integral{-\pi}{0}{-\cos(nx)}{x} +
+                            \frac{1}{\pi} \integral{0}{\pi}{\cos(nx)}{x} \\
+                            &= -\frac{1}{\pi} \integral{-\pi}{0}{\cos(nx)}{x} +
+                            \frac{1}{\pi} \integral{0}{\pi}{\cos(nx)}{x} \\
+                            &= -\frac{1}{\pi} {\left[\frac{\sin(xn)}{n}\right]}_{-\pi}^{0} +
+                            \frac{1}{\pi} {\left[\frac{\sin(xn)}{n}\right]}_{0}^{-\pi} \\
+                            &= -\frac{1}{\pi} \left[\frac{\sin(\pi n)}{n}\right] +
+                            \frac{1}{\pi} \left[\frac{\sin(\pi n)}{n}\right] \\
+                            &= \left(\frac{1}{\pi}-\frac{1}{\pi}\right) \left[\frac{\sin(\pi n)}{n}\right] \\
+                            &= 0
+                        \end{align*}
+                        $$
+        
+                        <p>\(a_n\) is always going to be 0. We can remove the \(a_n \cos(nx)\) and \(\frac{a_0}{2}\) terms from the series.</p>
+                        <div class="primary-button smoothlink">
+                            <a href="#example-conclusion">Next - Conclusion</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h2 style="text-align: center;">Finding \(b_n\)</h2>
+                        <p>Now the same thing for \(b_n\)</p>
+                        
+                        $$
+                        b_n=\integral{-\pi}{\pi}{f(x)\sin(nx)}{x}
+                        $$
+                        
+                        <p>Again, we split the integral into two parts</p>
+                        
+                        $$
+                        \begin{align*}
+                            b_n &=
+                            -\frac{1}{\pi} \integral{-\pi}{0}{\sin(nx)}{x} +
+                            \frac{1}{\pi} \integral{0}{\pi}{\sin(nx)}{x} \\
+                            &= -\frac{1}{\pi} {\left[\frac{-\cos(xn)}{n}\right]}_{-\pi}^{0} +
+                            \frac{1}{\pi} {\left[\frac{-\cos(xn)}{n}\right]}_{0}^{-\pi} \\
+                            &= -\frac{1}{\pi} \left[-\frac{1}{n}+\frac{\cos(\pi n)}{n}\right] +
+                            \frac{1}{\pi} \left[\frac{-\cos(\pi n)}{n}+\frac{1}{n}\right] \\
+                            &= -\frac{1}{\pi} \left[\frac{\cos(\pi n)-1}{n}\right] +
+                            \frac{1}{\pi} \left[\frac{1-\cos(\pi n)}{n}\right] \\
+                            &= \frac{2}{\pi} \cdot \frac{1-\cos(\pi n)}{n} \\
+                            &= \frac{2-2\cos(\pi n)}{\pi n}
+                        \end{align*}
+                        $$
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+        
+        <!-- Example - Conclusion Section -->
+        <section id="example-conclusion">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>A Simple Example - Conclusion</h1>
+                        <br>
+                        <p class="text-justify">Given \(b_n\) our series is now complete!</p>
+
+                        $$
+                        f(x)=\sum_{n=1}^{\infty} \frac{2-2\cos(\pi n)}{\pi n} \cdot \sin(nx)
+                        $$
+
+                        <p class="text-justify">We won't simplify this further, therefore this is our final result.</p>
+                        <p class="text-justify">The effort pays off when we graph this function, as more terms are added, the function looks more and more like the original square wave. You can drag the slider by opening the left panel.</p>
+
+                        <br>
+                        <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: If \(f(x)\) is even, the coefficient \(b_n\) will always be equal to zero. If \(f(x)\) is odd, \(a_n\) will always be equal to zero.</b></p>
+
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a href="#footer">Thank You</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="graph1" style="width: 700px; height: 500px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exponential Fourier Series Section -->
+        <section class="parallax" id="exponential-fourier-series">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Exponential Fourier Series</h1>
+                        <br>
+                        <p>The exponential Fourier Series is the same thing but extended to the complex plane.</p>
+
+                        $$
+                        f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
+                        $$
+                        
+                        <p>where</p>
+                        
+                        $$
+                        c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
+                        $$
+                        <div class="primary-button smoothlink">
+                            <a href="#">Next</a>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Template
+        <section class="parallax" id="">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1></h1>
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a href="#">Next</a>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </section>
+        -->
     </div>
-    -->
 
     <!-- Footer -->
     <footer id="footer">

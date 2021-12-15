@@ -5,6 +5,12 @@ alternare giallo, arancione e verde
 e cambiare colore bottone
 */
 
+/* vecchi
+be8dd5
+bafaaa
+ffa86f
+*/
+
 *,
 ::after,
 ::before {
@@ -22,14 +28,9 @@ img {
 	max-width: 100%
 }
 
-section {
-	padding: 25px 0 35px;
-	background: #fff
-}
-
 body {
 	position: relative;
-  font-family: "Open Sans", sans-serif;
+	font-family: "Open Sans", sans-serif;
 	font-size: 14px;
 }
 
@@ -144,10 +145,13 @@ body {
 	letter-spacing: .5px
 }
 
-.parallax-content {
+.parallax {
+	background-size: cover;
+}
+
+section {
 	width: 100%;
 	min-height: 100vh;
-	background-size: cover;
 }
 
 #title {
@@ -168,12 +172,6 @@ body {
 	padding-bottom: 15px
 }
 
-/*
-be8dd5
-bafaaa
-ffa86f
-*/
-
 #fs-vs-ft {
 	background-color: #be8dd5;
 	padding-top: 10vh;
@@ -192,8 +190,14 @@ ffa86f
 	padding-bottom: 15px
 }
 
-#fourier-series-coefficients {
+#fourier-series-c-term {
 	background-color: #be8dd5;
+	padding-top: 5vh;
+	padding-bottom: 15px
+}
+
+#fourier-series-coefficients {
+	background-color: #ffa86f;
 	padding-top: 5vh;
 	padding-bottom: 15px
 }
@@ -293,12 +297,33 @@ footer em {
 	width: 0%;
 }
 
+/* snap-scroll effect */
+
 /*
-.parallax-content {
+body {
+	height: 100vh;
+	width: 100vw;
+	overflow-x: hidden;
+}
+#sections {
 	scroll-snap-type: y mandatory; 
+	overflow-y: scroll;
+	width: 100%;
+	height: 100%;
 }
-  
-.container {
+
+section {
 	scroll-snap-align: start;
-}
-*/
+}*/
+
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ *::-webkit-scrollbar {
+	display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  * {
+	-ms-overflow-style: none;  /* IE and Edge */
+	scrollbar-width: none;  /* Firefox */
+  } 
+

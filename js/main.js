@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
 
   /* Interactive boxes */
   new FourierSeries('fourierseries-box', 'fourierseries', 500, 500);
-  new PolarPlot('polarplot', 'polarplot-box', 500, 500);
+  new ComplexPlot('complexplot', 'complexplot-box', 500, 500);
   new CenterOfMass('centerofmass', 'centerofmass-box', 500, 500);
   new FourierTransform('fouriertransform', 'fouriertransform-box', 500, 500);
 
@@ -72,3 +72,5 @@ jQuery(document).ready(function($) {
   calculator.setExpression({ id: 'k', sliderBounds: { min: 1, max: 50, step: 1 }});
   calculator.setExpression({ id: 'graph1', latex: '\\sum_{n=1}^{k}\\frac{2-2\\cos\\left(\\pi n\\right)}{\\pi n}\\sin\\left(nx\\right)' });
 });
+
+window.onerror = () => alert("Error! You're browser is probably outdated.");

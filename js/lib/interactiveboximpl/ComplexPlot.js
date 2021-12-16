@@ -1,4 +1,4 @@
-class PolarPlot extends InteractiveBox {
+class ComplexPlot extends InteractiveBox {
 
     axisColor = '#FF0000';
     plotColor = '#FFFF00';
@@ -44,8 +44,6 @@ class PolarPlot extends InteractiveBox {
         ctx.moveTo(0, this.height / 2);
         ctx.lineTo(this.width, this.height / 2);
         ctx.stroke();
-
-        // i want it counter-clockwise?
         
         ctx.lineWidth = this.plotWidth;
         ctx.strokeStyle = this.plotColor;
@@ -64,8 +62,6 @@ class PolarPlot extends InteractiveBox {
             ctx.lineTo(this.miniPlotXOffset + this.miniPlotXStretch * i, this.miniPlotYOffset + this.#signal[i] *this.miniPlotYStretch);
         }
         ctx.stroke();
-
-
 
         ctx.strokeStyle = this.magnitudeColor;
         ctx.lineWidth = this.magnitudeWidth;
@@ -100,7 +96,7 @@ class PolarPlot extends InteractiveBox {
     #loadAdditionalContent() {
         // todo: refactor
         this.container.insertAdjacentHTML(
-            'beforeend', '<br><p class="box" id=' + this.name + '_frequencyLabel>Frequency: 1</p><input class="box" id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.25" max="3"><button class="box" id="' + this.name + '_sinewave">sin</button><button class="box" id="' + this.name + '_cosinewave">cos</button>');
+            'beforeend', '<br><p class="box" id=' + this.name + '_frequencyLabel>Frequency: 1</p><input class="box" id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.05" max="3"><button class="box" id="' + this.name + '_sinewave">sin</button><button class="box" id="' + this.name + '_cosinewave">cos</button>');
 
         // Frequency input
         let freqInput = document.getElementById(this.name + '_frequency');
@@ -128,7 +124,6 @@ class PolarPlot extends InteractiveBox {
     }
 
     #getCosineWave() {
-        // non ci dovrebbe essere la normalizzazione dei punti per togliere i margini
         var path = [];
         for (var i = 0; i < 100; i++) {
             path[i] = {

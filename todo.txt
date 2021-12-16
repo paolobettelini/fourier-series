@@ -1,0 +1,17 @@
+polar plot
+center of mass
+definition of the fourier trasnform
+    + animazione center of mass
+derivation of the cofficiednt of the real fourier series
+Dire anche che si chiama anche Real fourier series
+Exponential fourier series
+FFT
+link a wikipedia
+
+define w_n
+
+sistemare i colori
+sistemare i link dei botoni
+sistemare i nomi delle sezioni rispettando i titoli
+remove unnecessary parallax classes
+color barra scorrimento 

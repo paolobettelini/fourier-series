@@ -310,7 +310,7 @@ footer em {
 
 .progress-bar {
 	height: 8px;
-	background: #04aa6d;
+	background: #000000;
 	width: 0%;
 }
 
@@ -344,3 +344,4 @@ section {
 	scrollbar-width: none;  /* Firefox */
   } 
 
+  

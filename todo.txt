@@ -13,5 +13,7 @@ define w_n
 sistemare i colori
 sistemare i link dei botoni
 sistemare i nomi delle sezioni rispettando i titoli
-remove unnecessary parallax classes
-color barra scorrimento 
+XXXXX remove unnecessary parallax classes
+XXXXX color barra scorrimento 
+
+polar plot ->complex plot

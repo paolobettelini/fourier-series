@@ -63,6 +63,8 @@
             <li class="nav-item"><a class="nav-link smoothlink" href="#title"><span>Introduction</span></a></li>
             <li class="nav-item"><a class="nav-link smoothlink" href="#fs-vs-ft"><span>Definition</span></a></li>
             <li class="nav-item"><a class="nav-link smoothlink" href="#example"><span>An Example</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#exponential-fourier-series"><span>Exponential form</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#conclusion"><span>Conclusion</span></a></li>
         </ul>
     </div>
 
@@ -209,7 +211,7 @@
                             complex plane and as we'll see, has a nicer, more elegant form.</p>
                         <br>
                         <div class="primary-button smoothlink">
-                            <a href="#polarplot">Next</a>
+                            <a href="#fourier-series">Next - Trigonometric Fourier Series</a>
                         </div>
                     </div>
                     <div class="col">
@@ -225,26 +227,6 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Polar plot section -->
-        <section class="parallax" id="polarplot">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="primary-button smoothlink">
-                            <a href="#fourier-series">Next - Trigonometric Fourier Series</a>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div id="polarplot-box"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Center of Mass Section -->
-
-        <!-- Fourier Transform Section -->
 
         <!-- Fourier Series Section -->
         <section class="parallax" id="fourier-series">
@@ -278,7 +260,7 @@
                             discrete frequencies (1 Hz, 2 Hz, ...) to represent the function, althought the Fourier transform gives
                             us a continuous frequency analysis.</b></p>
                         <div class="primary-button smoothlink">
-                            <a href="#fourier-series-coefficients">Next - Coefficients</a>
+                            <a href="#fourier-series-c-term">Next - C term</a>
                         </div>
                     </div>
                     <div class="col text-center">
@@ -336,7 +318,7 @@
                         C = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)}{t}
                         $$
                         <div class="primary-button smoothlink">
-                            <a href="#example">Next - A Simple Examle</a>
+                            <a href="#fourier-series-coefficients">Next - Coefficients</a>
                         </div>
                     </div>
                 </div>
@@ -368,8 +350,13 @@
                             \end{align*}
                         $$
                         
+                        <p>TODO</p>
+                        <p>TODO</p>
+                        <p>TODO</p>
+                        <p>TODO</p>
+                        <p>TODO</p>
                         <div class="primary-button smoothlink">
-                            <a href="#example-conclusion">Next - Conclusion</a>
+                            <a href="#fourier-series-conclusion">Next - Conclusion</a>
                         </div>
                     </div>
                 </div>
@@ -383,7 +370,7 @@
                     <div class="col">
                         <h1>Fourier Series - Conclusion</h1>
                         <br>
-                        <p>We can represent a period and continuous function \(f(t)\) on an interval \(t_0;t_0+T\) by</p>
+                        <p>We can represent asdsdaadsadsasda period of a continuous function \(f(t)\) on an interval \(t_0;t_0+T\) by</p>
 
                         $$
                         \begin{align*}
@@ -399,10 +386,118 @@
                             w_k=\frac{2\pi k}{T}
                         $$
                         <div class="primary-button smoothlink">
-                            <a href="#">Next</a>
+                            <a href="#polarplot">Next - Complex plotting</a>
                         </div>
                     </div>
                     <div class="col"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Polar plot section -->
+        <section class="parallax" id="polarplot">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Main ideas - Complex plotting</h1>
+                        <br>
+                        <p class="text-justify">To start we will plot our signal in the complex plane.
+                            We will plot it while making it rotate around the origin \(0+0i\).
+                            Recall that Euler's Formula tells us that the function \(e^{it}\) is a rotation
+                            around the origin, also called the unit circle. If we multiply our signal by this circle,
+                            it will follow its path, achieving a polar plot-like graph: \(f(t)e^{it}\).
+                            Now, the rotational function makes a full cycle every \(2\pi\), we can plot our
+                            signal at a different speed (different frequencies). To do so we will multiply
+                            the time of the rotational function by \(2\pi \xi\) where \(\xi\) if the frequency.
+                            We add the \(2\pi\) term so that if your frequency is \(1\), we will have a rotation each second
+                            rather then every \(2\pi\) seconds \((\sim 6.28\,s)\).
+                            Futhermore, we want the unit circle to rotate clockwise instead of counter-clockwise.
+                            We will just add the negative sign to the time \(t\) argument of the rotational function.
+                            Our final function for now is \(f(t)e^{-2\pi it}\). You can see the animation next
+                            to this paragraph, you can vary the frequency or even draw your own signal.
+                        </p>
+                        <div class="primary-button smoothlink">
+                            <a href="#centerofmass">Next - Center of Mass</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="polarplot-box"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Center of Mass Section -->
+        <section class="parallax" id="centerofmass">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Main ideas - Center of mass</h1>
+                        <br>
+                        <p class="text-justify">
+                            The next step is to create a new function. Instead of plotting our signal
+                            as time increases with a given frequency \(\xi\), we plot all of the
+                            signal at once but the frequency changes over time. Here we are moving from
+                            a time-dependant function to a frequency-dependant function. The argument is
+                            no longer the time \(f(t)\) but rather the frequency with which we want to plot our signal
+                            around the origin \(f(\xi)\). Now, what is the center of mass? The center of mass is
+                            basically the average point of the function, which is a complex number.
+                            You might notice that the center of mass (the blue dot) in the animation changes
+                            as the frequency changes. To find its value for a certain frequency, we can sample
+                            a bunch of points from the function and then divide it by the number of samples.
+                            This approach works when we are dealing with discrete functions, such as the animation
+                            (the signal you draw is a set of points), but we would need an infinite amount of samples
+                            when the signal is continuous. An infinite amount of precision is achievable using an integral.
+                            To find the center of mass when the frequency is \(\xi\) we integrate our complex function over
+                            a certain period of time, and then divide it by the time length.</p>
+
+                            $$
+                                \frac{1}{t_1-t_0}
+                                \integral{t_0}{t_1}{f(t)e^{-2\pi i t\xi}}{t}
+                            $$
+                        <div class="primary-button smoothlink">
+                            <a href="#fouriertransform">Next - Fourier Transform</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="centerofmass-box"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fourier Transform Section -->
+        <section class="parallax" id="fouriertransform">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Main ideas - Fourier Transform</h1>
+                        <br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p class="text-justify">
+                            The next animation is distance of the center of mass from the origin as the frequency changes.
+                            The key concept is that when the frequency matches the period, the center of mass is unusually further from the origin.
+                            Go back to the last section and look at the blue dot moving far away from the origin when the frequency is the right one
+                            (reset the sine or cosine wave so that it is clearer). When the frequency is a component of the function, this distance peaks.
+                            If the function is composed of multiple frequencies, the same distance will peak multiple times, and more it peaks,
+                            the more the frequency is present in the original function.</p>
+                            <p>The function that represent the center of mass as the frequency changes is called Fourier transform.
+                            Actually not quite, the Fourier transform is defined with the integral over \(\mathbb{R}\)
+                            and is not divided by the time span. The absolute value (distance from the origin) of this function
+                            if the amount of all continuous frequencies present in the original signal.</p>
+                            $$
+                            \hat{f}(\xi)=\integral{-\infty}{\infty}{f(t)\,e^{-2\pi it\xi}}{t}
+                            $$
+                        <div class="primary-button smoothlink">
+                            <a href="#example">Next - An example</a>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div id="fouriertransform-box"></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -535,7 +630,7 @@
 
                         <br>
                         <div class="primary-button smoothlink">
-                            <a href="#footer">Thank You</a>
+                            <a href="#exponential-fourier-series">Next - Exponential form</a>
                         </div>
                     </div>
                     <div class="col">
@@ -564,7 +659,23 @@
                         c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
                         $$
                         <div class="primary-button smoothlink">
-                            <a href="#">Next</a>
+                            <a href="#conclusion">Next - Conclusion</a>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="parallax" id="conclusion">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1>Conclusion</h1>
+                        <br>
+                        <div class="primary-button smoothlink">
+                            <a href="#footer">Thank you</a>
                         </div>
                     </div>
                     <div class="col"></div>

@@ -1,16 +1,3 @@
-/*
-verde : #c5ffc2
-
-alternare giallo, arancione e verde
-e cambiare colore bottone
-*/
-
-/* vecchi
-be8dd5
-bafaaa
-ffa86f
-*/
-
 *,
 ::after,
 ::before {
@@ -161,7 +148,7 @@ section {
 }
 
 #requirements {
-	background-color: #bafaaa;
+	background-color: #be8dd5;
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
@@ -173,13 +160,7 @@ section {
 }
 
 #fs-vs-ft {
-	background-color: #be8dd5;
-	padding-top: 10vh;
-	padding-bottom: 15px
-}
-
-#polarplot {
-	background-color: #bafaaa;
+	background-color: #c5ffc2;
 	padding-top: 10vh;
 	padding-bottom: 15px
 }
@@ -197,13 +178,37 @@ section {
 }
 
 #fourier-series-coefficients {
-	background-color: #ffa86f;
+	background-color: #f7d66f;
 	padding-top: 5vh;
 	padding-bottom: 15px
 }
 
+#fourier-series-conclusion {
+	background-color: #c5ffc2;
+	padding-top: 5vh;
+	padding-bottom: 15px
+}
+
+#polarplot {
+	background-color: #ffa86f;
+	padding-top: 10vh;
+	padding-bottom: 15px
+}
+
+#centerofmass {
+	background-color: #f7d66f;
+	padding-top: 10vh;
+	padding-bottom: 15px
+}
+
+#fouriertransform {
+	background-color: #c5ffc2;
+	padding-top: 10vh;
+	padding-bottom: 15px
+}
+
 #example {
-	background-color: #bafaaa;
+	background-color: #ffa86f;
 	padding-top: 20vh;
 	padding-bottom: 15px
 }
@@ -217,6 +222,18 @@ section {
 #example-conclusion {
 	background-image: url(../img/example_conclusion_background.svg);
 	padding-top: 20vh;
+	padding-bottom: 15px
+}
+
+#exponential-fourier-series {
+	background-color: #ffa86f;
+	padding-top: 5vh;
+	padding-bottom: 15px
+}
+
+#conclusion {
+	background-color: #f7d66f;
+	padding-top: 5vh;
 	padding-bottom: 15px
 }
 

@@ -45,8 +45,8 @@ jQuery(document).ready(function($) {
   /* Interactive boxes */
   new FourierSeries('fourierseries-box', 'fourierseries', 500, 500);
   new PolarPlot('polarplot', 'polarplot-box', 500, 500);
-  //new CenterOfMass('centerofmass', 'centerofmass-box', 500, 500);
-  //new FourierTransform('fouriertransform', 'fouriertransform', 500, 500);
+  new CenterOfMass('centerofmass', 'centerofmass-box', 500, 500);
+  new FourierTransform('fouriertransform', 'fouriertransform-box', 500, 500);
 
   /* Scroll Progress Bar */
   let scrollingbar = document.getElementById("scrollingbar");

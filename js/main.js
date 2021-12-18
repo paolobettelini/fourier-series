@@ -43,10 +43,11 @@ jQuery(document).ready(function($) {
   });
 
   /* Interactive boxes */
-  new FourierSeries('fourierseries-box', 'fourierseries', 500, 500);
+  new FourierSeries2D('fourierseries2d', 'fourierseries2d-box', 500, 500);
   new ComplexPlot('complexplot', 'complexplot-box', 500, 500);
   new CenterOfMass('centerofmass', 'centerofmass-box', 500, 500);
   new FourierTransform('fouriertransform', 'fouriertransform-box', 500, 500);
+  new FourierSeries1D('fourierseries1d', 'fourierseries1d-box', 500, 500);
 
   /* Scroll Progress Bar */
   let scrollingbar = document.getElementById("scrollingbar");

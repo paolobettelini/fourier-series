@@ -1,38 +1,43 @@
 class Example extends InteractiveBox {
 
-    #points = []
-    #counter = 0
+    #points = []; // The path to be drawn
+    #counter = 0; // Drawing process
 
     constructor(name, container, height, width) {
         super(name, container, height, width)
 
-        this.setPoints(this.#getDefaultPath());;
+        this.setPoints(this.#getDefaultPath());
     }
 
     onTimeTravel(value) {
+        // Set counter accoring to value
         this.#counter = value * this.#points.length | 0;
     }
 
     setPoints(points) {
-        this.#counter = 0;
-        this.#points = points;
+        this.#counter = 0; // Reset counter
+        this.#points = points; // Update points
     };
 
     draw(ctx) {
-        this.clearCanvas();
+        this.clearCanvas(); // Clear the canvas
         
+        // Update counter and update timeline
         this.setTime(this.#counter++ / (this.#points.length - 1));
         if (this.#counter > this.#points.length) {
-            this.#counter = 0;
+            this.#counter = 0; // Reset counter
         }
 
         ctx.beginPath();
+        
         ctx.lineWidth = 2.0;
         ctx.strokeStyle = 'red';
+
         ctx.moveTo(this.#points[0].x, this.#points[0].y);
         for (var i = 1; i < this.#counter; i++) {
             ctx.lineTo(this.#points[i].x, this.#points[i].y);
         }
+
         ctx.stroke();
     };
 

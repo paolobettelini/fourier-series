@@ -44,7 +44,7 @@ class FourierTransform extends InteractiveBox {
         let signal_DFT = Fourier.dft(points);
 
         for (var i = 0; i < signal_DFT.length; i++) {
-            this.#dtf_abs[i] = signal_DFT[i].Im * signal_DFT[i].Im + signal_DFT[i].Re * signal_DFT[i].Re;
+            this.#dtf_abs[i] = Math.sqrt(signal_DFT[i].Im * signal_DFT[i].Im + signal_DFT[i].Re * signal_DFT[i].Re);
         }
 
         console.log(this.#dtf_abs);

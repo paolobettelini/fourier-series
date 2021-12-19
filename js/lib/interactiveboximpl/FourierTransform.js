@@ -7,6 +7,8 @@ class FourierTransform extends InteractiveBox {
         super(name, container, height, width)
 
         this.setPoints(this.#getSineWave());
+
+        this.#loadAdditionalContent();
     }
 
     draw(ctx) {
@@ -82,15 +84,32 @@ class FourierTransform extends InteractiveBox {
 
     }
 
-    #getSineWave() {
+    #loadAdditionalContent() {
+        this.container.insertAdjacentHTML('beforeend', '<br>' + 
+            '<button class="box" id="' + this.name + '_sine1x">sine(1x)</button>' +
+            '<button class="box" id="' + this.name + '_sine2x">sine(2x)</button>' +
+            '<button class="box" id="' + this.name + '_sine3x">sine(3x)</button>');
+
+        // Sine Wave Buttons
+        // TODO: use this syntax everywhere
+        document.getElementById(this.name + '_sine1x').onclick = () => this.setPoints(this.#getPoints(x => 100 * Math.sin(Math.PI * 2 / 100 * x)));
+        document.getElementById(this.name + '_sine2x').onclick = () => this.setPoints(this.#getPoints(x => 100 * Math.sin(Math.PI * 4 / 100 * x)));
+        document.getElementById(this.name + '_sine3x').onclick = () => this.setPoints(this.#getPoints(x => 100 * Math.sin(Math.PI * 6 / 100 * x)));
+    }
+
+    #getPoints(f) {
         var path = [];
         for (var i = 0; i < 100; i++) {
             path[i] = {
                 x: i,
-                y: 100 * Math.sin(Math.PI * 2 / 100 * i),
+                y: f(i),
             };
         }
         return path;
+    }
+
+    #getSineWave() {
+        return this.#getPoints(x => 100 * Math.sin(Math.PI * 2 / 100 * x));
     }
 
 }

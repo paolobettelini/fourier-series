@@ -6,7 +6,7 @@
 
 |     Time      |            Work done                     |
 |---------------|------------------------------------------|
-| 10:50 - 21:00 | Fixed Fourier series animation, written epicycles section, written FFT section, exponential FS section, boxes css |
+| 10:50 - 22:00 | Fixed Fourier series animation, written epicycles section, written FFT section, exponential FS section, boxes css |
 
 ## Problems encountered and solutions adopted
 

@@ -115,9 +115,8 @@ class CenterOfMass extends InteractiveBox {
     };
 
     #loadAdditionalContent() {
-        // todo: refactor
         this.container.insertAdjacentHTML(
-            'beforeend', '<button class="box" id="' + this.name + '_sinewave">sine</button>');
+            'beforeend', '<br><button class="box" id="' + this.name + '_sinewave">sine</button>');
 
         // Sine Wave Button
         document.getElementById(this.name + '_sinewave').onclick = () => this.setPoints(this.#getSineWave());
@@ -131,11 +130,6 @@ class CenterOfMass extends InteractiveBox {
                 y: 100 * Math.sin(Math.PI * 2 / 100 * i)
             }
         }
-        var a = [
-            {x:2, y:3},
-            {x:2, y:3},
-            {x:2, y:3},
-        ];
 
         return path;
     }

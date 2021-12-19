@@ -15,7 +15,9 @@ class FourierSeries1D extends InteractiveBox {
     constructor(name, container, height, width) {
         super(name, container, height, width)
 
-        this.setPoints(this.#getDefaultPath());
+        this.setPoints(this.#getSineWave());
+
+        this.#loadAdditionalContent();
     }
 
     draw(ctx) {
@@ -122,7 +124,15 @@ class FourierSeries1D extends InteractiveBox {
         return {x, y}
     }
 
-    #getDefaultPath() {
+    #loadAdditionalContent() {
+        this.container.insertAdjacentHTML(
+            'beforeend', '<br><button class="box" id="' + this.name + '_sinewave">sine</button>');
+
+        // Sine Wave Button
+        document.getElementById(this.name + '_sinewave').onclick = () => this.setPoints(this.#getSineWave());
+    }
+
+    #getSineWave() {
         let result = [];
 
         for (var i = 0; i < 100; i++) {

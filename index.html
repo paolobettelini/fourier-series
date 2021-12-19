@@ -58,7 +58,8 @@
             <li class="nav-item"><a class="nav-link smoothlink" href="#fs-vs-ft"><span>Definition</span></a></li>
             <li class="nav-item"><a class="nav-link smoothlink" href="#example"><span>An Example</span></a></li>
             <li class="nav-item"><a class="nav-link smoothlink" href="#exponential-fourier-series"><span>Exponential form</span></a></li>
-            <li class="nav-item"><a class="nav-link smoothlink" href="#conclusion"><span>Conclusion</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#fft"><span>FFT</span></a></li>
+            <li class="nav-item"><a class="nav-link smoothlink" href="#epicycles"><span>Epicycles</span></a></li>
         </ul>
     </div>
 
@@ -355,21 +356,42 @@
                     <p>Again, we take the integral over the period \([t_0;t_0+T]\) on both sides, but first we multiply everything by \(\cos(w_k t)\)</p>
 
                     $$
-                        \begin{align*}
-                            \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
-                            &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
-                                \left[
-                                a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
-                                b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
-                                \right]
-                        \end{align*}
+                    \begin{align*}
+                        \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
+                        &= h \integral{t_0}{t_0+T}{\cos(w_k t)}{t} + \sum_{n=1}^{\infty}
+                            \left[
+                            a_n \integral{t_0}{t_0+T}{\cos(w_n t)\cos(w_k t)}{t} +
+                            b_n \integral{t_0}{t_0+T}{\sin(w_n t)\cos(w_k t)}{t}
+                            \right]
+                    \end{align*}
                     $$
                     
-                    <p>TODO</p>
-                    <p>TODO</p>
-                    <p>TODO</p>
-                    <p>TODO</p>
-                    <p>TODO</p>
+                    <p>By using orthogonality relationships or by literally evaluating the above integrals, we get the following</p>
+
+                    $$
+                    \begin{align*}
+                        \integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}&=
+                        \integral{t_0}{t_0+T}{a_k\cos^2(w_k t)}{t} \\
+                        &= a_k \left(\frac{T}{2}\right)
+                    \end{align*}
+                    $$
+
+                    <p>concluding that</p>
+
+                    $$
+                    a_k=\frac{2}{T}\integral{t_0}{t_0+T}{f(t)\cos(w_k t)}{t}
+                    $$
+                    
+                    <h2 style="text-align: center;">Finding \(b_n\)</h2>
+
+                    <p>To find \(b_n\), we do the exact same thing, but instead of multiplying by
+                        \(\cos(w_n t)\), we multiply by \(\sin(w_n t)\), ending up with</p>
+
+                    $$
+                    b_k=\frac{2}{T}\integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
+                    $$
+                    
+                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: \(C=\frac{a_0}{2}\)</b>
                     <div class="primary-button smoothlink">
                         <a href="#fourier-series-conclusion">Next - Conclusion</a>
                     </div>
@@ -385,7 +407,7 @@
                 <div class="col">
                     <h1>Fourier Series - Conclusion</h1>
                     <br>
-                    <p>We can represent a periodic function \(f(t)\) on an interval \(t_0;t_0+T\) by</p>
+                    <p>Under appropriate conditions, we can represent a periodic function \(f(t)\) on an interval \(t_0;t_0+T\) by</p>
 
                     $$
                     \begin{align*}
@@ -662,19 +684,85 @@
                 <div class="col">
                     <h1>Exponential Fourier Series</h1>
                     <br>
-                    <p>The exponential Fourier Series is the same thing but extended to the complex plane.</p>
+                    <p>The exponential Fourier Series is the same thing but extended to the complex plane,
+                        we can use Euler's identify to manipulate the real Fourier series and get the following expression</p>
 
+                    $$
+                    f(t)=\frac{a_0}{2}+\sum_{n=1}^{\infty}
+                    \frac{1}{2}(a_n-ib_n)e^{iw_n t}+
+                    \frac{1}{2}(a_n+ib_n)e^{-iw_n t}
+                    $$
+
+                    <p>Now, let \(n\) be also negative. With an appropriate coefficient \(c_n\) we can arrange the series as</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     $$
                     f(t)=\sum_{n=-\infty}^{\infty} c_n e^{itw_n}
                     $$
-                    
-                    <p>where</p>
+                </div>
+                <div class="col">
+                    $$
+                    c_n \equiv
+                    \begin{cases}
+                        \frac{1}{2}(a_n-ib_n)e^{iw_n t}, & n>0 \\
+                        \frac{1}{2}(a_n+ib_n)e^{iw_n t}, & n&lt0 \\
+                        \frac{1}{2}a_0, & n=0 \\
+                    \end{cases}
+                    $$
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <p>The coefficient \(c_n\) can be computed as</p>
                     
                     $$
                     c_n = \frac{1}{T} \integral{t_0}{t_0+T}{f(t)e^{-itw_n}}{t}
                     $$
+                    
                     <div class="primary-button smoothlink">
-                        <a href="#conclusion">Next - Conclusion</a>
+                        <a href="#fft">Next - FFT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fast Fourier Transform -->
+    <section class="parallax" id="fft">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1>Fast Fourier Transform</h1>
+                    <br>
+                    <p class="text-justify">
+                        The <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Fast Fourier Transform</a>
+                        is a computer algorithm to compute the <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">Discrete Fourier Transform</a>.
+                        The fastest and most used implementation of this algorithm is FFTw, a C subroutine library written at MIT.
+                    </p>
+                    <p class="text-justify">
+                        When computing the DFT on a (discrete) signal \(f(t)\), we take the average of all the points
+                        of \(f(t)e^{-2\pi i\xi}\). This process is repeated for each frequency \(\xi\).
+                        Computing all of these values is a \(O(N^2)\) operation, but with the FFT algorithm we can decrease
+                        the number of operations to \(O(N\log(N))\). Many FFT algorithms depend on that fact that \(e^{-2\pi i/N}\) is a
+                        <a href="https://en.wikipedia.org/wiki/Root_of_unity">root of unity.</a>
+                    </p>
+
+                    <p class="text-justify">There are plenty of FFT algorithms, here's a few: 
+                        <a href="https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm">Cooley–Tukey FFT</a>,
+                        <a href="https://en.wikipedia.org/wiki/Prime-factor_FFT_algorithm">Prime-factor FFT</a>,
+                        <a href="https://en.wikipedia.org/wiki/Bruun%27s_FFT_algorithm">Bruun's FFT</a>,
+                        <a href="https://en.wikipedia.org/wiki/Rader%27s_FFT_algorithm">Rader's FFT</a>,
+                        <a href="https://en.wikipedia.org/wiki/Chirp_Z-transform">Chirp Z-transform</a>,
+                        <a href="https://en.wikipedia.org/wiki/Hexagonal_fast_Fourier_transform">Hexagonal fast Fourier transform</a>
+                    </p>
+
+                    <p class="text-justify">There is also another version called SFT (Sparse Fourier Transorm), which is
+                        a DFT for handling big data signals, and is mainly used in GPS synchronization.
+                    </p>
+                    <div class="primary-button smoothlink">
+                        <a href="#epicycles">Next - Epicycles</a>
                     </div>
                 </div>
             </div>
@@ -682,13 +770,22 @@
     </section>
 
     <!-- Conclusion -->
-    <section id="conclusion">
+    <section id="epicycles">
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h1>Conclusion</h1>
+                    <h1>Epicycles</h1>
                     <br>
-                    <p>TODO how the first animation is generated</p>
+                    <p class="text-justify">So how does the cool epicycles animation work?
+                        First of all we need apply the Fourier transform operation, however
+                        the drawing is just a set of points, it's a discrete function rather
+                        than a continuous one, this means that we'll need to use the
+                        <a href="https://en.wikipedia.org/wiki/Discrete_Fourier_transform">Discrete Fourier Transform</a> operator.
+                        Each circle represents a discrete frequency, and each center revolves
+                        around the previous circle's circumference. The radius of the circle
+                        is the magnitude of the current frequency, which is the absolute value
+                        of the Fourier transform at that frequency. The revolution is based
+                        on the time passed and the phase of the Fourier transoform.</p>
                     <div class="primary-button smoothlink">
                         <a href="#footer">Thank you</a>
                     </div>
@@ -712,7 +809,7 @@
                         <a href="#title">Back To Top</a>
                     </div>
                     <ul>
-                        <li><a href="https://github.com/paolobettelini"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://github.com/paolobettelini"><img src="img/github.svg" alt=""></a></li>
                     </ul>
                     <p>Copyright &copy; 2021 Paolo Bettelini 
                         - Design: <a rel="nofollow noopener" href="https://templatemo.com"><em>TemplateMo</em></a></p>

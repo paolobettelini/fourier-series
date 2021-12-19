@@ -6,6 +6,7 @@ class CenterOfMass extends InteractiveBox {
     axisWidth = 1.0;
     plotWidth = 2.0;
     centerOfMassWidth = 10;
+    rotations = 3;
 
     #signal = [];
 
@@ -59,30 +60,22 @@ class CenterOfMass extends InteractiveBox {
 
         // Double rotation
 
-        // todo: refactor
         let a = 2 * Math.PI / this.#signal.length * this.#freq;
         ctx.moveTo(HALF_WIDTH, HALF_HEIGHT + this.#signal[0]);
-        for (var i = 1; i < this.#signal.length; i++) {
-            let angle = a * i + HALF_PI;
-            let x = HALF_WIDTH + this.#signal[i] * Math.cos(angle); 
-            let y = HALF_HEIGHT + this.#signal[i] * Math.sin(angle);
-            ctx.lineTo(x, y);
-            centerOfMassX += x;
-            centerOfMassY += y;
-        }
-        for (var i = 1; i < this.#signal.length; i++) {
-            let angle = a * (i + this.#signal.length) + HALF_PI;
-            let index = i % this.#signal.length;
-            let x = HALF_WIDTH + this.#signal[index] * Math.cos(angle);
-            let y = HALF_HEIGHT + this.#signal[index] * Math.sin(angle);
-            ctx.lineTo(x, y);
-            centerOfMassX += x;
-            centerOfMassY += y;
+        for (var j = 0; j < this.rotations; j++) {
+            for (var i = 1; i < this.#signal.length; i++) {
+                let angle = a * (i + this.#signal.length * j) + HALF_PI;
+                let x = HALF_WIDTH + this.#signal[i] * Math.cos(angle);
+                let y = HALF_HEIGHT + this.#signal[i] * Math.sin(angle);
+                ctx.lineTo(x, y);
+                centerOfMassX += x;
+                centerOfMassY += y;
+            }
         }
         ctx.stroke();
 
-        centerOfMassX /= this.#signal.length * 2;
-        centerOfMassY /= this.#signal.length * 2;
+        centerOfMassX /= this.#signal.length * this.rotations;
+        centerOfMassY /= this.#signal.length * this.rotations;
 
         
         ctx.strokeStyle = this.centerOfMassColor;
@@ -94,21 +87,28 @@ class CenterOfMass extends InteractiveBox {
     };
 
     onTimeTravel(value) {
-        this.#freq = this.#minFreq + value * ((this.#maxFreq - this.#minFreq) | 0);
+        this.#freq = this.#minFreq + value * (this.#maxFreq - this.#minFreq);
     }
 
     setPoints(points) {
         this.#signal = [];
 
-        var minY = 1E6;
+        var minY = 1E5;
+        var maxY = -1E5;
         for (var i = 0; i < points.length; i++) {
             if (points[i].y < minY) {
                 minY = points[i].y;
             }
+
+            if (points[i].y > maxY) {
+                maxY = points[i].y;
+            }
         }
 
+        let offset = (minY - maxY) * 0.5;
+
         for (var i = 0; i < points.length; i++) {
-            this.#signal[i] = minY - points[i].y;
+            this.#signal[i] = points[i].y - minY + offset;
         }
 
         this.#freq = this.#minFreq;

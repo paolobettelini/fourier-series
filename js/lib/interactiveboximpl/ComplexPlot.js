@@ -25,9 +25,6 @@ class ComplexPlot extends InteractiveBox {
     }
 
     draw(ctx) {
-        if (this.#signal.length < 2)
-            return;
-
         this.setTime(this.#counter++ / (this.#signal.length - 1));
         if (this.#counter > this.#signal.length) {
             this.#counter = 0;
@@ -48,9 +45,9 @@ class ComplexPlot extends InteractiveBox {
         ctx.lineWidth = this.plotWidth;
         ctx.strokeStyle = this.plotColor;
         ctx.beginPath();
-        ctx.moveTo(this.width / 2, this.height / 2 + this.#signal[0]);
+        ctx.moveTo(this.width / 2 + this.#signal[0],this.height / 2);
         for (var i = 1; i < this.#counter; i++) {
-            let angle = 2 * Math.PI / this.#signal.length * i * this.freq + Math.PI / 2;
+            let angle = 2 * Math.PI / this.#signal.length * i * this.freq;
             ctx.lineTo(this.width / 2 + this.#signal[i] * Math.cos(angle), this.height / 2 + this.#signal[i] * Math.sin(angle));
         }
         ctx.stroke();
@@ -67,7 +64,7 @@ class ComplexPlot extends InteractiveBox {
         ctx.lineWidth = this.magnitudeWidth;
         ctx.beginPath();
         ctx.moveTo(this.width / 2, this.height / 2);
-        let angle = 2 * Math.PI / this.#signal.length * (this.#counter - 1) * this.freq + Math.PI / 2;
+        let angle = 2 * Math.PI / this.#signal.length * (this.#counter - 1) * this.freq;
         ctx.lineTo(this.width / 2 + this.#signal[this.#counter - 1] * Math.cos(angle), this.height / 2 + this.#signal[this.#counter - 1] * Math.sin(angle));
         ctx.stroke();
     };
@@ -80,14 +77,22 @@ class ComplexPlot extends InteractiveBox {
         this.#signal = [];
 
         var minY = 10E5;
+        var maxY = -10E5;
         for (var i = 0; i < points.length; i++) {
             if (points[i].y < minY) {
                 minY = points[i].y;
             }
+
+            if (points[i].y > maxY) {
+                maxY = points[i].y;
+            }
         }
 
+        //let offset = (minY - maxY) * 0.5;
+
         for (var i = 0; i < points.length; i++) {
-            this.#signal[i] = minY - points[i].y;
+            // Add offset to center signal at x=0
+            this.#signal[i] = points[i].y - minY /* + offset */;
         }
 
         this.#counter = 0;
@@ -96,7 +101,7 @@ class ComplexPlot extends InteractiveBox {
     #loadAdditionalContent() {
         // todo: refactor
         this.container.insertAdjacentHTML(
-            'beforeend', '<br><p class="box" id=' + this.name + '_frequencyLabel>Frequency: 1</p><input class="box" id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.05" max="3"><button class="box" id="' + this.name + '_sinewave">sin</button><button class="box" id="' + this.name + '_cosinewave">cos</button>');
+            'beforeend', '<br><p class="box" id=' + this.name + '_frequencyLabel>Frequency: 1</p><input class="box" id="' + this.name + '_frequency" type="range" min="0.5" value="1" step="0.05" max="3"><br><button class="box" id="' + this.name + '_sinewave">sin</button><button class="box" id="' + this.name + '_cosinewave">cos</button>');
 
         // Frequency input
         let freqInput = document.getElementById(this.name + '_frequency');

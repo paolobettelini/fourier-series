@@ -71,21 +71,34 @@ class FourierSeries2D extends InteractiveBox {
         this.#signalY = [];
 
         // remove offset
-        var minX = 10E5;
         var minY = 10E5;
+        var minX = 10E5;
+        var maxY = -10E5;
+        var maxX = -10E5;
         for (var i = 0; i < points.length; i++) {
+            if (points[i].y < minY) {
+                minY = points[i].y;
+            }
+
             if (points[i].x < minX) {
                 minX = points[i].x;
             }
 
-            if (points[i].y < minY) {
-                minY = points[i].y;
+            if (points[i].y > maxY) {
+                maxY = points[i].y;
+            }
+
+            if (points[i].x > maxX) {
+                maxX = points[i].x;
             }
         }
 
+        let offsetY = (minY - maxY) * 0.5;
+        let offsetX = (minX - maxX) * 0.5;
+
         for (var i = 0; i < points.length; i++) {
-            this.#signalX[i] = points[i].x - minX;
-            this.#signalY[i] = points[i].y - minY;
+            this.#signalX[i] = points[i].x - minX + offsetX;
+            this.#signalY[i] = points[i].y - minY + offsetY;
         }
 
         this.#counter = 0;
@@ -94,20 +107,19 @@ class FourierSeries2D extends InteractiveBox {
         this.#signalX_DFT = Fourier.dft(this.#signalX);
     }
 
-    drawEpicycles(ctx, fourier, xOff, yOff, rot) {
-        var x = 0;
-        var y = 0;
+    drawEpicycles(ctx, fourierTransform, xOff, yOff, rot) {
+        let x = 0;
+        let y = 0;
 
-        for (var i = 0; i < fourier.length; i++) {
-            var prevX = x;
-            var prevY = y;
+        for (var i = 0; i < fourierTransform.length; i++) {
+            let prevX = x;
+            let prevY = y;
 
-            // precompute these values
-            var freq = i;
-            var ampl = Math.sqrt(fourier[i].Re * fourier[i].Re + fourier[i].Im * fourier[i].Im);                
-            var phase = Math.atan2(fourier[i].Im, fourier[i].Re);
+            let freq = i;
+            let ampl = Math.sqrt(fourierTransform[i].Re * fourierTransform[i].Re + fourierTransform[i].Im * fourierTransform[i].Im);                
+            let phase = Math.atan2(fourierTransform[i].Im, fourierTransform[i].Re);
 
-            var arg = freq * this.#counter / this.#signalY.length * 2 * Math.PI + phase + rot;
+            let arg = freq * this.#counter / fourierTransform.length * 2 * Math.PI + phase + rot;
             x += ampl * Math.cos(arg);
             y += ampl * Math.sin(arg);
 

@@ -6,6 +6,7 @@ class FourierSeries1D extends InteractiveBox {
 
     epicyclesXOffset = 100;
     epicyclesYOffset = 250;
+    pathDistance = 100;
 
     #counter = 0;
     #signal = [];
@@ -27,14 +28,14 @@ class FourierSeries1D extends InteractiveBox {
         this.clearCanvas();
         
         // Draw epicycles
-        var lastPoint = this.drawEpicycles(ctx, this.#signal_DFT, this.epicyclesXOffset, this.epicyclesYOffset, 0);
+        var lastPoint = this.drawEpicycles(ctx, this.#signal_DFT, this.epicyclesXOffset, this.epicyclesYOffset, Math.PI * 0.5);
         
         ctx.strokeStyle = this.linesColor;
         ctx.beginPath();
         
         ctx.moveTo(this.epicyclesXOffset + lastPoint.x, this.epicyclesYOffset + lastPoint.y);
         ctx.lineWidth = 0.25;
-        //ctx.lineTo(this.epicyclesXOffset + lastPoint.x, this.epicyclesYOffset + lastPoint.y);
+        ctx.lineTo(this.epicyclesXOffset + lastPoint.x + 100, this.epicyclesYOffset + lastPoint.y);
         
         ctx.stroke();
         ctx.lineWidth = 0.5;
@@ -44,9 +45,9 @@ class FourierSeries1D extends InteractiveBox {
         ctx.beginPath();
         ctx.lineWidth = 2.0;
         ctx.strokeStyle = this.pathColor;
-        ctx.moveTo(this.epicyclesXOffset + 100 + (this.#counter - 1), this.#signal[0] + this.epicyclesYOffset);
+        ctx.moveTo(this.epicyclesXOffset + this.pathDistance + (this.#counter - 1), this.#signal[0] + this.epicyclesYOffset);
         for (var i = 1; i < this.#counter; i++) {
-            ctx.lineTo(this.epicyclesXOffset + 100 + (this.#counter - i - 1), this.#signal[i] + this.epicyclesYOffset);
+            ctx.lineTo(this.epicyclesXOffset + this.pathDistance + (this.#counter - i - 1), this.#signal[i] + this.epicyclesYOffset);
         }
         
         ctx.stroke();
@@ -59,16 +60,28 @@ class FourierSeries1D extends InteractiveBox {
     setPoints(points) {
         this.#signal = [];
 
-        // remove offset
+        // Remove the yOffset, then center the signal at x=0
+
         var minY = 10E5;
+        var maxY = -10E5;
         for (var i = 0; i < points.length; i++) {
             if (points[i].y < minY) {
                 minY = points[i].y;
             }
+
+            if (points[i].y > maxY) {
+                maxY = points[i].y;
+            }
         }
 
-        for (var i = 0; i < points.length; i++) {
-            this.#signal[i] = points[i].y - minY;
+        let offset = (minY - maxY) * 0.5;
+
+        for (var i = 0; i < 2; i++) {
+            for (var j = 0; j < points.length; j++) {
+                let v = points[points.length - j - 1].y - minY + offset;
+                this.#signal.push(v);
+                this.#signal.push(v); // double-wide
+            }
         }
 
         this.#counter = 0;
@@ -76,20 +89,19 @@ class FourierSeries1D extends InteractiveBox {
         this.#signal_DFT = Fourier.dft(this.#signal);
     }
 
-    drawEpicycles(ctx, fourier, xOff, yOff, rot) {
-        var x = 0;
-        var y = 0;
+    drawEpicycles(ctx, fourierTransform, xOff, yOff, rot) {
+        let x = 0;
+        let y = 0;
 
-        for (var i = 0; i < fourier.length; i++) {
-            var prevX = x;
-            var prevY = y;
+        for (var i = 0; i < fourierTransform.length; i++) {
+            let prevX = x;
+            let prevY = y;
 
-            // precompute these values
-            var freq = i;
-            var ampl = Math.sqrt(fourier[i].Re * fourier[i].Re + fourier[i].Im * fourier[i].Im);                
-            var phase = Math.atan2(fourier[i].Im, fourier[i].Re);
+            let freq = i;
+            let ampl = Math.sqrt(fourierTransform[i].Re * fourierTransform[i].Re + fourierTransform[i].Im * fourierTransform[i].Im);                
+            let phase = Math.atan2(fourierTransform[i].Im, fourierTransform[i].Re);
 
-            var arg = freq * this.#counter / this.#signal.length * 2 * Math.PI + phase + rot;
+            let arg = freq * this.#counter / fourierTransform.length * 2 * Math.PI + phase + rot;
             x += ampl * Math.cos(arg);
             y += ampl * Math.sin(arg);
 
@@ -114,7 +126,10 @@ class FourierSeries1D extends InteractiveBox {
         let result = [];
 
         for (var i = 0; i < 100; i++) {
-            result[i] = 100 * Math.sin(i / 200 * Math.PI / 2);
+            result[i] = {
+                x: i,
+                y: 100 * Math.sin(i / 100 * 2 * Math.PI)
+            };
         }
 
         return result;

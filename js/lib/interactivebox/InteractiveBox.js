@@ -123,7 +123,7 @@ class InteractiveBox {
         this.#canvas.onmouseup = () => {
             this.#drawingPath = false;
             
-            while (this.#points.length > 100) {
+            while (this.#points.length > 200) {
                 //remove random points
                 this.#points.splice((Math.random() * this.#points.length) | 0, 1);
             }

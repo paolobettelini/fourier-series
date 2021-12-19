@@ -190,7 +190,7 @@ section {
 
 #fourier-series-conclusion {
 	background-color: #c5ffc2;
-	padding-top: 5vh;
+	padding-top: 20vh;
 	padding-bottom: 15px
 }
 
@@ -232,13 +232,19 @@ section {
 
 #exponential-fourier-series {
 	background-color: #ffa86f;
-	padding-top: 5vh;
+	padding-top: 20vh;
 	padding-bottom: 15px
 }
 
-#conclusion {
+#fft {
 	background-color: #f7d66f;
-	padding-top: 5vh;
+	padding-top: 20vh;
+	padding-bottom: 15px	
+}
+
+#epicycles {
+	background-color: #c5ffc2;
+	padding-top: 20vh;
 	padding-bottom: 15px
 }
 

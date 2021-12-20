@@ -63,23 +63,6 @@
         </ul>
     </div>
 
-    <!-- Template
-    <section class="parallax" id="template">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h1>Template</h1>
-                    <br>
-                    <div class="primary-button smoothlink">
-                        <a href="#">Next</a>
-                    </div>
-                </div>
-                <div class="col"></div>
-            </div>
-        </div>
-    </section>
-    -->
-
     <!-- Title Section -->
     <section class="parallax" id="title">
         <div class="container">
@@ -220,7 +203,7 @@
                     <br>
                     <p class="text-justify">The Fourier series is the representation of a periodic function
                         with a summation of sine and cosine waves of discrete frequencies. Each wave is weighted
-                        according to "how important" it is to represent the orifinal function.</p>
+                        according to "how important" it is to represent the original function.</p>
                     <p class="text-justify">Fourier Series are often represented in two ways: trigonometric and exponential.
                         They both work in the same way, but the exponential one is also defined on the
                         complex plane and as we'll see, has a nicer, more elegant form.</p>
@@ -271,8 +254,8 @@
                         You might notice that with this we can only represent functions "laying" on the \(x\)-axis.
                         To resolve this problem we add a generic constant term \(C\) to shift the function up/down.</p>
 
-                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: We only need the
-                        discrete frequencies (1 Hz, 2 Hz, ...) to represent the function, althought the Fourier transform gives
+                    <p><b><span style="color: red;">&gt;&gt;</span> Note: We only need the
+                        discrete frequencies (1 Hz, 2 Hz, ...) to represent the function, although the Fourier transform gives
                         us a continuous frequency analysis.</b></p>
                     <div class="primary-button smoothlink">
                         <a href="#fourier-series-c-term">Next - C term</a>
@@ -300,7 +283,7 @@
                     <p class="text-justify">Great! One small problem, what are \(a_n\), \(b_n\) and \(C\)?
                         Here we manipulate the Fourier series definition to find these values given \(f(t)\)
                         on a period \([t_0;t_0+T]\).</p>
-                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: To simplify the equations i'm going to deifne \(w_k=\frac{2\pi k}{T}\)</b></p>
+                    <p><b><span style="color: red;">&gt;&gt;</span> Note: To simplify the equations i'm going to define \(w_k=\frac{2\pi k}{T}\)</b></p>
                     <p>Starting from the \(C\) term, we take the integral over the generic period \([t_0;t_0+T]\) on both sides</p>
                     $$
                     \integral{t_0}{t_0+T}{f(t)}{t} =
@@ -391,7 +374,7 @@
                     b_k=\frac{2}{T}\integral{t_0}{t_0+T}{f(t)\sin(w_k t)}{t}
                     $$
                     
-                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: \(C=\frac{a_0}{2}\)</b>
+                    <p><b><span style="color: red;">&gt;&gt;</span> Note: \(C=\frac{a_0}{2}\)</b>
                     <div class="primary-button smoothlink">
                         <a href="#fourier-series-conclusion">Next - Conclusion</a>
                     </div>
@@ -445,7 +428,7 @@
                         it will follow its path, achieving a polar plot-like graph: \(f(t)e^{it}\).
                         Now, the rotational function makes a full cycle every \(2\pi\), we can plot our
                         signal at a different speed (different frequencies). To do so we will multiply
-                        the time of the rotational function by \(2\pi \xi\) where \(\xi\) if the frequency.
+                        the time of the rotational function by \(2\pi \xi\) where \(\xi\) is the frequency.
                         We add the \(2\pi\) term so that if your frequency is \(1\), we will have a rotation each second
                         rather then every \(2\pi\) seconds \((\sim 6.28\,s)\).
                         Futhermore, we want the unit circle to rotate clockwise instead of counter-clockwise.
@@ -521,10 +504,10 @@
                         (reset the sine or cosine wave so that it is clearer). When the frequency is a component of the function, this distance peaks.
                         If the function is composed of multiple frequencies, the same distance will peak multiple times, and more it peaks,
                         the more the frequency is present in the original function.</p>
-                        <p>The function that represent the center of mass as the frequency changes is called Fourier transform.
-                        Actually not quite, the Fourier transform is defined with the integral over \(\mathbb{R}\)
+                        <p>The function that represents the center of mass as the frequency changes is called Fourier transform.
+                        Actually, not quite, the Fourier transform is defined with the integral over \(\mathbb{R}\)
                         and is not divided by the time span. The absolute value (distance from the origin) of this function
-                        if the amount of all continuous frequencies present in the original signal.</p>
+                        is the amount of all continuous frequencies present in the original signal.</p>
                         $$
                         \hat{f}(\xi)=\integral{-\infty}{\infty}{f(t)\,e^{-2\pi it\xi}}{t}
                         $$
@@ -663,7 +646,7 @@
                     <p class="text-justify">The effort pays off when we graph this function, as more terms are added, the function looks more and more like the original square wave. You can drag the slider by opening the left panel.</p>
 
                     <br>
-                    <p style="text-decoration: underline;"><b><span style="color: red;">&gt;&gt;</span> Note: If \(f(x)\) is even, the coefficient \(b_n\) will always be equal to zero. If \(f(x)\) is odd, \(a_n\) will always be equal to zero.</b></p>
+                    <p><b><span style="color: red;">&gt;&gt;</span> Note: If \(f(x)\) is even, the coefficient \(b_n\) will always be equal to zero. If \(f(x)\) is odd, \(a_n\) will always be equal to zero.</b></p>
 
                     <br>
                     <div class="primary-button smoothlink">
@@ -758,7 +741,7 @@
                         <a href="https://en.wikipedia.org/wiki/Hexagonal_fast_Fourier_transform">Hexagonal fast Fourier transform</a>
                     </p>
 
-                    <p class="text-justify">There is also another version called SFT (Sparse Fourier Transorm), which is
+                    <p class="text-justify">There is also another version called SFT (Sparse Fourier Transform), which is
                         a DFT for handling big data signals, and is mainly used in GPS synchronization.
                     </p>
                     <div class="primary-button smoothlink">

@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{parskip}
+\usepackage{fullpage}
+
+\title{Fourier Series - Changelog}
+\author{Paolo Bettelini}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Changelog}
+
+\subsection*{2021.09.09}
+
+\begin{itemize}
+    \item Created GitHub repository
+    \item Added Readme
+    \item Read Wikipedia
+\end{itemize}
+
+\subsection*{2021.09.16}
+
+\begin{itemize}
+    \item Gannt
+    \item Requirements Analysis
+    \item Conceptual library structure
+\end{itemize}
+
+\subsection*{2021.09.22}
+
+\begin{itemize}
+    \item First Fourier 2D series draft
+    \item Written abstract and scope
+\end{itemize}
+
+When the path is being drawn, sometimes the animation
+starts to play, as if I stopped drawing for a moment.
+
+\subsection*{2021.09.23}
+
+\begin{itemize}
+    \item Continued Fourier series test code
+    \item Updated documentation
+\end{itemize}
+
+\subsection*{2021.09.30}
+
+\begin{itemize}
+    \item Written discrete Fourier transform code
+    \item Pause/Resume button
+    \item Interactive timeline
+    \item Code cleanup
+    \item Imported MathJax
+\end{itemize}
+
+Fixed the drawing bug.
+
+\subsection*{2021.10.07}
+
+\begin{itemize}
+    \item Modularity of the interactive boxes
+    \item Created \texttt{Example.js} and \texttt{InteractiveBox.js}
+\end{itemize}
+
+The timeline does not work when moved around.
+Settings the value of the timeline to a value [0;1]
+doesn't work even if it should.
+
+Abstract functions don't exist in JavaScript.
+The `abstract' functions throw an error unless they are overwritten.
+
+\subsection*{2021.10.14}
+
+\begin{itemize}
+    \item Modularity of the interactive boxes
+    \item Complex plot of a given signal
+    \item Files rearrangement
+\end{itemize}
+
+\subsection*{2021.10.21}
+
+\begin{itemize}
+    \item MathJax settings
+    \item Implemented JavaScript Hierarchy
+    \item Code Refactor
+    \item Pause/Resume on visibility
+\end{itemize}
+
+The first point was being skipped. The time increment was wrong.
+\\
+Optimizing complex plot drawing
+Using actual hierarchy in JavaScript classes.
+Using a function to detect wheter the canvas is seen by the user,
+stop/resume the animation depending on this.
+
+\subsection*{2021.10.28}
+
+\begin{itemize}
+    \item Written website content
+    \item InteractiveBox library cleanup
+\end{itemize}
+
+\subsection*{2021.11.11}
+
+\begin{itemize}
+    \item Written website content
+\end{itemize}
+
+\subsection*{2021.11.18}
+
+\begin{itemize}
+    \item Written website content
+    \item Started writing Fourier transform box
+\end{itemize}
+
+The Fourier transform box completly doesn't work.
+
+\subsection*{2021.11.25}
+
+\begin{itemize}
+    \item Implementing a template for the website
+    \item Formatting the website
+\end{itemize}
+
+\subsection*{2021.11.27}
+
+\begin{itemize}
+    \item Fit all the already written content into the template
+    \item Written website content
+    \item Imported Desmos dependency
+\end{itemize}
+
+\subsection*{2021.11.28}
+
+\begin{itemize}
+    \item Written website content
+    \item Changed website colors
+\end{itemize}
+
+\subsection*{2021.12.03}
+
+\begin{itemize}
+    \item Removed junk files
+    \item Written website content
+    \item Fixed some css
+\end{itemize}
+
+\subsection*{2021.12.05}
+
+\begin{itemize}
+    \item CSS Styling
+    \item SVG Background
+\end{itemize}
+
+\subsection*{2021.12.09}
+
+\begin{itemize}
+    \item Interactive Boxes CSS
+\end{itemize}
+
+\subsection*{2021.12.16}
+
+\begin{itemize}
+    \item Written website content
+    \item CSS styling and colors
+    \item Removed unused css classes
+    \item Began translating documentation into LaTeX
+\end{itemize}
+
+I tried implementing the CSS snap-scroll effect,
+but it conflicted with the JS-driven scrolling buttons.
+
+\subsection*{2021.12.18}
+
+\begin{itemize}
+    \item Added LaTeX files to \texttt{.gitignore}
+    \item Removed junk files
+    \item Implemented interactive boxes
+\end{itemize}
+
+\subsection*{2021.12.19}
+
+\begin{itemize}
+    \item Written documentation
+    \item Written website content
+    \item Fixed interactive boxes (JS)
+    \item Fixes interacttive boxes (CSS)
+\end{itemize}
+
+\subsection*{2021.12.20}
+
+\begin{itemize}
+    \item Translated changelogs to LaTeX
+\end{itemize}
+
+\end{document}

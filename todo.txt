@@ -1,0 +1,9 @@
+XXXXXX rimuvoere sotolineatures
+
+gannt finale
+
+spiegare le cose in comuni
+    - FOurier.js
+    - Removing offsets
+    - Update time
+spiegare i 4 box

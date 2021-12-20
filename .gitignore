@@ -1,5 +1,4 @@
 # LaTeX files
-
 *.aux
 *.fdb_latexmk
 *.fls
@@ -9,3 +8,8 @@
 *.synctex(busy)
 *.dvi
 *.out
+*.bcf
+*.run.xml
+
+# OS X
+.DS_Store

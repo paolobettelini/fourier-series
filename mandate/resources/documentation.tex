@@ -10,16 +10,17 @@
 \usepackage{makecell}
 \usepackage{color}
 \usepackage{graphicx}
+\usepackage{biblatex}
 
 \hypersetup{
     colorlinks=true,
-    linkcolor=black,   
+    linkcolor=black,
     urlcolor=blue,
     pdftitle={Fourier Analysis Documentation},
-    pdfpagemode=FullScreen,
+    pdfpagemode=FullScreen
 }
 
-\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{lightgray}{rgb}{0.9,0.9,0.9}
 \definecolor{darkgray}{rgb}{.4,.4,.4}
 \definecolor{olive}{rgb}{0.17,0.59,0.20}
 
@@ -78,6 +79,7 @@
 }
 
 \graphicspath{ {./img/} }
+\addbibresource{./references.bib}
 
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 
@@ -251,7 +253,7 @@ The scope of this project is to create a website containing various explanations
         \hline
         \textbf{Priority} & 1 \\
         \hline
-        \textbf{Version} & 1.0 \\
+        \textbf{Version} & 2.0 \\
         \hline
         \textbf{Notes} & none \\
         \hline
@@ -269,8 +271,6 @@ The scope of this project is to create a website containing various explanations
         \textbf{Req-03\_3} & The interactive box must contain a stop button. \\
         \hline
         \textbf{Req-03\_4} & The interactive box must contain a resume button. \\
-        \hline
-        \textbf{Req-03\_5} & The interactive box must contain a slider for the animation speed. \\
         \hline
     \end{tabular}
 \end{center}
@@ -300,7 +300,7 @@ The scope of this project is to create a website containing various explanations
         \hline
         \textbf{Req-04\_0} & All the interactive boxes must follow the design described in Req-03. \\
         \hline
-        \textbf{Req-04\_1} & All the interactive boxes can contain optional settings. \\
+        \textbf{Req-04\_1} & The interactive boxes can contain optional settings.\\
         \hline
     \end{tabular}
 \end{center}
@@ -718,5 +718,38 @@ How the animation in Chapter. 1 works.
 \subsubsection{Center of mass}
 
 \subsubsection{Fourier Transform}
+
+\section{Conclusion}
+
+\subsection{Further Development}
+
+\subsubsection{Library Design}
+
+Something that could be improved is OOP hierarchy. I could make
+two classes extending \texttt{InteractiveBox.js}: \texttt{InteractiveBox1D.js} and
+\texttt{InteractiveBox2D.js}. This way every implementation of the library extends either
+one of these two classes. The first one lets only the user draw a one-dimensional signal.
+This is a problem in the current version, since some interactive boxes implementation only processes
+the y-coordinate of the user drawn path, without blocking him from drawing a two-dimensional path.
+
+\subsubsection{Website Content}
+
+The website lacks of an explanation about the Fast Fourier Transform and how to implement it.
+\\
+Another covered topic could be the inverse Fourier operators.
+
+\subsection{Personal Considerations}
+
+I'm really happy with how the websited turned out and I've gained deep knowledge about Joseph Fourier's work.
+However, I am dissatisfied with what I have written. There are so many topics concerning Fourier analysis and I wish I could have covered more.
+\\
+I think I managed the timing well even though I finished later than expected.
+\\
+The nature of this project is very creative. At the beginning I didn't have a precise picture of what I was going to
+put on the website, I chose the content as I was studying the topic, but in the end I managed to almost respect my initial idea.
+
+\section{Bibliography}
+
+\section{Sitography}
 
 \end{document}

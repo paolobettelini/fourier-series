@@ -1,7 +1,7 @@
 class Example extends InteractiveBox {
 
     #points = []; // The path to be drawn
-    #counter = 0; // Drawing process
+    #counter = 0; // Drawing progress
 
     constructor(name, container, height, width) {
         super(name, container, height, width)

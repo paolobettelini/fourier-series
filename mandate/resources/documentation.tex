@@ -9,7 +9,10 @@
 \usepackage{listings}
 \usepackage{makecell}
 \usepackage{color}
+\usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{multicol}
+%\usepackage{tikz}
 %\usepackage{biblatex}
 
 \hypersetup{
@@ -99,6 +102,8 @@
 
 \maketitle
 
+\pagebreak
+
 \tableofcontents
 
 \pagebreak
@@ -126,8 +131,8 @@ This is a project of the Scuola Arti e Mestieri di Trevano (SAMT) school under t
     \item \textbf{Class:} Module 306
     \item \textbf{Supervisor:} Luca Muggiasca
     \item \textbf{Title:} Fourier Analysis
-    \item \textbf{Start date}: 2021.09.09
-    \item \textbf{Deadline}: 2021.12.23
+    \item \textbf{Start date}: 2021-09-09
+    \item \textbf{Deadline}: 2021-12-23
 \end{itemize}
 
 and the following requirements
@@ -144,13 +149,24 @@ The live version of the final product is available at \href{https://paolobetteli
 
 \subsection{Scope}
 
-The scope of this project is to create a website containing various explanations about Fourier Analysis.
+The scope of this project is to create a website containing various explanations about Fourier Analysis. \\
+The website must be able to explain the various concepts in a comprehensible way and with interactive and visual examples.
 
 \pagebreak
 
 \section{Analysis}
 
-\subsection{Requirements}
+\subsection{Analysis of the means}
+
+\begin{itemize}
+    \item Firefox (95.0+) as browser
+    \item GitHub as code repository
+    \item Visual Studio Code as IDE
+    \item pdflatex as LaTeX compiler
+    \item Instagantt as project management software
+\end{itemize}
+
+\subsection{Requirements Analysis}
 
 \subsubsection{Req-00}
 
@@ -334,6 +350,8 @@ The scope of this project is to create a website containing various explanations
 
 \subsection{Planning}
 
+This is the initial Gantt chart, I chose the waterfall model
+
 \subsubsection{Initial Gantt Chart}
 
 \includegraphics[width=\textwidth]{gantt1}
@@ -341,6 +359,8 @@ The scope of this project is to create a website containing various explanations
 \subsubsection{Final Gantt Chart}
 
 \includegraphics[width=\textwidth]{gantt2}
+
+
 
 \pagebreak
 
@@ -512,7 +532,7 @@ Here is an example of interactive box where the path drawn by the user is progre
     class Example extends InteractiveBox {
 
         #points = []; // The path to be drawn
-        #counter = 0; // Drawing process
+        #counter = 0; // Drawing progress
 
         constructor(name, container, height, width) {
             super(name, container, height, width)
@@ -604,6 +624,92 @@ locally if you do not have a free internet connection.
     \end{tabular}
 \end{center}
 \egroup{}
+
+\pagebreak
+
+\subsection{Interactive Boxes Implementations}
+
+% common traits
+
+\subsubsection{Fourier Series 1D}
+
+\begin{multicols}{2}
+    In order for this interactive box to work, the discrete Fourier transform
+    of the signal must be computed, then, the result must be represented with epicycles.
+    I wrote a function \texttt{dft(signal)} which computes the DFT and a function
+    \texttt{drawEpicycles(ctx, dft, xOff, yOff, rot)} which draws a set of epicycles at a
+    given point in the canvas space.
+    \includegraphics[width=0.5\textwidth]{fourierseries1d.png}
+\end{multicols}
+
+\subsubsection{Fourier Series 2D}
+
+\begin{multicols}{2}
+    \includegraphics[width=0.5\textwidth]{fourierseries2d.png}
+    This interactive box is basically the same as the previous one.
+    The drawing is split into two signals: the \(x\)-coordinates and the \(y\)-coordinates.
+    The discrete Fourier transform of the two signals is computed.
+    Two sets of epicycles are drawn, one of which is rotated by \(\frac{\pi}{2}\).
+    The conjunction of the two epicycles mix the signals and recreate the original drawing.
+    Both the discrete Fourier transform and the function for drawing
+    epicycles are recycled from the last interactive box.
+\end{multicols}
+
+\pagebreak
+
+\subsubsection{Complex Plot}
+
+\begin{multicols}{2}
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    \includegraphics[width=0.5\textwidth]{complexplot.png}
+\end{multicols}
+
+\subsubsection{Center of Mass}
+
+\begin{multicols}{2}
+    \includegraphics[width=0.5\textwidth]{centerofmass.png}
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+\end{multicols}
+
+\pagebreak
+
+\subsubsection{Fourier Transform}
+
+\begin{multicols}{2}
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    Lorem ipsum dolor sit amet
+    \includegraphics[width=0.5\textwidth]{fouriertransformabs.png}
+\end{multicols}
+
+\subsubsection{Common Traits}
+
+All the implemented interactive boxes have a common trait. \\
+When the users inputs any path, the coordinates are relative to the origin \((0,0)\)
+of the canvas which is at the top-left corner. This means that there is always some
+offset from the origin, and that the coordnates
+lay on the first quadrant of the cartesian plane.
+This can cause visible issues since the interactive boxes are designed to work with a resonably contained signal.
+\\
+To solve this problem, when the user inputs a path and the \texttt{setPoints(points)} function is called,
+the leftmost or topmost point is computed, and then removed from each coordinate.
+Some interactive boxes also compute the rightmost or lowest point to center the signal at \(x=0\)
+(between the first and fourth quadrant in the cartesian plane).
+\\
+However, I decided not to include this operation by default, since the programmer still
+might want to use the actual coordinates from the canvas itself.
+
+\pagebreak
 
 \subsection{Sections}
 
@@ -715,21 +821,117 @@ How the animation in Chapter. 1 works.
 
 \pagebreak
 
-\subsection{Interactive Boxes Implementations}
+\subsection{Desmos Integration}
 
-\subsubsection{Fourier Series 1D}
+Desmos is a graphic calculator. An API is provided to integrate the calculator in your website as follows:
 
-\subsubsection{Fourier Series 2D}
 
-\subsubsection{Complex Plot}
+Include the JavaScript file (a testing api key is provided on their website)
 
-\subsubsection{Center of mass}
+\begin{lstlisting}[style=html]
+    <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+\end{lstlisting}
 
-\subsubsection{Fourier Transform}
+Add an element to attach the calculator to
+
+\begin{lstlisting}[style=html]
+    <div id="calculator" style="width: 600px; height: 400px;"></div>
+\end{lstlisting}
+
+Attach the calculator to the element in a JavaScript environment
+
+\begin{lstlisting}[style=js]
+    var elt = document.getElementById('calculator');
+    var calculator = Desmos.GraphingCalculator(elt);
+    calculator.setExpression({ id: 'graph1', latex: 'y=x^2' });
+\end{lstlisting}
+
+\subsection{Template Integration}
+
+I have chosen the template \texttt{tm-526-vanilla} from \href{https://templatemo.com}{templatemo.com} for my websute. \\
+Little remains from the original template, I have kept and modified the following features:
+
+\begin{itemize}
+    \item The side navbar
+    \item The section design
+    \item The scroll button script
+    \item The footer section
+\end{itemize}
+
+\pagebreak
+
+\section{Testing}
+
+\subsection{Test protocol}
+
+\bgroup{}
+\def\arraystretch{1.25}
+\begin{center}
+    \begin{tabular}{ |l|p{9cm}| }
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Test-00}} \\
+        \hline
+        \textbf{Name} & Responsiveness \\
+        \hline
+        \textbf{Reference} & Req-02 \\
+        \hline
+        \textbf{Prerequisites} & The website must be open with a free internet connection using a modern browser on a mobile phone. \\
+        \hline
+        \textbf{Description} & ss \\
+        \hline
+        \textbf{Expected result} & sda \\
+        \hline
+    \end{tabular}
+\end{center}
+\egroup{}
+
+\bgroup{}
+\def\arraystretch{1.25}
+\begin{center}
+    \begin{tabular}{ |l|p{9cm}| }
+        \hline
+        \multicolumn{2}{|c|}{\textbf{Test-01}} \\
+        \hline
+        \textbf{Name} & Responsiveness \\
+        \hline
+        \textbf{Reference} & Req-03, Req-04 \\
+        \hline
+        \textbf{Prerequisites} & The website must be open with a free internet connection using a modern browser on a mobile phone. \\
+        \hline
+        \textbf{Description} & ss \\
+        \hline
+        \textbf{Expected result} & sda \\
+        \hline
+    \end{tabular}
+\end{center}
+\egroup{}
+
+% the other are not functional requirements/tests
+
+\subsection{Test results}
+
+\bgroup{}
+\def\arraystretch{1.25}
+\begin{center}
+    \begin{tabular}{ |l|l|l| }
+        \hline
+        \textbf{Test-00} & \color{red} Failed & Note \\
+        \hline
+        \textbf{Test-01} & \color{blue} Successful & Note \\
+        \hline
+    \end{tabular}
+\end{center}
+\egroup{}
+
+Req-01 has not been fulfilled. I have decided not to fulfill this requirement because of the lack
+of support for canvases from mobile browsers. It is not possible to draw on canvases on any mobile
+browser. Furthermore, some mobile browser don't even support them at all.
+Even thought I used Bootstrap as my main CSS framework, which is prone to making responsive websites,
+I decided that I would just be a waste of time, therefore the website has been designed for a \(1920\times1080\) resolution only.
+
+\pagebreak
 
 \section{Conclusion}
-
-\subsection{TODO}
 
 \subsection{Further Development}
 
@@ -763,3 +965,19 @@ put on the website, I chose the content as I was studying the topic, but in the 
 \section{Sitography}
 
 \end{document}
+
+bibliografia
+template sito
+
+da citare:
+A Course in Quantum Computing Community College Volume 1
+https://planetmath.org/derivationoffouriercoefficients1
+desmos
+template
+wikipedia
+instangantt
+github
+
+glossario
+test
+gantt

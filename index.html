@@ -80,7 +80,7 @@
                         and communications.
                         Operators such as the Fourier
                         Transform are constantly used in the real world, without these discoveries the world would not be the same.
-                        Many software relay in Fourier Analysis, such as for instance Shazam, the famous service for identifying songs.
+                        Much software relies in Fourier Analysis, such as for instance Shazam, the famous service for identifying songs.
                         Any audio spectrum visualized processes the signal using Fourier Transform, these are just a few of the many application of this analysis.</p>
                     <br>
                     <div class="primary-button smoothlink">
@@ -100,13 +100,13 @@
             <div class="row justify-content-around">
                 <div class="col-4">
                     <h1>Requirements</h1>
-                    <p class="text-justify">This article requires a general good understanding about math. If you want to fully understand every bit of math there are a few requirements:</p>
+                    <p class="text-justify">This article requires a general good understanding about math. If you want to fully understand every bit of math, there are a few requirements:</p>
                     <ul>
                         <li>Trigonometry</li>
                         <li>Calculus</li>
                         <li>Complex plane and complex analysis</li>
                     </ul>
-                    <p class="text-justify">Even if you don't understand the math involved, the main ideas about Fourier analysis will be explain visually and occasionally with interactive examples.</p>
+                    <p class="text-justify">Even if you don't understand the math involved, the main ideas about Fourier analysis will be explained visually and occasionally with interactive examples.</p>
                     <br>
                     <div class="primary-button smoothlink">
                         <a href="#introduction">Start</a>
@@ -252,7 +252,7 @@
                         with this modification e.g. \(n=5\) means that the function will oscillate \(5\) times within that span.
                         The terms \(a_b\) and \(b_n\) control how much that particular frequency is important.
                         You might notice that with this we can only represent functions "laying" on the \(x\)-axis.
-                        To resolve this problem we add a generic constant term \(C\) to shift the function up/down.</p>
+                        To resolve this problem, we add a generic constant term \(C\) to shift the function up/down.</p>
 
                     <p><b><span style="color: red;">&gt;&gt;</span> Note: We only need the
                         discrete frequencies (1 Hz, 2 Hz, ...) to represent the function, although the Fourier transform gives
@@ -420,18 +420,18 @@
                 <div class="col">
                     <h1>Main ideas - Complex plotting</h1>
                     <br>
-                    <p class="text-justify">To start we will plot our signal in the complex plane.
+                    <p class="text-justify">To start, we will plot our signal in the complex plane.
                         We will plot it while making it rotate around the origin \(0+0i\).
                         Recall that <a href="https://en.wikipedia.org/wiki/Euler%27s_formula">
                         Euler's Formula</a> tells us that the function \(e^{it}\) is a rotation
                         around the origin, also called the unit circle. If we multiply our signal by this circle,
                         it will follow its path, achieving a polar plot-like graph: \(f(t)e^{it}\).
                         Now, the rotational function makes a full cycle every \(2\pi\), we can plot our
-                        signal at a different speed (different frequencies). To do so we will multiply
+                        signal at a different speed (different frequencies). To do so, we will multiply
                         the time of the rotational function by \(2\pi \xi\) where \(\xi\) is the frequency.
                         We add the \(2\pi\) term so that if your frequency is \(1\), we will have a rotation each second
                         rather then every \(2\pi\) seconds \((\sim 6.28\,s)\).
-                        Futhermore, we want the unit circle to rotate clockwise instead of counter-clockwise.
+                        Furthermore, we want the unit circle to rotate clockwise instead of counter-clockwise.
                         We will just add the negative sign to the time \(t\) argument of the rotational function.
                         Our final function for now is \(f(t)e^{-2\pi it}\). You can see the animation next
                         to this paragraph, you can vary the frequency or even draw your own signal.
@@ -466,7 +466,7 @@
                         as the frequency changes. To find its value for a certain frequency, we can sample
                         a bunch of points from the function and then divide it by the number of samples.
                         This approach works when we are dealing with discrete functions, such as the animation
-                        (the signal you draw is a set of points), but we would need an infinite amount of samples
+                        (the signal you draw is a set of points), but we would need an infinite number of samples
                         when the signal is continuous. An infinite amount of precision is achievable using an integral.
                         To find the center of mass when the frequency is \(\xi\) we integrate our complex function over
                         a certain period of time, and then divide it by the time length.</p>

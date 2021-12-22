@@ -12,8 +12,7 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage{multicol}
-%\usepackage{tikz}
-%\usepackage{biblatex}
+\usepackage[backend=bibtex]{biblatex} % texlive-bibtexextra
 
 \hypersetup{
     colorlinks=true,
@@ -23,8 +22,15 @@
     pdfpagemode=FullScreen,
 }
 
+%\newacronym{dft}{DFT}{Discrete Fourier Transform}
+%\newacronym{fft}{FFT}{Fast Fourier Transform}
+%\newacronym{fs}{FS}{Fourier Series}
+%\newacronym{ft}{FT}{Fast Transform}
+%\makeglossary
+
 \definecolor{lightgray}{rgb}{0.9,0.9,0.9}
-\definecolor{darkgray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkgray}{rgb}{0.2,0.4,0.2}
+\definecolor{darkgreen}{rgb}{0.0,0.4,0.0}
 \definecolor{olive}{rgb}{0.17,0.59,0.20}
 
 \lstdefinelanguage{JavaScript}{
@@ -82,7 +88,7 @@
 }
 
 \graphicspath{ {./img/} }
-%\addbibresource{./references.bib}
+\addbibresource{references.bib}
 
 \newcommand{\tabitem}{~~\llap{\textbullet}~~}
 
@@ -116,14 +122,14 @@ Fourier analysis is a method of defining periodic waveforms in terms of trigonom
 This branch of mathematics is widely used in signal processing, especially electronics, acoustics and communications.
 Many notorious algorithms have been developed thanks to Joseph Fourier. Operators such as the Fourier
 Transform are constantly used in the real world, without these discoveries the world would not be the same.
-Many software rely in Fourier Analysis, such as for instance Shazam, the famous service for identifying songs.
+Much software relies in Fourier Analysis, such as for instance Shazam, the famous service for identifying songs.
 Any audio spectrum visualized processes the signal using Fourier Transform, these are just a few of the many application of this analysis.
 
 \pagebreak
 
 \subsection{Informations}
 
-This is a project of the Scuola Arti e Mestieri di Trevano (SAMT) school under the following circumstances.
+This is a project of the Scuola Arti e Mestieri di Trevano (SAMT) under the following circumstances
 
 \begin{itemize}
     \item \textbf{Section}: Computer Science
@@ -143,9 +149,9 @@ and the following requirements
     \item \textbf{Source code}: working source code of the project
 \end{itemize}
 
-All the source code and documents can be found at \href{https://github.com/paolobettelini/fourier-series}{https://github.com/paolobettelini/fourier-series}.
+All the source code and documents can be found at \href{https://github.com/paolobettelini/fourier-series}{https://github.com/paolobettelini/fourier-series}\cite{gitrepo}.
 \\
-The live version of the final product is available at \href{https://paolobettelini.github.io/fourier-series}{https://paolobettelini.github.io/fourier-series}.
+The live version of the final product is available at \href{https://paolobettelini.github.io/fourier-series}{https://paolobettelini.github.io/fourier-series}\cite{gitpages}.
 
 \subsection{Scope}
 
@@ -160,10 +166,10 @@ The website must be able to explain the various concepts in a comprehensible way
 
 \begin{itemize}
     \item Firefox (95.0+) as browser
-    \item GitHub as code repository
+    \item GitHub\cite{github} as code repository
     \item Visual Studio Code as IDE
-    \item pdflatex as LaTeX compiler
-    \item Instagantt as project management software
+    \item PdfTeX as LaTeX compiler
+    \item Instagantt\cite{instagantt} as project management software
 \end{itemize}
 
 \subsection{Requirements Analysis}
@@ -350,9 +356,11 @@ The website must be able to explain the various concepts in a comprehensible way
 
 \subsection{Planning}
 
-This is the initial Gantt chart, I chose the waterfall model
+The following charts have been generated using Instagantt\cite{instagantt}.
 
 \subsubsection{Initial Gantt Chart}
+
+This is the initial Gantt chart, I chose the waterfall model as a development process.
 
 \includegraphics[width=\textwidth]{gantt1}
 
@@ -360,7 +368,7 @@ This is the initial Gantt chart, I chose the waterfall model
 
 \includegraphics[width=\textwidth]{gantt2}
 
-
+The various phases have been roughly respected, although I would sometimes work on some unscheduled tasks.
 
 \pagebreak
 
@@ -369,8 +377,8 @@ This is the initial Gantt chart, I chose the waterfall model
 \subsection{Description}
 
 InteractiveBoxes is a JavaScript library I wrote for canvas rendering based on the user input.
-The library injects it's content into a HTML div element. The content consists of a canvas element,
-a stop/resume button and a range slder (the timeline), additional content is injected by the
+The library injects its content into a HTML div element. The content consists of a canvas element,
+a stop/resume button and a range slider (the timeline), additional content is injected by the
 interactive box implementations.
 The user can interact with the timeline, pause and resume the animation or modify the input by simply drawing onto the canvas.
 
@@ -520,7 +528,7 @@ Then, in a JavaScript environment add the box to the div
 In order for everything to work you must include the \texttt{InteractiveBox.js} file, your \texttt{MyCustomBox.js}
 file and the InteractiveBoxes css stylesheet \texttt{boxes.css}.
 
-Note: the name must be unique and the script must be executed after the body has loaded.
+Note: the name must be unique, and the script must be executed after the body has loaded.
 
 \pagebreak
 
@@ -619,7 +627,7 @@ locally if you do not have a free internet connection.
         \hline
         MathJax & LaTeX rendering & Remotely & 3.x.x (latest) \\
         \hline
-        Desmos & Graphic calculator & Remotely & 1.6 \\
+        Desmos & Graphing calculator & Remotely & 1.6 \\
         \hline
     \end{tabular}
 \end{center}
@@ -660,11 +668,11 @@ locally if you do not have a free internet connection.
 \subsubsection{Complex Plot}
 
 \begin{multicols}{2}
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
+    This is the plot of the function \(f(t)e^{-2\pi it\xi}\).
+    This interactive box also provides a slider for the frequency.
+    A graph of the original signal is plotted at the top right corner.
+    The signal around the origin is plotted using \(\sin\) and \(\cos\) coordinates.
+
     \includegraphics[width=0.5\textwidth]{complexplot.png}
 \end{multicols}
 
@@ -672,11 +680,10 @@ locally if you do not have a free internet connection.
 
 \begin{multicols}{2}
     \includegraphics[width=0.5\textwidth]{centerofmass.png}
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
+    This interactive box is similar to the last one.
+    Instead of plotting the signal around the origin progressively over time,
+    the full signal is plotted 3 times. The timeline doesn't represent
+    the time anymore but rather the frequency.
 \end{multicols}
 
 \pagebreak
@@ -684,11 +691,8 @@ locally if you do not have a free internet connection.
 \subsubsection{Fourier Transform}
 
 \begin{multicols}{2}
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
-    Lorem ipsum dolor sit amet
+    For this interactive box a new implementation of the Discrete Fourier Transform
+    is written. This new version specifically computes the DFT of a smaller range containing fractional frequencies.
     \includegraphics[width=0.5\textwidth]{fouriertransformabs.png}
 \end{multicols}
 
@@ -697,14 +701,14 @@ locally if you do not have a free internet connection.
 All the implemented interactive boxes have a common trait. \\
 When the users inputs any path, the coordinates are relative to the origin \((0,0)\)
 of the canvas which is at the top-left corner. This means that there is always some
-offset from the origin, and that the coordnates
-lay on the first quadrant of the cartesian plane.
-This can cause visible issues since the interactive boxes are designed to work with a resonably contained signal.
+offset from the origin, and that the coordinates
+lay on the first quadrant of the Cartesian plane.
+This can cause visible issues since the interactive boxes are designed to work with a reasonably contained signal.
 \\
 To solve this problem, when the user inputs a path and the \texttt{setPoints(points)} function is called,
 the leftmost or topmost point is computed, and then removed from each coordinate.
 Some interactive boxes also compute the rightmost or lowest point to center the signal at \(x=0\)
-(between the first and fourth quadrant in the cartesian plane).
+(between the first and fourth quadrant in the Cartesian plane).
 \\
 However, I decided not to include this operation by default, since the programmer still
 might want to use the actual coordinates from the canvas itself.
@@ -717,11 +721,11 @@ The website is made up of several sections, each about a particular topic.
 
 \subsubsection{Fourier Analysis}
 
-What is Fourier analysis and where is it used. 
-
-This section contains the \textit{FourierSeries2D} interactive box.
+What is Fourier analysis and where is it used.
 
 \includegraphics[width=\textwidth]{chap1.png}
+
+\pagebreak
 
 \subsubsection{Requirements}
 
@@ -823,7 +827,7 @@ How the animation in Chapter. 1 works.
 
 \subsection{Desmos Integration}
 
-Desmos is a graphic calculator. An API is provided to integrate the calculator in your website as follows:
+Desmos is a graphing calculator. An API\cite{desmos} is provided to integrate the calculator in your website as follows:
 
 
 Include the JavaScript file (a testing api key is provided on their website)
@@ -848,7 +852,7 @@ Attach the calculator to the element in a JavaScript environment
 
 \subsection{Template Integration}
 
-I have chosen the template \texttt{tm-526-vanilla} from \href{https://templatemo.com}{templatemo.com} for my websute. \\
+I have chosen the template \texttt{tm-526-vanilla} from \href{https://templatemo.com}{templatemo.com}\cite{templatemo} for my website. \\
 Little remains from the original template, I have kept and modified the following features:
 
 \begin{itemize}
@@ -877,9 +881,7 @@ Little remains from the original template, I have kept and modified the followin
         \hline
         \textbf{Prerequisites} & The website must be open with a free internet connection using a modern browser on a mobile phone. \\
         \hline
-        \textbf{Description} & ss \\
-        \hline
-        \textbf{Expected result} & sda \\
+        \textbf{Description} & Check if the website is readable and understandable and if all the features are preserved on a smaller monitor. \\
         \hline
     \end{tabular}
 \end{center}
@@ -892,15 +894,20 @@ Little remains from the original template, I have kept and modified the followin
         \hline
         \multicolumn{2}{|c|}{\textbf{Test-01}} \\
         \hline
-        \textbf{Name} & Responsiveness \\
+        \textbf{Name} & Interactive Boxes \\
         \hline
         \textbf{Reference} & Req-03, Req-04 \\
         \hline
-        \textbf{Prerequisites} & The website must be open with a free internet connection using a modern browser on a mobile phone. \\
+        \textbf{Prerequisites}
+        & The website must be open with a free internet connection
+        using a modern browser on a mobile phone. \\
         \hline
-        \textbf{Description} & ss \\
-        \hline
-        \textbf{Expected result} & sda \\
+        \textbf{Description}
+        & For each one of the interactive boxes,
+        try to interact it with.
+        The animation should respect what is explained in the section.
+        Furthermore, the timeline, the play/pause button and the
+        additional inputs (if present) should work properly. \\
         \hline
     \end{tabular}
 \end{center}
@@ -913,11 +920,13 @@ Little remains from the original template, I have kept and modified the followin
 \bgroup{}
 \def\arraystretch{1.25}
 \begin{center}
-    \begin{tabular}{ |l|l|l| }
+    \begin{tabular}{ |l|l| }
         \hline
-        \textbf{Test-00} & \color{red} Failed & Note \\
+        \textbf{ID} & Result \\
         \hline
-        \textbf{Test-01} & \color{blue} Successful & Note \\
+        \textbf{Test-00} & \color{red} Failed \\
+        \hline
+        \textbf{Test-01} & \color{darkgreen} Passed \\
         \hline
     \end{tabular}
 \end{center}
@@ -927,7 +936,7 @@ Req-01 has not been fulfilled. I have decided not to fulfill this requirement be
 of support for canvases from mobile browsers. It is not possible to draw on canvases on any mobile
 browser. Furthermore, some mobile browser don't even support them at all.
 Even thought I used Bootstrap as my main CSS framework, which is prone to making responsive websites,
-I decided that I would just be a waste of time, therefore the website has been designed for a \(1920\times1080\) resolution only.
+I decided that I would just be a waste of time, therefore, the website has been designed for a \(1920\times1080\) resolution only.
 
 \pagebreak
 
@@ -939,7 +948,7 @@ I decided that I would just be a waste of time, therefore the website has been d
 
 Something that could be improved is OOP hierarchy. I could make
 two classes extending \texttt{InteractiveBox.js}: \texttt{InteractiveBox1D.js} and
-\texttt{InteractiveBox2D.js}. This way every implementation of the library extends either
+\texttt{InteractiveBox2D.js}. This way, every implementation of the library extends either
 one of these two classes. The first one lets only the user draw a one-dimensional signal.
 This is a problem in the current version, since some interactive boxes implementation only processes
 the y-coordinate of the user drawn path, without blocking him from drawing a two-dimensional path.
@@ -952,32 +961,24 @@ Another covered topic could be the inverse Fourier operators.
 
 \subsection{Personal Considerations}
 
-I'm really happy with how the websited turned out and I've gained deep knowledge about Joseph Fourier's work.
+I'm really happy with how the website turned out, and I've gained deep knowledge about Joseph Fourier's work.
 However, I am dissatisfied with what I have written. There are so many topics concerning Fourier analysis and I wish I could have covered more.
 \\
-I think I managed the timing well even though I finished later than expected.
+I think I managed the timing well, even though I finished later than expected.
 \\
-The nature of this project is very creative. At the beginning I didn't have a precise picture of what I was going to
+The nature of this project is very creative. At the beginning, I didn't have a precise picture of what I was going to
 put on the website, I chose the content as I was studying the topic, but in the end I managed to almost respect my initial idea.
 
-\section{Bibliography}
+\pagebreak
 
-\section{Sitography}
+\section{References}
+
+\nocite{*} % cite all entries
+
+\printbibliography[nottype=online, heading=subbibliography, title=Bibliography]
+\printbibliography[type=online, heading=subbibliography, title=Sitography]
 
 \end{document}
 
-bibliografia
-template sito
-
-da citare:
-A Course in Quantum Computing Community College Volume 1
-https://planetmath.org/derivationoffouriercoefficients1
-desmos
-template
-wikipedia
-instangantt
-github
-
-glossario
-test
-gantt
+% compile:
+% pdflatex documentation.tex;bibtex documentation;pdflatex documentation.tex;mv documentation.pdf ../

@@ -11,5 +11,10 @@
 *.bcf
 *.run.xml
 
+# BibTeX
+*-blx.bib
+*.bbl
+*.blg
+
 # OS X
 .DS_Store

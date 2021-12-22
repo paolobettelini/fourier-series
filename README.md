@@ -8,8 +8,11 @@ Many software rely in Fourier Analysis, such as for instance Shazam, the famous 
 Any audio spectrum visualized processes the signal using Fourier Transform, these are just a few of the many
 application of this analysis.
 
-All the source code and documents can be found at https://github.com/paolobettelini/fourier-series.
 <br>
+<br>
+
 The live version of the final product is available at https://paolobettelini.github.io/fourier-series.
+
+<br>
 
 ![website preview](./mandate/resources/img/chap1.png)

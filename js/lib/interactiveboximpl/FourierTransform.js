@@ -102,7 +102,6 @@ class FourierTransform extends InteractiveBox {
             this.#values.push(Math.sqrt(sumRe * sumRe + sumIm * sumIm) * mul);
         }
 
-
     }
 
     #loadAdditionalContent() {

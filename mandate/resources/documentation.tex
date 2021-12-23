@@ -635,86 +635,6 @@ locally if you do not have a free internet connection.
 
 \pagebreak
 
-\subsection{Interactive Boxes Implementations}
-
-% common traits
-
-\subsubsection{Fourier Series 1D}
-
-\begin{multicols}{2}
-    In order for this interactive box to work, the discrete Fourier transform
-    of the signal must be computed, then, the result must be represented with epicycles.
-    I wrote a function \texttt{dft(signal)} which computes the DFT and a function
-    \texttt{drawEpicycles(ctx, dft, xOff, yOff, rot)} which draws a set of epicycles at a
-    given point in the canvas space.
-    \includegraphics[width=0.5\textwidth]{fourierseries1d.png}
-\end{multicols}
-
-\subsubsection{Fourier Series 2D}
-
-\begin{multicols}{2}
-    \includegraphics[width=0.5\textwidth]{fourierseries2d.png}
-    This interactive box is basically the same as the previous one.
-    The drawing is split into two signals: the \(x\)-coordinates and the \(y\)-coordinates.
-    The discrete Fourier transform of the two signals is computed.
-    Two sets of epicycles are drawn, one of which is rotated by \(\frac{\pi}{2}\).
-    The conjunction of the two epicycles mix the signals and recreate the original drawing.
-    Both the discrete Fourier transform and the function for drawing
-    epicycles are recycled from the last interactive box.
-\end{multicols}
-
-\pagebreak
-
-\subsubsection{Complex Plot}
-
-\begin{multicols}{2}
-    This is the plot of the function \(f(t)e^{-2\pi it\xi}\).
-    This interactive box also provides a slider for the frequency.
-    A graph of the original signal is plotted at the top right corner.
-    The signal around the origin is plotted using \(\sin\) and \(\cos\) coordinates.
-
-    \includegraphics[width=0.5\textwidth]{complexplot.png}
-\end{multicols}
-
-\subsubsection{Center of Mass}
-
-\begin{multicols}{2}
-    \includegraphics[width=0.5\textwidth]{centerofmass.png}
-    This interactive box is similar to the last one.
-    Instead of plotting the signal around the origin progressively over time,
-    the full signal is plotted 3 times. The timeline doesn't represent
-    the time anymore but rather the frequency.
-\end{multicols}
-
-\pagebreak
-
-\subsubsection{Fourier Transform}
-
-\begin{multicols}{2}
-    For this interactive box a new implementation of the Discrete Fourier Transform
-    is written. This new version specifically computes the DFT of a smaller range containing fractional frequencies.
-    \includegraphics[width=0.5\textwidth]{fouriertransformabs.png}
-\end{multicols}
-
-\subsubsection{Common Traits}
-
-All the implemented interactive boxes have a common trait. \\
-When the users inputs any path, the coordinates are relative to the origin \((0,0)\)
-of the canvas which is at the top-left corner. This means that there is always some
-offset from the origin, and that the coordinates
-lay on the first quadrant of the Cartesian plane.
-This can cause visible issues since the interactive boxes are designed to work with a reasonably contained signal.
-\\
-To solve this problem, when the user inputs a path and the \texttt{setPoints(points)} function is called,
-the leftmost or topmost point is computed, and then removed from each coordinate.
-Some interactive boxes also compute the rightmost or lowest point to center the signal at \(x=0\)
-(between the first and fourth quadrant in the Cartesian plane).
-\\
-However, I decided not to include this operation by default, since the programmer still
-might want to use the actual coordinates from the canvas itself.
-
-\pagebreak
-
 \subsection{Sections}
 
 The website is made up of several sections, each about a particular topic.
@@ -825,10 +745,89 @@ How the animation in Chapter. 1 works.
 
 \pagebreak
 
+\subsection{Interactive Boxes Implementations}
+
+% common traits
+
+\subsubsection{Fourier Series 1D}
+
+\begin{multicols}{2}
+    In order for this interactive box to work, the discrete Fourier transform
+    of the signal must be computed, then, the result must be represented with epicycles.
+    I wrote a function \texttt{dft(signal)} which computes the DFT and a function
+    \texttt{drawEpicycles(ctx, dft, xOff, yOff, rot)} which draws a set of epicycles at a
+    given point in the canvas space.
+    \includegraphics[width=0.5\textwidth]{fourierseries1d.png}
+\end{multicols}
+
+\subsubsection{Fourier Series 2D}
+
+\begin{multicols}{2}
+    \includegraphics[width=0.5\textwidth]{fourierseries2d.png}
+    This interactive box is basically the same as the previous one.
+    The drawing is split into two signals: the \(x\)-coordinates and the \(y\)-coordinates.
+    The discrete Fourier transform of the two signals is computed.
+    Two sets of epicycles are drawn, one of which is rotated by \(\frac{\pi}{2}\).
+    The conjunction of the two epicycles mix the signals and recreate the original drawing.
+    Both the discrete Fourier transform and the function for drawing
+    epicycles are recycled from the last interactive box.
+\end{multicols}
+
+\pagebreak
+
+\subsubsection{Complex Plot}
+
+\begin{multicols}{2}
+    This is the plot of the function \(f(t)e^{-2\pi it\xi}\).
+    This interactive box also provides a slider for the frequency.
+    A graph of the original signal is plotted at the top right corner.
+    The signal around the origin is plotted using \(\sin\) and \(\cos\) coordinates.
+
+    \includegraphics[width=0.5\textwidth]{complexplot.png}
+\end{multicols}
+
+\subsubsection{Center of Mass}
+
+\begin{multicols}{2}
+    \includegraphics[width=0.5\textwidth]{centerofmass.png}
+    This interactive box is similar to the last one.
+    Instead of plotting the signal around the origin progressively over time,
+    the full signal is plotted 3 times. The timeline doesn't represent
+    the time anymore but rather the frequency.
+\end{multicols}
+
+\pagebreak
+
+\subsubsection{Fourier Transform}
+
+\begin{multicols}{2}
+    For this interactive box a new implementation of the Discrete Fourier Transform
+    is written. This new version specifically computes the DFT of a smaller range containing fractional frequencies.
+    \includegraphics[width=0.5\textwidth]{fouriertransformabs.png}
+\end{multicols}
+
+\subsubsection{Common Traits}
+
+All the implemented interactive boxes have a common trait. \\
+When the users inputs any path, the coordinates are relative to the origin \((0,0)\)
+of the canvas which is at the top-left corner. This means that there is always some
+offset from the origin, and that the coordinates
+lay on the first quadrant of the Cartesian plane.
+This can cause visible issues since the interactive boxes are designed to work with a reasonably contained signal.
+\\
+To solve this problem, when the user inputs a path and the \texttt{setPoints(points)} function is called,
+the leftmost or topmost point is computed, and then removed from each coordinate.
+Some interactive boxes also compute the rightmost or lowest point to center the signal at \(x=0\)
+(between the first and fourth quadrant in the Cartesian plane).
+\\
+However, I decided not to include this operation by default, since the programmer still
+might want to use the actual coordinates from the canvas itself.
+
+\pagebreak
+
 \subsection{Desmos Integration}
 
 Desmos is a graphing calculator. An API\cite{desmos} is provided to integrate the calculator in your website as follows:
-
 
 Include the JavaScript file (a testing api key is provided on their website)
 

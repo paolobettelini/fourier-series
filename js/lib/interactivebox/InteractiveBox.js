@@ -136,7 +136,7 @@ class InteractiveBox {
      * Updates the input of the anumation.
      * This function should be overwritten.
      * 
-     * @param {{x: Number, y: Number}} points the points
+     * @param {{x: Number, y: Number}[]} points the points
      */
     setPoints(points) {
         throw 'The function setPoints(points) has not been overwritten'

@@ -113,6 +113,15 @@ class FourierSeries1D extends InteractiveBox {
         this.#signal_DFT = Fourier.dft(this.#signal);
     }
 
+    /**
+     * 
+     * @param {CanvasRenderingContext2D} ctx the canvas rendering context
+     * @param {{Re: Number, Im: Number}[]} fourierTransform 
+     * @param {Number} xOff the x offset
+     * @param {Number} yOff the y offset
+     * @param {Number} rot  the rotation of the epicycles
+     * @returns 
+     */
     drawEpicycles(ctx, fourierTransform, xOff, yOff, rot) {
         let x = 0;
         let y = 0;

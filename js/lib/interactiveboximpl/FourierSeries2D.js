@@ -135,6 +135,7 @@ class FourierSeries2D extends InteractiveBox {
     }
 
     /**
+     * Draws a set of epicycles on the canvas.
      * 
      * @param {CanvasRenderingContext2D} ctx the canvas rendering context
      * @param {{Re: Number, Im: Number}[]} fourierTransform 

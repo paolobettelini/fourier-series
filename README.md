@@ -9,7 +9,6 @@ Any audio spectrum visualized processes the signal using Fourier Transform, thes
 application of this analysis.
 
 <br>
-<br>
 
 The live version of the final product is available at https://paolobettelini.github.io/fourier-series.
 

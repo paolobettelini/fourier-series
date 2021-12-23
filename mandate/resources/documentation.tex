@@ -747,8 +747,6 @@ How the animation in Chapter. 1 works.
 
 \subsection{Interactive Boxes Implementations}
 
-% common traits
-
 \subsubsection{Fourier Series 1D}
 
 \begin{multicols}{2}
@@ -757,6 +755,7 @@ How the animation in Chapter. 1 works.
     I wrote a function \texttt{dft(signal)} which computes the DFT and a function
     \texttt{drawEpicycles(ctx, dft, xOff, yOff, rot)} which draws a set of epicycles at a
     given point in the canvas space.
+    Class name: \texttt{FourierSeries1D.js}.
     \includegraphics[width=0.5\textwidth]{fourierseries1d.png}
 \end{multicols}
 
@@ -771,6 +770,7 @@ How the animation in Chapter. 1 works.
     The conjunction of the two epicycles mix the signals and recreate the original drawing.
     Both the discrete Fourier transform and the function for drawing
     epicycles are recycled from the last interactive box.
+    Class name: \texttt{FourierSeries2D.js}.
 \end{multicols}
 
 \pagebreak
@@ -782,7 +782,7 @@ How the animation in Chapter. 1 works.
     This interactive box also provides a slider for the frequency.
     A graph of the original signal is plotted at the top right corner.
     The signal around the origin is plotted using \(\sin\) and \(\cos\) coordinates.
-
+    Class name: \texttt{ComplexPlot.js}.
     \includegraphics[width=0.5\textwidth]{complexplot.png}
 \end{multicols}
 
@@ -793,7 +793,9 @@ How the animation in Chapter. 1 works.
     This interactive box is similar to the last one.
     Instead of plotting the signal around the origin progressively over time,
     the full signal is plotted 3 times. The timeline doesn't represent
-    the time anymore but rather the frequency.
+    the time anymore but rather the frequency. Whilst the animation is being drawn,
+    the center of mass is computed and then represented with the blue dot.
+    Class name: \texttt{CenterOfMass.js}.
 \end{multicols}
 
 \pagebreak
@@ -803,6 +805,7 @@ How the animation in Chapter. 1 works.
 \begin{multicols}{2}
     For this interactive box a new implementation of the Discrete Fourier Transform
     is written. This new version specifically computes the DFT of a smaller range containing fractional frequencies.
+    Class name: \texttt{FourierTransform.js}.
     \includegraphics[width=0.5\textwidth]{fouriertransformabs.png}
 \end{multicols}
 
@@ -917,13 +920,13 @@ Little remains from the original template, I have kept and modified the followin
 \bgroup{}
 \def\arraystretch{1.25}
 \begin{center}
-    \begin{tabular}{ |l|l| }
+    \begin{tabular}{ |l|l|l| }
         \hline
-        \textbf{ID} & Result \\
+        \textbf{ID} & Result & Note \\
         \hline
-        \textbf{Test-00} & \color{red} Failed \\
+        \textbf{Test-00} & \color{red} Failed & The website is bad formatted \\
         \hline
-        \textbf{Test-01} & \color{darkgreen} Passed \\
+        \textbf{Test-01} & \color{darkgreen} Passed & All the interactive boxes work properly \\
         \hline
     \end{tabular}
 \end{center}

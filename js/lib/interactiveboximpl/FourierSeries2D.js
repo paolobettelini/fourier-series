@@ -1,11 +1,38 @@
 class FourierSeries2D extends InteractiveBox {
 
+    /**
+     * The color of the epicycles.
+     */
     epicyclesColor = '#00ccff';
+
+    /**
+     * The colors of the lines.
+     */
     linesColor = '#ffffff';
+
+    /**
+     * The color of the path.
+     */
     pathColor = '#ffff00';
+
+    /**
+     * The vertical offset of the horizontal epicycles.
+     */
     verticalEpicyclesXOffset = 300;
+    
+    /**
+     * The horizontal offset of the vertical epicycles.
+     */
     orizontalEpicyclesYOffset = 300;
+    
+    /**
+     * The vertical offset of the horizontal epicycles.
+     */
     verticalEpicyclesYOffset = 100;
+    
+    /**
+     * The horizontal offset of the horizontal epicycles.
+     */
     orizontalEpicyclesXOffset = 100;
 
     #counter = 0;

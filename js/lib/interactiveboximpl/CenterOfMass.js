@@ -1,18 +1,60 @@
 class CenterOfMass extends InteractiveBox {
 
+    /**
+     * The color of the Cartesian axis.
+     */
     axisColor = '#FF0000';
+
+    /**
+     * The color of the plot.
+     */
     plotColor = '#FFFF00';
+
+    /**
+     * The color of the center of mass.
+     */
     centerOfMassColor = "#3385ff";
+
+    /**
+     * The line width of the axis.
+     */
     axisWidth = 1.0;
+
+    /**
+     * The line width of the plot.
+     */
     plotWidth = 2.0;
+
+    /**
+     * The center of mass dot size.
+     */
     centerOfMassWidth = 10;
+    
+    /**
+     * The full rotations computed.
+     */
     rotations = 3;
 
     #signal = [];
 
+    /**
+     * The current frequency.
+     */
     #freq = 1;
+
+    /**
+     * The frequency step.
+     */
     #freqStep = 0.01;
+
+    /**
+     * The minimum frequency.
+     */
     #minFreq = 0.25;
+
+    /**
+     * The maximum frequency.
+     */
     #maxFreq = 5;
 
     constructor(name, container, height, width) {

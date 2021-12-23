@@ -1,16 +1,63 @@
 class ComplexPlot extends InteractiveBox {
 
+    /**
+     * The color of the axis.
+     */
     axisColor = '#FF0000';
+
+    /**
+     * The color of the plot.
+     */
     plotColor = '#FFFF00';
+
+    /**
+     * The color of the magnitude.
+     */
     magnitudeColor = '#FFFFFF';
+
+    /**
+     * The line width of the magnitude.
+     */
     magnitudeWidth = 0.5;
+
+    /**
+     * The color of the mini plot.
+     */
     miniPlotColor = 'blue';
+
+    /**
+     * The horizontal offset of the mini plot.
+     */
     miniPlotXOffset = 10;
+
+    /**
+     * The horizontal stretch of the mini plot.
+     */
     miniPlotXStretch = 2;
+
+    /**
+     * The vertical stretch of the mini plot.
+     */
     miniPlotYStretch = 0.333;
+
+    /**
+     * The vertical offset of the mini plot.
+     */
     miniPlotYOffset = this.height * 0.25;
+
+    /**
+     * The line width of the axis.
+     */
     axisWidth = 1.0;
+
+    /**
+     * The line width of the plot.
+     */
     plotWidth = 2.0;
+    
+    /**
+     * The current frequency.
+     */
     freq = 1;
 
     #signal = [];

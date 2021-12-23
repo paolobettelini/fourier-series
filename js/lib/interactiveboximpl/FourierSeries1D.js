@@ -1,11 +1,33 @@
 class FourierSeries1D extends InteractiveBox {
 
+    /**
+     * The color of the epicycles.
+     */
     epicyclesColor = '#00ccff';
+
+    /**
+     * The colors of the lines.
+     */
     linesColor = '#ffffff';
+
+    /**
+     * The color of the path.
+     */
     pathColor = '#ffff00';
 
+    /**
+     * The left offset of the horizontal epicycles.
+     */
     epicyclesXOffset = 100;
+
+    /**
+     * The top offset of the horizontal epicycles.
+     */
     epicyclesYOffset = 250;
+
+    /**
+     * The distance of the path.
+     */
     pathDistance = 100;
 
     #counter = 0;

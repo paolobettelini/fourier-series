@@ -1,5 +1,25 @@
 class FourierTransform extends InteractiveBox {
 
+    /**
+     * The color of the plot.
+     */
+    plotColor = 'red';
+
+    /**
+     * The line width of the plot.
+     */
+    plotWidth = 3.0;
+
+    /**
+     * The color of the axis.
+     */
+    axisColor = 'blue';
+
+    /**
+     * The line width of the axis.
+     */
+    axisWidth = 1.0;
+
     #counter;
     #values;
 
@@ -20,13 +40,14 @@ class FourierTransform extends InteractiveBox {
         }
 
         ctx.beginPath();
-        ctx.lineWidth = 1.0;
-        ctx.strokeStyle = 'blue';
+        ctx.lineWidth = this.axisWidth;
+        ctx.strokeStyle = this.axisColor;
+
         ctx.moveTo(0, this.height / 2);
         ctx.lineTo(this.width, this.height / 2);
         ctx.stroke();
-        ctx.strokeStyle = 'red';
-        ctx.lineWidth = 3.0;
+        ctx.strokeStyle = this.plotColor;
+        ctx.lineWidth = this.plotWidth;
         ctx.beginPath();
 
         ctx.moveTo(0, this.height / 2 - this.#values[0]);

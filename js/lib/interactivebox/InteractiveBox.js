@@ -18,6 +18,13 @@ class InteractiveBox {
 
     #wasPlaying;
 
+    /**
+     * 
+     * @param {String} name the name of the interactive box
+     * @param {String} container the id of the container element
+     * @param {Number} height the height of the canvas
+     * @param {Number} width the width of the canvas
+     */
     constructor(name, container, height, width) {
         // check for name conflict
         if (InteractiveBox.#names.includes(name)) {
@@ -60,14 +67,25 @@ class InteractiveBox {
         this.#onScroll();
     }
 
+    /***
+     * Simulates pressing the play/stop button.
+     */
     #playButtonClick() {
         this.#playButton.innerHTML = this.toggle() ? InteractiveBox.PLAYING : InteractiveBox.PAUSED
     }
 
+    /**
+     * Updates the timeline.
+     * 
+     * @param {Number} value the time value btween 0 and 1
+     */
     setTime(value) {
         this.#timeline.value = value;
     }
 
+    /**
+     * Resumes the animation
+     */
     resume() {
         if (this.#isElementInViewport(this.#canvas)) {
             this.#schedulerTask = setInterval(() => this.draw(this.#ctx), 25);
@@ -75,33 +93,68 @@ class InteractiveBox {
         }
     }
 
+    /**
+     * Pauses the animation
+     */
     pause() {
         clearInterval(this.#schedulerTask);
         this.#schedulerTask = -1;
         this.#playButton.innerHTML = InteractiveBox.PAUSED;
     }
 
+    /**
+     * CHecks if the animation is playing.
+     * 
+     * @returns {boolean} if the animation is playing
+     */
     isPlaying() {
         return this.#schedulerTask != -1;
     }
     
+    /**
+     * Stops the animation if it is playing, resumes the animation
+     * otherwise.
+     * 
+     * @returns {Boolean} the state of the animation
+     */
     toggle() {
         this.isPlaying() ? this.pause() : this.resume();
         return this.isPlaying();
     }
 
+    /**
+     * Renders the current frame on the canvas.
+     * This function should be overwritten.
+     * 
+     * @param {CanvasRenderingContext2D} ctx 
+     */
     draw(ctx) {
         throw 'The function draw() has not been overwritten'
     }
 
+    /**
+     * Updates the input of the anumation.
+     * This function should be overwritten.
+     * 
+     * @param {{x: Number, y: Number}} points the points
+     */
     setPoints(points) {
         throw 'The function setPoints(points) has not been overwritten'
     }
 
+    /**
+     * Called when the user interacts with the timeline.
+     * This function should be overwritten.
+     * 
+     * @param {Number} value the time value between 0 and 1
+     */
     onTimeTravel(value) {
         throw 'The function onTimeTravel(value) has not been overwritten'
     }
 
+    /**
+     * Clears the canvas
+     */
     clearCanvas() {
         this.#ctx.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
     }
@@ -110,6 +163,9 @@ class InteractiveBox {
     #drawingPath = false;
     #points = [];
 
+    /**
+     * Initializes the drawable path on the canvas.
+     */
     #initDrawablePath() {
         this.#canvas.onmousedown = () => {
             this.#drawingPath = true;
@@ -159,6 +215,10 @@ class InteractiveBox {
     }
 
     #wasTimelinePlaying = false;
+
+    /**
+     * Initializes the interactible timeline.
+     */
     #initTimeline() {
         this.#timeline.onmousedown = _ => {
             this.#wasTimelinePlaying = this.isPlaying();
@@ -178,7 +238,12 @@ class InteractiveBox {
         }
     }
 
-    // Checks if the elements is at least a bit visible in the viewport
+    /**
+     * Checks if the elements is at least a bit visible in the viewport.
+     * 
+     * @param {HTMLElement} element the element to check
+     * @returns {Boolean}
+     */
     #isElementInViewport(element) {
         var rect = element.getBoundingClientRect();
         return (
@@ -189,8 +254,10 @@ class InteractiveBox {
         );
     }
 
-    // Pause/Resume rendering if not visible
-    // The status of the box is preserved
+    /**
+     * Pause/Resume rendering on scroll if the canvas is not visible
+     * The previous status of the box is preserved.
+     */
     #onScroll() {
         if (this.#isElementInViewport(this.#canvas)) {
             if (!this.isPlaying() && this.#wasPlaying) {

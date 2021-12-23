@@ -1,6 +1,10 @@
 class Fourier {
 
-    // discrete fourier transform
+    /**
+     * Computes the discrete Fourier transform of a given signal.
+     *
+     * @param {Number[]} f the signal
+    */
     static dft(f) {
         var fourierTransform = [];
         
